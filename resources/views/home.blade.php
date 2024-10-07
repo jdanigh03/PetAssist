@@ -7,24 +7,26 @@
         body {
             background-image: none;
             background-color: #78D4CC;
+            min-height: 100vh;
+            overflow: auto;
         }
 
-        /* Estilos para el contenedor principal */
         .home-cliente {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 400px;
-            /* Ajusta el ancho máximo según necesites */
             margin: 0 auto;
             padding: 20px;
+            /* Nueva propiedad para dejar espacio al footer */
+            padding-bottom: 80px;
+            /* Ajusta el valor según la altura de tu footer */
         }
 
-        /* Estilos para el buscador */
         .buscador {
             display: flex;
             width: 100%;
+            max-width: 400px;
             background-color: #4ed8a0;
             border: 2px solid black;
             border-radius: 10px;
@@ -46,20 +48,25 @@
             cursor: pointer;
         }
 
-        /* Estilos para las imágenes del carrusel */
+        .carrusel {
+            width: auto;
+        }
+
         .carrusel img {
-            width: 250px;
-            height: 200px;
+            margin: 20px;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 10px;
         }
 
-        /* Estilos para las categorías */
         .categorias {
             display: flex;
             justify-content: space-between;
-            width: auto;
+            width: 100%;
+            max-width: 500px;
             margin-bottom: 20px;
         }
 
@@ -71,16 +78,13 @@
             color: black;
             font-weight: bold;
         }
-        .categorias img {
-            width: 20px;
-            height: 20px;
-        }
+
 
         .container-img {
             font-size: 20px;
             background-color: #d3ff54;
             color: #222;
-            padding: 0.75rem 1.5rem;
+            padding: 0.7rem 0.9rem;
             border-radius: 20px;
             font-weight: bold;
             text-decoration: none;
@@ -90,16 +94,16 @@
         }
 
         .categorias img {
-            width: 50px;
-            height: 50px;
+            width: 30px;
+            height: 30px;
             border-radius: 10px;
-            margin-bottom: 5px;
+
         }
 
-        /* Estilos para la sección de sugerencias */
         .sugerencias {
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
             width: 100%;
         }
 
@@ -110,7 +114,7 @@
             border: 2px solid black;
             border-radius: 10px;
             padding: 10px;
-            width: 300px;
+            width: 100px;
             text-align: center;
         }
 
