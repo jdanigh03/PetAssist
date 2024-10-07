@@ -149,8 +149,8 @@
 
         @media (min-width: 768px) {
           .home-cliente {
-            scale: 2;
-            padding-top: 300px;
+            scale: 1.5;
+            padding-top: 200px;
             width: 40%;
           }
             .sugerencia img {
