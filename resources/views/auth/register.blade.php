@@ -3,7 +3,7 @@
 @section('title', 'Register')
 
 @section('content')
-<div>
+<div class="container">
  <h1 class="text-3xl text-center font-bold">Register</h1>
  <form class="mt-4" method="POST" action="">
     @csrf

@@ -3,6 +3,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 
+Route::get('/inicio', function () {
+    return view('welcome');
+});
+
 Route::get('/', function () {
     return view('home');
 })->middleware('auth');

@@ -3,8 +3,16 @@
 @section('title', 'home')
 
 @section('content')
-    
-  <h1 class="text-5xl text-center pt-24">Welcome to my application</h1>
+    <style>
+        body {
+            background-image: none;
+            background-color: #78D4CC;
+        }
+    </style>
+
+    <body>
+      <x-navegacion />
+    </body>
 
 
 @endsection

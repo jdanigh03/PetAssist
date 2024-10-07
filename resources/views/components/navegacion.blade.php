@@ -70,30 +70,6 @@
         align-self: center;
     }
 </style>
-<header class="header">
-    <div class="container-header">
-        <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo">
-
-        <div class="container-boton-header">
-            @if (auth()->check())
-                <form action="{{ route('login.destroy') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="logout-button">
-                        Cerrar Sesión
-                    </button>
-                </form>
-                <button type="submit" class="login-button">
-                    <img src="https://www.iconpacks.net/icons/1/free-bell-icon-860-thumb.png" class="noti"
-                        alt="">
-                </button>
-            @else
-                <a href="/register" class="login-button">
-                    Registrarse
-                </a>
-                <a href="/login" class="login-button">
-                    Iniciar Sesión
-                </a>
-            @endif
-        </div>
-    </div>
-</header>
+<div class="navegacion-footer">
+    hola soy nuevo
+</div>
