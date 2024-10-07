@@ -3,6 +3,7 @@
         background-color: #78D4CC;
         box-shadow: 0 1px 1px 2px black;
         margin: 0;
+        width: auto;
     }
 
     .header .container-header {
