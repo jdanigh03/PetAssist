@@ -18,6 +18,9 @@ Route::get('/register', [RegisterController::class, 'create'])
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register.store');
 
+Route::get('/inicio-web', function () {
+    return view('welcome');
+});
 
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
