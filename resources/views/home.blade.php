@@ -7,24 +7,24 @@
         body {
             background-image: none;
             background-color: #78D4CC;
+            min-height: 100vh;
+            overflow: auto;
         }
 
-        /* Estilos para el contenedor principal */
         .home-cliente {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 400px;
-            /* Ajusta el ancho máximo según necesites */
             margin: 0 auto;
             padding: 20px;
+            padding-bottom: 120px;
         }
 
-        /* Estilos para el buscador */
         .buscador {
             display: flex;
             width: 100%;
+            max-width: 400px;
             background-color: #4ed8a0;
             border: 2px solid black;
             border-radius: 10px;
@@ -46,20 +46,25 @@
             cursor: pointer;
         }
 
-        /* Estilos para las imágenes del carrusel */
+        .carrusel {
+            width: auto;
+        }
+
         .carrusel img {
-            width: 250px;
-            height: 200px;
+            margin: 20px;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 10px;
         }
 
-        /* Estilos para las categorías */
         .categorias {
             display: flex;
-            justify-content: space-between;
-            width: auto;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
             margin-bottom: 20px;
         }
 
@@ -70,37 +75,35 @@
             text-decoration: none;
             color: black;
             font-weight: bold;
-        }
-        .categorias img {
-            width: 20px;
-            height: 20px;
+            margin: 10px;
         }
 
         .container-img {
-            font-size: 20px;
+            font-size: 16px;
             background-color: #d3ff54;
             color: #222;
-            padding: 0.75rem 1.5rem;
+            padding: 0.5rem 0.7rem;
             border-radius: 20px;
             font-weight: bold;
             text-decoration: none;
             border: 3px solid black;
             transition: background-color 0.3s ease;
-
         }
 
         .categorias img {
-            width: 50px;
-            height: 50px;
+            width: auto;
+            height: 30px;
             border-radius: 10px;
-            margin-bottom: 5px;
         }
 
-        /* Estilos para la sección de sugerencias */
         .sugerencias {
             display: flex;
             flex-direction: row;
+            justify-content: space-between;
+            max-width: 400px;
             width: 100%;
+            align-items: center;
+            justify-content: center;
         }
 
         .sugerencia {
@@ -110,21 +113,49 @@
             border: 2px solid black;
             border-radius: 10px;
             padding: 10px;
-            width: 300px;
-            text-align: center;
+            width: 49%;
+            margin-bottom: 10px;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .img-sug {
+            display: flex;
+            justify-content: center;
         }
 
         .sugerencia img {
-            width: 100%;
-            height: 50px;
-            object-fit: cover;
+            width: auto;
+            height: 80px;
+            object-fit: contain;
             border-radius: 10px;
-            margin-bottom: 10px;
         }
 
         .sugerencia-texto {
             display: flex;
             flex-direction: column;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+
+        @media (min-width: 320px) {
+            .sugerencia img {
+                height: 60px;
+            }
+
+
+        }
+
+        @media (min-width: 768px) {
+          .home-cliente {
+            scale: 2;
+            padding-top: 300px;
+            width: 40%;
+          }
+            .sugerencia img {
+                height: 85px;
+            }
 
         }
     </style>
@@ -174,14 +205,18 @@
         <h2>Sugerencias</h2>
         <div class="sugerencias">
             <div class="sugerencia">
-                <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 1">
+                <div class="img-sug">
+                    <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 1">
+                </div>
                 <div class="sugerencia-texto">
                     <h3>Nombre</h3>
                     <p>Precio</p>
                 </div>
             </div>
             <div class="sugerencia">
-                <img src="ruta/a/tu/imagen_sugerencia2.jpg" alt="Sugerencia 2">
+                <div class="img-sug">
+                    <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 2">
+                </div>
                 <div class="sugerencia-texto">
                     <h3>Nombre</h3>
                     <p>Precio</p>
