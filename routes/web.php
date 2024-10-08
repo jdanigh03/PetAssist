@@ -23,8 +23,9 @@ Route::get('/inicio-web', function () {
 });
 
 
+
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 
-Route::get('/Admin',[AdminController::class, 'index'])->middleware('auth.admin')->name('admin.index');
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');

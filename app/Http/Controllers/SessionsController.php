@@ -11,21 +11,27 @@ class SessionsController extends Controller {
         return view('auth.login'); 
     }
 
-    public function store(Request $request) {
-        $credentials = $request->only('email', 'password');
+    public function store(Request $request)
+{
+    $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('/'); 
+    if (Auth::attempt($credentials)) {
+        // Verificar si es un administrador
+        if (Auth::user()->role == 'admin') {
+            return redirect()->route('admin.index');
         }
-
-        return back()->withErrors([
-            'message' => 'Invalid credentials, please try again.',
-        ]);
+        
+        // Si no es admin, redirigir a la página principal
+        return redirect()->intended('/');
     }
+
+    return back()->withErrors([
+        'message' => 'Invalid credentials, please try again.',
+    ]);
+}
 
     public function destroy() {
         Auth::logout();
         return redirect()->route('login.index');
     }
 }
-

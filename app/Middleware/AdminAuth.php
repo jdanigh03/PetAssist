@@ -4,8 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
-class AdminAuth {
+use Illuminate\Support\Facades\Auth;
+
+class AdminAuth
+{
     /**
      * Handle an incoming request.
      *
@@ -13,13 +15,13 @@ class AdminAuth {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next) {
-        
-        if(auth()->check()){
-            if(auth()->user()->role == 'admin') {
-                return $next($request);
-            }
+    public function handle(Request $request, Closure $next)
+    {
+        // Verifica si el usuario es administrador
+        if (Auth::check() && Auth::user()->role === 'admin') {
+            return $next($request);
         }
-        return redirect()->to('/');
+
+        return redirect('/')->withErrors('Access denied. Admins only.');
     }
 }
