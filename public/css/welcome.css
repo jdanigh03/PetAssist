@@ -43,18 +43,31 @@
     border-radius: 5px;
 }
 
-/* Hero section */
+/* Estilos para el menú de tres líneas (hamburger) */
+.hamburger {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 4px 0;
+}
+
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 150px 50px 50px; /* Espacio superior para compensar el navbar fijo */
+    padding: 80px 10px 50px; /* Espacio superior para compensar el navbar fijo */
     background-color: #f0f0e9;
     height: 100vh; /* Altura de la pantalla */
 }
 
 .hero-text {
-    max-width: 50%;
+    max-width: 50%; /* Mantener el ancho en pantallas grandes */
 }
 
 .hero-text h1 {
@@ -79,11 +92,13 @@
 .hero-image img {
     max-width: 400px;
     height: auto;
+    margin-bottom: 50px; /* Añadir un margen inferior para separar de la siguiente sección */
 }
 
+/* Features section */
 .features {
     background-color: #1d2b29;
-    padding: 50px;
+    padding: 100px 50px; /* Aumentar padding para evitar que las secciones se invadan */
     color: white;
 }
 
@@ -115,19 +130,345 @@
     line-height: 1.6;
 }
 
+.about-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+    background-color: #1d2b29;
+    color: white;
+}
+
+.about-content {
+    flex: 1;
+    max-width: 600px;
+    margin-right: 50px;
+}
+
+.about-content .section-tag {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #1d2b29;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.about-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.new-commitment-section {
+    background-color: #f0f4f8; /* Fondo suave */
+    padding: 60px 0; /* Espacio superior e inferior */
+    display: flex;
+    justify-content: center; /* Centrar contenido */
+    align-items: center;
+    flex-direction: column;
+    height: auto; /* Dejar altura dinámica */
+    text-align: center;
+}
+
+.new-commitment-content {
+    max-width: 800px; /* Limitar ancho del contenido */
+}
+
+.new-commitment-content h1 {
+    font-size: 48px; /* Tamaño grande del título */
+    color: #2d2d2d;
+    margin-bottom: 40px; /* Espacio debajo del título */
+    font-weight: bold;
+}
+
+.new-commitment-box {
+    background-color: #1d2b29; /* Fondo verde oscuro */
+    padding: 40px;
+    border-radius: 20px; /* Bordes redondeados */
+    text-align: left; /* Alinear texto a la izquierda */
+    color: white;
+}
+
+.new-commitment-box p {
+    font-size: 20px; /* Tamaño más grande para legibilidad */
+    line-height: 1.6;
+}
+
+.service-section {
+    background-color: #f5f5f5; /* Fondo claro */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.service-section h1 {
+    font-size: 48px;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+.service-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.service-card {
+    flex: 1;
+    padding: 30px;
+    border-radius: 50px; /* Bordes redondeados */
+    text-align: left;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+    font-size: 18px;
+}
+
+.service-card h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+.purple {
+    background-color: #a085ff;
+    color: #333;
+}
+
+.blue {
+    background-color: #91bfff;
+    color: #333;
+}
+
+.white {
+    background-color: white;
+    color: #333;
+    border: 1px solid #ccc; /* Borde para la tarjeta blanca */
+}
+
+.footer-section {
+    background-color: #1d2b29; /* Color oscuro */
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: space-between; /* Distribuye las columnas */
+    align-items: center; /* Alinea el contenido verticalmente */
+    text-align: left;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-logo img {
+    width: 50px; /* Tamaño del logo */
+    margin-bottom: 10px;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-column p {
+    margin: 0;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
 
 /* Media Queries para dispositivos móviles */
 @media (max-width: 768px) {
+    /* Ajustes para el navbar */
+    .navbar nav ul {
+        display: none; /* Ocultar el menú en móviles */
+        flex-direction: column;
+        background-color: #f8f8f8;
+        position: absolute;
+        top: 60px; /* Asegurarse de que esté debajo del navbar */
+        right: 0;
+        width: 100%;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        
+    }
+
+    .navbar nav ul.active {
+        display: flex; /* Mostrar el menú cuando se haga clic en el botón */
+    }
+
+    .hamburger {
+        display: flex; /* Mostrar el botón de tres líneas en pantallas pequeñas */
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    /* Ajustes para la sección hero */
     .hero {
         flex-direction: column;
         text-align: center;
+        padding: 100px 20px 50px; /* Ajustar el padding superior */
     }
 
     .hero-text, .hero-image {
         max-width: 100%;
     }
 
+    .hero-image img {
+        max-width: 300px; /* Reducir el tamaño de la imagen en dispositivos móviles */
+    }
+
     .hero-text {
         padding: 20px 0;
     }
+
+    /* Ajustes para las características */
+    .features {
+        padding: 20px;
+    }
+
+    .feature-item {
+        display: block;
+        margin-bottom: 40px;
+    }
+
+    .feature-item h2 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .feature-item h3 {
+        font-size: 20px;
+    }
+
+    .feature-item p {
+        font-size: 14px;
+    }
+
+    /* Ajustes para la sección about */
+    .about-section {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .about-content {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .about-image img {
+        max-width: 300px;
+        height: auto;
+    }
+
+    /* Ajustes para la sección de servicio integral */
+    .service-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .service-card {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    /* Ajustes para el footer */
+    .footer-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-column {
+        align-items: center;
+        margin-bottom: 20px;
+    }
 }
+
+/* Media Queries para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .hero-text h1 {
+        font-size: 36px; /* Reducir el tamaño del título */
+    }
+
+    .hero-text p {
+        font-size: 16px;
+    }
+
+    .hero-text a.button {
+        padding: 10px 20px; /* Ajustar el botón */
+    }
+
+    /* Sección de características */
+    .feature-item h2 {
+        font-size: 32px;
+    }
+
+    .feature-item h3 {
+        font-size: 18px;
+    }
+
+    .feature-item p {
+        font-size: 14px;
+    }
+
+    /* Sección de compromiso */
+    .new-commitment-content h1 {
+        font-size: 32px;
+    }
+
+    .new-commitment-box p {
+        font-size: 16px;
+    }
+
+    /* Ajustes para las tarjetas de servicio */
+    .service-section h1 {
+        font-size: 32px;
+    }
+
+    .service-card h2 {
+        font-size: 20px;
+    }
+
+    .service-card p {
+        font-size: 14px;
+    }
+}
+
