@@ -13,18 +13,19 @@
         </div>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Enfoque</a></li>
+                <li><a href="#features">Servicios</a></li>
+                <li><a href="#about-section">Acerca de</a></li>
+                <li><a href="#new-commitment-section">Enfoque</a></li>
                 <li><a href="/login" class="button">Empezar ahora</a></li>
             </ul>
-            <!-- Botón de tres líneas -->
+
             <div class="hamburger" onclick="toggleMenu()">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
         </nav>
+        
     </header>
     
 
@@ -39,7 +40,7 @@
             <img src="{{ asset('img/Logo PetAssist 2.webp') }}" alt="PetAssist Logo">
         </div>
     </section>
-    <section class="features">
+    <section id="features" class="features">
         <div class="feature-item">
             <h2>1</h2>
             <h3>Gestión veterinario</h3>
@@ -70,7 +71,7 @@
             <p>Con PetAssist, no solo gestionas animales y productos, sino también a tus clientes. Mantén un registro detallado de cada cliente y sus mascotas, envía recordatorios automáticos para citas y vacunaciones, y ofrece promociones personalizadas para fomentar la fidelización y mejorar la experiencia del cliente.</p>
         </div>
     </section>
-    <section class="about-section">
+    <section id="about-section" class="about-section">
         <div class="about-content">
             <h1>Todo sobre PetAssist</h1>
             <p>
@@ -90,7 +91,7 @@
             <img src="{{ asset('img/Logo PetAssist 2.webp') }}" alt="Imagen de PetAssist">
         </div>
     </section>
-    <section class="new-commitment-section">
+    <section id="new-commitment-section" class="new-commitment-section">
         <div class="new-commitment-content">
             <h1>Nuestro compromiso es cuidar lo que más amas</h1>
             <div class="new-commitment-box">
@@ -150,6 +151,9 @@
         const navLinks = document.querySelector('.nav-links');
         navLinks.classList.toggle('active');
     }
+
+    
+
 </script>
 
 </html>
