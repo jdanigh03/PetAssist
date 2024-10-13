@@ -22,6 +22,11 @@ Route::get('/inicio-web', function () {
     return view('welcome');
 });
 
+Route::get('/historial-medico-mascota', function () {
+    return view('hmm.card'); 
+})->name('historial.medico');
+
+
 
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
