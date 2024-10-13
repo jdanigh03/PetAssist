@@ -71,7 +71,7 @@
             <p>Con PetAssist, no solo gestionas animales y productos, sino también a tus clientes. Mantén un registro detallado de cada cliente y sus mascotas, envía recordatorios automáticos para citas y vacunaciones, y ofrece promociones personalizadas para fomentar la fidelización y mejorar la experiencia del cliente.</p>
         </div>
     </section>
-    <section id="about-section" class="about-section">
+    <section class="about-section">
         <div class="about-content">
             <h1>Todo sobre PetAssist</h1>
             <p>
@@ -91,7 +91,7 @@
             <img src="{{ asset('img/Logo PetAssist 2.webp') }}" alt="Imagen de PetAssist">
         </div>
     </section>
-    <section id="new-commitment-section" class="new-commitment-section">
+    <section class="new-commitment-section">
         <div class="new-commitment-content">
             <h1>Nuestro compromiso es cuidar lo que más amas</h1>
             <div class="new-commitment-box">
