@@ -1,11 +1,14 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Navbar */
+html {
+    scroll-behavior: smooth;
+}
+
+
 .navbar {
     position: fixed;
     top: 0;
@@ -43,9 +46,8 @@
     border-radius: 5px;
 }
 
-/* Estilos para el menú de tres líneas (hamburger) */
 .hamburger {
-    display: none; /* Oculto por defecto */
+    display: none;
     flex-direction: column;
     cursor: pointer;
 }
@@ -61,13 +63,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 80px 10px 50px; /* Espacio superior para compensar el navbar fijo */
+    padding: 80px 10px 50px;
     background-color: #f0f0e9;
-    height: 100vh; /* Altura de la pantalla */
+    height: 100vh;
 }
 
 .hero-text {
-    max-width: 50%; /* Mantener el ancho en pantallas grandes */
+    max-width: 50%;
 }
 
 .hero-text h1 {
@@ -92,21 +94,20 @@
 .hero-image img {
     max-width: 400px;
     height: auto;
-    margin-bottom: 50px; /* Añadir un margen inferior para separar de la siguiente sección */
+    margin-bottom: 50px;
 }
 
-/* Features section */
 .features {
     background-color: #1d2b29;
-    padding: 100px 50px; /* Aumentar padding para evitar que las secciones se invadan */
+    padding: 100px 50px;
     color: white;
 }
 
 .feature-item {
     display: grid;
-    grid-template-columns: 80px 200px auto; /* Columnas para el número, título y descripción */
-    grid-gap: 20px; /* Espacio entre las columnas */
-    align-items: start; /* Alineación de los elementos */
+    grid-template-columns: 80px 200px auto;
+    grid-gap: 20px;
+    align-items: start;
     margin-bottom: 50px;
     border-bottom: 1px solid #3a4c47;
     padding-bottom: 30px;
@@ -181,42 +182,42 @@
 }
 
 .new-commitment-section {
-    background-color: #f0f4f8; /* Fondo suave */
-    padding: 60px 0; /* Espacio superior e inferior */
+    background-color: #f0f4f8;
+    padding: 60px 0;
     display: flex;
-    justify-content: center; /* Centrar contenido */
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: auto; /* Dejar altura dinámica */
+    height: auto;
     text-align: center;
 }
 
 .new-commitment-content {
-    max-width: 800px; /* Limitar ancho del contenido */
+    max-width: 800px;
 }
 
 .new-commitment-content h1 {
-    font-size: 48px; /* Tamaño grande del título */
+    font-size: 48px;
     color: #2d2d2d;
-    margin-bottom: 40px; /* Espacio debajo del título */
+    margin-bottom: 40px;
     font-weight: bold;
 }
 
 .new-commitment-box {
-    background-color: #1d2b29; /* Fondo verde oscuro */
+    background-color: #1d2b29;
     padding: 40px;
-    border-radius: 20px; /* Bordes redondeados */
-    text-align: left; /* Alinear texto a la izquierda */
+    border-radius: 20px;
+    text-align: left;
     color: white;
 }
 
 .new-commitment-box p {
-    font-size: 20px; /* Tamaño más grande para legibilidad */
+    font-size: 20px;
     line-height: 1.6;
 }
 
 .service-section {
-    background-color: #f5f5f5; /* Fondo claro */
+    background-color: #f5f5f5;
     padding: 50px 20px;
     text-align: center;
 }
@@ -237,9 +238,9 @@
 .service-card {
     flex: 1;
     padding: 30px;
-    border-radius: 50px; /* Bordes redondeados */
+    border-radius: 50px;
     text-align: left;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     font-size: 18px;
 }
 
@@ -263,16 +264,16 @@
 .white {
     background-color: white;
     color: #333;
-    border: 1px solid #ccc; /* Borde para la tarjeta blanca */
+    border: 1px solid #ccc;
 }
 
 .footer-section {
-    background-color: #1d2b29; /* Color oscuro */
+    background-color: #1d2b29;
     color: white;
     padding: 40px 20px;
     display: flex;
-    justify-content: space-between; /* Distribuye las columnas */
-    align-items: center; /* Alinea el contenido verticalmente */
+    justify-content: space-between;
+    align-items: center;
     text-align: left;
 }
 
@@ -284,7 +285,7 @@
 }
 
 .footer-logo img {
-    width: 50px; /* Tamaño del logo */
+    width: 50px;
     margin-bottom: 10px;
 }
 
@@ -307,40 +308,35 @@
     font-size: 14px;
 }
 
-
-/* Media Queries para dispositivos móviles */
 @media (max-width: 768px) {
-    /* Ajustes para el navbar */
     .navbar nav ul {
-        display: none; /* Ocultar el menú en móviles */
+        display: none;
         flex-direction: column;
         background-color: #f8f8f8;
         position: absolute;
-        top: 60px; /* Asegurarse de que esté debajo del navbar */
+        top: 60px;
         right: 0;
         width: 100%;
         text-align: center;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        
     }
 
     .navbar nav ul.active {
-        display: flex; /* Mostrar el menú cuando se haga clic en el botón */
+        display: flex;
     }
 
     .hamburger {
-        display: flex; /* Mostrar el botón de tres líneas en pantallas pequeñas */
+        display: flex;
     }
 
     .navbar {
         justify-content: space-between;
     }
 
-    /* Ajustes para la sección hero */
     .hero {
         flex-direction: column;
         text-align: center;
-        padding: 100px 20px 50px; /* Ajustar el padding superior */
+        padding: 100px 20px 50px;
     }
 
     .hero-text, .hero-image {
@@ -348,14 +344,13 @@
     }
 
     .hero-image img {
-        max-width: 300px; /* Reducir el tamaño de la imagen en dispositivos móviles */
+        max-width: 300px;
     }
 
     .hero-text {
         padding: 20px 0;
     }
 
-    /* Ajustes para las características */
     .features {
         padding: 20px;
     }
@@ -378,7 +373,6 @@
         font-size: 14px;
     }
 
-    /* Ajustes para la sección about */
     .about-section {
         flex-direction: column;
         padding: 20px;
@@ -394,7 +388,6 @@
         height: auto;
     }
 
-    /* Ajustes para la sección de servicio integral */
     .service-cards {
         flex-direction: column;
         gap: 20px;
@@ -405,7 +398,6 @@
         padding: 20px;
     }
 
-    /* Ajustes para el footer */
     .footer-section {
         flex-direction: column;
         align-items: center;
@@ -418,14 +410,13 @@
     }
 }
 
-/* Media Queries para pantallas muy pequeñas */
 @media (max-width: 480px) {
     .navbar {
         padding: 10px;
     }
 
     .hero-text h1 {
-        font-size: 36px; /* Reducir el tamaño del título */
+        font-size: 36px;
     }
 
     .hero-text p {
@@ -433,10 +424,9 @@
     }
 
     .hero-text a.button {
-        padding: 10px 20px; /* Ajustar el botón */
+        padding: 10px 20px;
     }
 
-    /* Sección de características */
     .feature-item h2 {
         font-size: 32px;
     }
@@ -449,7 +439,6 @@
         font-size: 14px;
     }
 
-    /* Sección de compromiso */
     .new-commitment-content h1 {
         font-size: 32px;
     }
@@ -458,7 +447,6 @@
         font-size: 16px;
     }
 
-    /* Ajustes para las tarjetas de servicio */
     .service-section h1 {
         font-size: 32px;
     }
@@ -471,4 +459,3 @@
         font-size: 14px;
     }
 }
-

@@ -47,7 +47,6 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            overflow: hidden;
             margin: 0;
             background-position: center center;
         }
