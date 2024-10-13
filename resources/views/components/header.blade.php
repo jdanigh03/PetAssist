@@ -1,6 +1,6 @@
 <style>
     body {
-    padding-top: 100px; 
+    padding-top: 50px; 
 }
 
     .header {
