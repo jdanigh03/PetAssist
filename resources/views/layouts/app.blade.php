@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title') - Laravel App</title>
+    <title>@yield('title') - Go Can</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -42,8 +42,7 @@
         }
 
         body {
-            background-image: url("https://petshop.petcenter.com.bo/wp-content/uploads/2021/03/perro-enfermero.png");
-
+            background-color: #f5f5e7;
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;

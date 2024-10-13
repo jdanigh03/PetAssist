@@ -1,0 +1,77 @@
+.container-detalle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5e7; /* Fondo similar al navbar */
+    padding: 20px;
+}
+
+.card-detalle {
+    display: flex;
+    flex-direction: column;
+    background-color: #d6e5d1;
+    border-radius: 15px;
+    padding: 20px;
+    width: 80%; /* Ajuste de ancho para pantallas grandes */
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.foto-mascota {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.detalle-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.detalle-content h2 {
+    font-size: 2rem;
+    color: #006699;
+    margin-bottom: 15px;
+}
+
+.detalle-content p {
+    font-size: 1.2rem;
+    color: #4a4a4a;
+    margin-bottom: 10px;
+}
+
+/* Estilos responsivos para pantallas más grandes */
+@media (min-width: 768px) {
+    .card-detalle {
+        flex-direction: row;
+        align-items: flex-start;
+        width: 60%; /* Cambia el ancho para pantallas más grandes */
+    }
+
+    .foto-mascota {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .detalle-content {
+        justify-content: flex-start;
+    }
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    .card-detalle {
+        width: 100%; /* Los cards ocupan toda la pantalla en dispositivos móviles */
+    }
+
+    .detalle-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .detalle-content p {
+        font-size: 1rem;
+    }
+}

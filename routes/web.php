@@ -33,6 +33,9 @@ Route::get('/historial-medico-mascota', function () {
     return view('hmm.card'); 
 })->name('historial.medico');
 
+Route::get('/historial-detallado-mascota', function(){
+    return view('hmm.detallesCita');
+})->name('detalles.cita');
 
 
 
