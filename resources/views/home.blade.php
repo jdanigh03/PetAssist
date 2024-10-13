@@ -148,11 +148,12 @@
         }
 
         @media (min-width: 768px) {
-          .home-cliente {
-            scale: 1.5;
-            padding-top: 200px;
-            width: 40%;
-          }
+            .home-cliente {
+                scale: 1.5;
+                padding-top: 200px;
+                width: 40%;
+            }
+
             .sugerencia img {
                 height: 85px;
             }
@@ -225,6 +226,6 @@
         </div>
     </div>
 
-    <x-navegacion />
+
 
 @endsection
