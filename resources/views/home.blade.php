@@ -109,7 +109,7 @@
         .sugerencia {
             display: flex;
             flex-direction: row;
-            background-color: #bada55;
+            background-color: #F5F5DC;
             border: 2px solid black;
             border-radius: 10px;
             padding: 10px;
