@@ -74,7 +74,7 @@
         font-size: 1.2rem;
     }
 
-    / .hamburger {
+     .hamburger {
         display: none;
         flex-direction: column;
         gap: 5px;
@@ -131,11 +131,16 @@
         <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
 
         <nav class="navegacion-header">
-            <a href="#">Contactos</a>
-            <a href="#">Agenda</a>
-            <a href="/">Inicio</a>
-            <a href="#">Mascotas</a>
-            <a href="#">Perfil</a>
+            @if (auth()->check())
+                <a href="/">Inicio</a>
+                <a href="/contactos">Contactos</a>
+                <a href="/agenda">Agenda</a>
+                <a href="/mascotas">Mascotas</a>
+                <a href="/perfil">Perfil</a>
+            @else
+                <a href="/login">Inicio</a>
+                <a href="/contactos">Contactos</a>
+            @endif
         </nav>
 
         <div class="hamburger" onclick="toggleMenu()">
@@ -145,11 +150,16 @@
         </div>
 
         <div class="dropdown-menu">
-            <a href="#">Contactos</a>
-            <a href="#">Agenda</a>
-            <a href="#">Inicio</a>
-            <a href="/mascotas">Mascotas</a>
-            <a href="#">Perfil</a>
+            @if (auth()->check())
+                <a href="/">Inicio</a>
+                <a href="/contactos">Contactos</a>
+                <a href="#">Agenda</a>
+                <a href="/mascotas">Mascotas</a>
+                <a href="#">Perfil</a>
+            @else
+                <a href="/login">Inicio</a>
+                <a href="/contactos">Contactos</a>
+            @endif
         </div>
 
         <div class="container-boton-header">
