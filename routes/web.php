@@ -12,6 +12,13 @@ Route::get('/', function () {
     return view('home');
 })->middleware('auth');
 
+Route::get('/mascotas', function () {
+    return view('mascotas');
+})->middleware('auth');
+Route::get('/mascotas/perfil', function () {
+    return view('perfilmascotas');
+})->middleware('auth');
+
 Route::get('/register', [RegisterController::class, 'create'])
     ->name('register.index');
 
