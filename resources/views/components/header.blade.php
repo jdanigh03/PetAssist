@@ -133,7 +133,7 @@
         <nav class="navegacion-header">
             <a href="#">Contactos</a>
             <a href="#">Agenda</a>
-            <a href="#">Inicio</a>
+            <a href="/">Inicio</a>
             <a href="#">Mascotas</a>
             <a href="#">Perfil</a>
         </nav>
@@ -148,7 +148,7 @@
             <a href="#">Contactos</a>
             <a href="#">Agenda</a>
             <a href="#">Inicio</a>
-            <a href="#">Mascotas</a>
+            <a href="/mascotas">Mascotas</a>
             <a href="#">Perfil</a>
         </div>
 
