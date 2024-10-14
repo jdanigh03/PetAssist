@@ -12,6 +12,14 @@ Route::get('/', function () {
     return view('home');
 })->middleware('auth');
 
+Route::get('/perfilusuario', function () {
+    return view('perfilusuario');
+});
+
+Route::get('/editarperfilusuario', function () {
+    return view('editarperfilusuario');
+});
+
 Route::get('/mascotas', function () {
     return view('mascotas');
 })->middleware('auth');
