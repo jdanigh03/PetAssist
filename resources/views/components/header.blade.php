@@ -131,16 +131,11 @@
         <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
 
         <nav class="navegacion-header">
-            @if (auth()->check())
-                <a href="/">Inicio</a>
-                <a href="/contactos">Contactos</a>
-                <a href="/agenda">Agenda</a>
-                <a href="/mascotas">Mascotas</a>
-                <a href="/perfil">Perfil</a>
-            @else
-                <a href="/login">Inicio</a>
-                <a href="/contactos">Contactos</a>
-            @endif
+            <a href="#">Contactos</a>
+            <a href="#">Agenda</a>
+            <a href="/">Inicio</a>
+            <a href="#">Mascotas</a>
+            <a href="#">Perfil</a>
         </nav>
 
         <div class="hamburger" onclick="toggleMenu()">
@@ -150,16 +145,11 @@
         </div>
 
         <div class="dropdown-menu">
-            @if (auth()->check())
-                <a href="/">Inicio</a>
-                <a href="/contactos">Contactos</a>
-                <a href="#">Agenda</a>
-                <a href="/mascotas">Mascotas</a>
-                <a href="#">Perfil</a>
-            @else
-                <a href="/login">Inicio</a>
-                <a href="/contactos">Contactos</a>
-            @endif
+            <a href="#">Contactos</a>
+            <a href="#">Agenda</a>
+            <a href="#">Inicio</a>
+            <a href="/mascotas">Mascotas</a>
+            <a href="#">Perfil</a>
         </div>
 
         <div class="container-boton-header">
