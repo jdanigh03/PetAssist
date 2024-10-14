@@ -1,0 +1,110 @@
+/* Tipografía moderna */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f4f7;
+    padding-bottom: 100px;
+    padding-top: 80px; 
+    overflow-y: auto;
+    min-height: 100vh;
+}
+
+.home-cliente {
+    text-align: center;
+    padding: 20px;
+    padding-bottom: 120px;
+    min-height: calc(100vh - 160px);
+}
+
+h1, h2 {
+    color: #000000;
+    z-index: 1;
+}
+
+.categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.categorias a {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s ease;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.categorias a:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-5px);
+    color: #4caf50;
+}
+
+.container-img {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
+    transition: transform 0.3s;
+}
+
+.container-img:hover {
+    transform: scale(1.05);
+    background-color: #f1f1f1;
+}
+
+.navegacion-footer {
+    background-color: #4ed8a0;
+    border: 3px solid black;
+    border-radius: 20px;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.navegacion-footer a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.navegacion-footer img,
+.navegacion-footer svg {
+    width: 24px;
+    height: 24px;
+    margin: 0.5rem;
+}
+
+.navegacion-footer a:hover {
+    background-color: #56b597;
+    border-radius: 50%;
+}
+
+
+.logout-btn {
+    background-color: red;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.notification-icon {
+    font-size: 24px;
+}
