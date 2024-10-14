@@ -1,0 +1,64 @@
+body{
+    padding-top: 80px;
+}
+
+.container {
+    background-color: #F5F5DC;
+    padding: 2rem;
+}
+
+.login-title {
+    color: #2F4F4F;
+}
+
+.login-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #2F4F4F;
+}
+
+.error-message {
+    border: 1px solid #FF0000;
+    background-color: #FFE6E6;
+    color: #FF0000;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.btn-submit {
+    background-color: #2F4F4F;
+    color: #FFFFFF;
+    padding: 0.75rem 2rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.separator {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.separator span {
+    color: #2F4F4F;
+}
+
+.google-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+    background-color: #FFFFFF;
+    border: 1px solid #2F4F4F;
+    color: #2F4F4F;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.google-logo {
+    height: 20px;
+    margin-right: 0.5rem;
+}
