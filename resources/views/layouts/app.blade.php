@@ -192,7 +192,7 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],input[type="tel"] {
             width: calc(100% - 2rem);
             padding: 1rem;
             margin: 0.5rem 0;
