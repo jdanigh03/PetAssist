@@ -45,6 +45,10 @@ Route::get('inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
 })->name('inicio.veterinario');
 
+Route::get('/reservar-cita', function(){
+    return view('citas.reservarCitas');
+});
+
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
