@@ -137,11 +137,11 @@
             @if (auth()->check())
                 <a href="/">Inicio</a>
                 <a href="/contactos">Contactos</a>
-                <a href="/agenda">Agenda</a>
+                <a href="/citas-agendadas">Agenda</a>
                 <a href="/mascotas">Mascotas</a>
-                <a href="/perfil">Perfil</a>
+                <a href="/perfilusuario">Perfil</a>
             @else
-                <a href="/login">Inicio</a>
+                <a href="/">Inicio</a>
                 <a href="/contactos">Contactos</a>
             @endif
         </nav>
@@ -152,11 +152,11 @@
             @if (auth()->check())
                 <a href="/">Inicio</a>
                 <a href="/contactos">Contactos</a>
-                <a href="#">Agenda</a>
+                <a href="/citas-agendadas">Agenda</a>
                 <a href="/mascotas">Mascotas</a>
-                <a href="#">Perfil</a>
+                <a href="/perfilusuario">Perfil</a>
             @else
-                <a href="/login">Inicio</a>
+                <a href="/">Inicio</a>
                 <a href="/contactos">Contactos</a>
             @endif
         </div>

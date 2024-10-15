@@ -14,7 +14,7 @@
         <button type="submit" class="btn-search">Buscar</button>
     </div>
 
-    <a href="{{ url('/ruta-de-destino') }}" class="card-link">
+    <a href="{{ url('/historial-medico-mascota') }}" class="card-link">
         <div class="card-mascota">
             <h2>Nombre mascota</h2>
             <div class="details">

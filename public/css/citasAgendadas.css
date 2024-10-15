@@ -59,6 +59,10 @@ h1 {
     margin-bottom: 8px;
 }
 
+.button {
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .card-cita {
         width: 100%;

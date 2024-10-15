@@ -192,7 +192,8 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="password"],input[type="tel"] {
+        input[type="password"],
+        input[type="tel"] {
             width: calc(100% - 2rem);
             padding: 1rem;
             margin: 0.5rem 0;
@@ -242,28 +243,31 @@
             height: 1.5rem;
             margin-right: 0.5rem;
         }
+
         textarea {
-    width: 100%; 
-    height: 150px; 
-    margin-bottom: 15px; 
+            width: 100%;
+            height: 150px;
+            margin-bottom: 15px;
         }
+
         .social-buttons {
-    display: flex; 
-    gap: 10px; 
-    margin-top: 20px;
-}
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-#whatsapp-button, #facebook-button {
-    display: inline-block;
-    padding: 10px; 
-    border-radius: 50%; 
-    transition: transform 0.2s; 
-}
+        #whatsapp-button,
+        #facebook-button {
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
 
-#whatsapp-button:hover, #facebook-button:hover {
-    transform: scale(1.1); 
-}
-
+        #whatsapp-button:hover,
+        #facebook-button:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 
@@ -271,9 +275,9 @@
     <x-header />
 
     <div class="background-overlay"></div>
-    
+
     @yield('content')
-    
+
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
 
     </div>

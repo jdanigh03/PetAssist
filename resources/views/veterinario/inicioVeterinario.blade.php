@@ -10,7 +10,7 @@
     <h1>Bienvenido a <br> PetAssist Dr(a). Veterinario</h1>
 
     <div class="options">
-        <a href="{{ url('/citas-programadas') }}" class="option-card">
+        <a href="{{ url('/citas-agendadas') }}" class="option-card">
             <img src="{{ asset('img/citasMedicas.jpeg') }}" alt="Ver citas programadas">
             <p>Ver citas programadas</p>
         </a>

@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/inicio', function () {
-    return view('welcome');
+    return view('petshop');
 });
 
 Route::get('/login', function () {
@@ -16,7 +16,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 })->middleware('auth');
 
 Route::get('/perfilusuario', function () {
@@ -30,8 +30,13 @@ Route::get('/editarperfilusuario', function () {
 Route::get('/mascotas', function () {
     return view('mascotas');
 })->middleware('auth');
+
 Route::get('/mascotas/perfil', function () {
     return view('perfilmascotas');
+})->middleware('auth');
+
+Route::get('/pantallaproveedores', function () {
+    return view('pantallaproveedores');
 })->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'create'])
@@ -40,9 +45,6 @@ Route::get('/register', [RegisterController::class, 'create'])
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register.store');
 
-Route::get('/inicio-web', function () {
-    return view('welcome');
-});
 Route::get('/contactos', function () {
     return view('contactos.contactos');
 });
@@ -54,7 +56,7 @@ Route::get('/historial-detallado-mascota', function(){
     return view('hmm.detallesCita');
 })->name('detalles.cita');
 
-Route::get('inicio-veterinario', function(){
+Route::get('/inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
 })->name('inicio.veterinario');
 
@@ -71,7 +73,7 @@ Route::get('/consultar-historial', function(){
 });
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
-Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
+Route::post('/inicio', [SessionsController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');

@@ -111,8 +111,8 @@
             background-color: transparent;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 50px;
+            height: 50px;
             padding: 0;
             cursor: pointer;
         }
@@ -123,6 +123,22 @@
             border-radius: 50%; /* Haz que la imagen también sea redonda */
             object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
         }
+        .mascota-boton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        .mascota-boton img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 3px solid #fff;
+        }
 
     </style>
 
@@ -130,9 +146,11 @@
         <h1>Perfil</h1>
         <div class="profile-card">
             <div class="profile-header">
-                <button class="editar-boton">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
+                <a href="/editarperfilusuario">
+                    <button class="editar-boton">
+                        <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
+                    </button>
+                </a>
                 <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png"
                     alt="Foto de perfil de la mascota" class="profile-image-mascota">
                 <h1 class="profile-name">Nombre del usuario</h1>
@@ -147,23 +165,39 @@
             </div>
             <div class="profile-header2">
                 <div class="mascota-item">
-                    <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                        alt="Foto de perfil de la mascota" class="profile-image-mascota2">    
+                    <a href="/mascotas">
+                        <button class="mascota-boton">
+                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
+                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
+                        </button>
+                    </a>
                     <h1 class="profile-name">Nombre</h1>
                 </div>
                 <div class="mascota-item">
-                    <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                        alt="Foto de perfil de la mascota" class="profile-image-mascota2">    
+                    <a href="/mascotas">
+                        <button class="mascota-boton">
+                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
+                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
+                        </button>
+                    </a>
                     <h1 class="profile-name">Nombre</h1>
                 </div>
                 <div class="mascota-item">
-                    <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                        alt="Foto de perfil de la mascota" class="profile-image-mascota2">    
+                    <a href="/mascotas">
+                        <button class="mascota-boton">
+                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
+                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
+                        </button>
+                    </a>
                     <h1 class="profile-name">Nombre</h1>
                 </div>
                 <div class="mascota-item">
-                    <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                        alt="Foto de perfil de la mascota" class="profile-image-mascota2">    
+                    <a href="/mascotas">
+                        <button class="mascota-boton">
+                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
+                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
+                        </button>
+                    </a>
                     <h1 class="profile-name">Nombre</h1>
                 </div>
             </div>
