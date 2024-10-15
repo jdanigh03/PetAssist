@@ -31,6 +31,10 @@ Route::get('/mascotas/perfil', function () {
     return view('perfilmascotas');
 })->middleware('auth');
 
+Route::get('/pantallaproveedores', function () {
+    return view('pantallaproveedores');
+})->middleware('auth');
+
 Route::get('/register', [RegisterController::class, 'create'])
     ->name('register.index');
 
@@ -56,7 +60,6 @@ Route::get('inicio-veterinario', function(){
 Route::get('/reservar-cita', function(){
     return view('citas.reservarCitas');
 });
-
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
