@@ -8,7 +8,7 @@
     
     .container {
         max-width: 800px;
-        margin: 2rem auto;
+        margin: 4rem auto;
         background-color: #F5F5DC;
         padding: 2rem;
         border-radius: 8px;
@@ -29,14 +29,7 @@
         margin: 0;
     }
 
-    input {
-        border: 1px solid #2F4F4F;
-        border-radius: 8px;
-        width: 100%;
-        padding: 0.5rem;
-        font-size: 1rem;
-        box-sizing: border-box; 
-    }
+
 
     input:focus {
         background-color: white;

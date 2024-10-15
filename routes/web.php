@@ -8,6 +8,10 @@ Route::get('/inicio', function () {
     return view('welcome');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});
+
 Route::get('/', function () {
     return view('home');
 })->middleware('auth');
@@ -37,6 +41,21 @@ Route::get('/inicio-web', function () {
     return view('welcome');
 });
 
+Route::get('/historial-medico-mascota', function () {
+    return view('hmm.card'); 
+})->name('historial.medico');
+
+Route::get('/historial-detallado-mascota', function(){
+    return view('hmm.detallesCita');
+})->name('detalles.cita');
+
+Route::get('inicio-veterinario', function(){
+    return view('veterinario.inicioVeterinario');
+})->name('inicio.veterinario');
+
+Route::get('/reservar-cita', function(){
+    return view('citas.reservarCitas');
+});
 
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');

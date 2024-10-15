@@ -1,0 +1,107 @@
+body {
+    background-color: #f5f5e7; /* Fondo alineado con el navbar */
+    color: #333;
+}
+
+.container-reserva {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Alinea todo el contenido a la izquierda */
+}
+
+h1 {
+    font-size: 2rem;
+    color: #374e4d; /* Color del título similar al texto del navbar */
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1rem;
+    color: #374e4d; /* Color de los textos del formulario similar al navbar */
+    font-weight: bold;
+}
+
+select, input[type="date"], input[type="time"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #374e4d;
+    background-color: #eef0e9;
+}
+
+textarea {
+    resize: none;
+}
+
+select:focus, input[type="date"]:focus, input[type="time"]:focus, textarea:focus {
+    outline: none;
+    border-color: #374e4d; /* Color del borde al enfocarse */
+    box-shadow: 0 0 5px rgba(55, 78, 77, 0.5);
+}
+
+/* Contenedor para agrupar la fecha y la hora en una sola línea */
+.flex-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espacio entre los dos campos */
+}
+
+.flex-group .form-group {
+    flex: 1;
+}
+
+/* Botón de reservar cita */
+.btn-reservar {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #2c4b49; /* Color del botón, similar al navbar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-reservar:hover {
+    background-color: #233a39; /* Efecto hover más oscuro */
+}
+
+.btn-reservar:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(44, 75, 73, 0.7);
+}
+
+@media (max-width: 768px) {
+    .container-reserva {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-reservar {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    /* Asegurarse de que los campos en flex se apilen en móviles */
+    .flex-group {
+        flex-direction: column;
+    }
+}

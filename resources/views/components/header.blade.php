@@ -1,11 +1,11 @@
 <style>
     body {
-    padding-top: 50px; 
-}
+        padding-top: 50px;
+    }
 
     .header {
-        background-color: #F5F5DC; 
-        box-shadow: 0 1px 1px 2px #2F4F4F; 
+        background-color: #F5F5DC;
+        box-shadow: 0 1px 1px 2px #2F4F4F;
         margin: 0;
         width: 100%;
         position: fixed;
@@ -40,12 +40,14 @@
         display: flex;
         gap: 1rem;
         align-items: center;
-        margin-left: auto; 
+        margin-left: auto;
     }
+
+    .container-boton-header img {}
 
     .login-button,
     .logout-button {
-        background-color: #2F4F4F; 
+        background-color: #2F4F4F;
         color: #FFFFFF;
         padding: 0.7rem 1rem;
         border-radius: 203px;
@@ -60,7 +62,7 @@
 
     .logout-button:hover,
     .login-button:hover {
-        background-color: #556B2F; 
+        background-color: #556B2F;
     }
 
     .noti {
@@ -69,29 +71,30 @@
 
     .navegacion-header a {
         text-decoration: none;
-        color: #2F4F4F; 
+        color: #2F4F4F;
         font-weight: bold;
         font-size: 1.2rem;
     }
-/
+
     .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
+        background-color: #2F4F4F;
+        border-radius: 203px;
+        padding: 0.7rem 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-left: auto;
     }
 
-    .hamburger div {
-        width: 25px;
-        height: 3px;
-        background-color: #2F4F4F; 
+    .hamburger img {
+        width: 18px;
     }
 
     .dropdown-menu {
         display: none;
         flex-direction: column;
         gap: 1rem;
-        background-color: #F5F5DC; 
+        background-color: #F5F5DC;
         position: absolute;
         top: 80px;
         left: 0;
@@ -103,7 +106,7 @@
 
     .dropdown-menu a {
         text-decoration: none;
-        color: #2F4F4F; 
+        color: #2F4F4F;
         font-weight: bold;
         padding: 0.5rem 0;
     }
@@ -128,34 +131,47 @@
 
 <header class="header">
     <div class="container-header">
-        <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo">
+        <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
 
         <nav class="navegacion-header">
-            <a href="#">Contactos</a>
-            <a href="#">Agenda</a>
-            <a href="/">Inicio</a>
-            <a href="#">Mascotas</a>
-            <a href="#">Perfil</a>
+            @if (auth()->check())
+                <a href="/">Inicio</a>
+                <a href="/contactos">Contactos</a>
+                <a href="/agenda">Agenda</a>
+                <a href="/mascotas">Mascotas</a>
+                <a href="/perfil">Perfil</a>
+            @else
+                <a href="/login">Inicio</a>
+                <a href="/contactos">Contactos</a>
+            @endif
         </nav>
 
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        
 
         <div class="dropdown-menu">
-            <a href="#">Contactos</a>
-            <a href="#">Agenda</a>
-            <a href="#">Inicio</a>
-            <a href="/mascotas">Mascotas</a>
-            <a href="#">Perfil</a>
+            @if (auth()->check())
+                <a href="/">Inicio</a>
+                <a href="/contactos">Contactos</a>
+                <a href="#">Agenda</a>
+                <a href="/mascotas">Mascotas</a>
+                <a href="#">Perfil</a>
+            @else
+                <a href="/login">Inicio</a>
+                <a href="/contactos">Contactos</a>
+            @endif
         </div>
 
         <div class="container-boton-header">
-            <button type="submit" class="login-button">
-                <img src="https://www.iconpacks.net/icons/1/free-bell-icon-860-thumb.png" class="noti" alt="">
-            </button>
+            @if (auth()->check())
+            <div class="hamburger" onclick="toggleMenu()">
+                <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
+                    alt="">
+            </div>
+                <button type="submit" class="login-button">
+                    <img src="https://static-00.iconduck.com/assets.00/notification-icon-2047x2048-qbq87wz5.png"
+                        class="noti" alt="">
+                </button>
+            @endif
             @if (auth()->check())
                 <form action="{{ route('login.destroy') }}" method="POST">
                     @csrf

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title') - Laravel App</title>
+    <title>@yield('title') - Go Can</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -42,8 +42,7 @@
         }
 
         body {
-            background-image: url("https://petshop.petcenter.com.bo/wp-content/uploads/2021/03/perro-enfermero.png");
-
+            background-color: #f5f5e7;
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
@@ -57,7 +56,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
             z-index: -1;
         }
@@ -194,7 +192,7 @@
 
         input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],input[type="tel"] {
             width: calc(100% - 2rem);
             padding: 1rem;
             margin: 0.5rem 0;

@@ -11,25 +11,25 @@
         <h2>Control de inventario</h2>
         <div class="categorias">
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
                 </div>
                 Aumentar producto
             </a>
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
                 </div>
                 Quitar producto
             </a>
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
                 </div>
                 Consultar producto
             </a>
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>
                 Actualizar producto
@@ -39,25 +39,25 @@
         <h2>Control de clientes</h2>
         <div class="categorias">
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
                 </div>
                 Control de citas
             </a>
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
                 </div>
                 Historial de visitas
             </a>
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
                 </div>
                 Cuentas pendientes
             </a>
             <a href="#">
-                <div class="container-img">
+                <div class="container-img-adm">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>
                 Control de mascotas
