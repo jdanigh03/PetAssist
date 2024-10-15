@@ -96,7 +96,7 @@
                 <p><strong>Teléfono de referencia:</strong> </p>
             </div>
             <div class="profile-button">
-                <a href="#" class="btn">Ver historial médico de la mascota</a>
+                <a href="/historial-medico-mascota" class="btn">Ver historial médico de la mascota</a>
             </div>
         </div>
     </div>

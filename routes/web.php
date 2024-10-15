@@ -56,7 +56,7 @@ Route::get('/historial-detallado-mascota', function(){
     return view('hmm.detallesCita');
 })->name('detalles.cita');
 
-Route::get('inicio-veterinario', function(){
+Route::get('/inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
 })->name('inicio.veterinario');
 

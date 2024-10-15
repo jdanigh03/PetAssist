@@ -32,7 +32,6 @@
             <p><strong>Motivo:</strong> Revisión General</p>
             <p><strong>Veterinario:</strong> Dra. María López</p>
         </div>
-
     </div>
 </div>
 
