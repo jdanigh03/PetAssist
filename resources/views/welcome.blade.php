@@ -353,13 +353,18 @@
         }
 
         .label-contacto {
-            display: flex;
-            flex-direction: column-reverse;
+            display: inline-flex;
+            align-items: center; 
+            gap: 10px; 
+            margin-top: 10px; 
         }
 
+
         .label-contacto input {
-            display: unset;
+            display: inline-block;
+            margin-right: 10px;
         }
+
 
         @media (max-width: 768px) {
             header {
@@ -504,6 +509,7 @@
                     <input type="checkbox" name="informacion">
                     Me interesa recibir más información y promociones
                 </label>
+                
 
                 <button type="submit">Enviar</button>
             </form>
