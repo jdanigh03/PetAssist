@@ -27,6 +27,7 @@ Route::get('/editarperfilusuario', function () {
 Route::get('/mascotas', function () {
     return view('mascotas');
 })->middleware('auth');
+
 Route::get('/mascotas/perfil', function () {
     return view('perfilmascotas');
 })->middleware('auth');
