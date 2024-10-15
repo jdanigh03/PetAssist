@@ -76,16 +76,7 @@
         font-size: 1.2rem;
     }
 
-     .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-    }
-
-    .hamburger div {
-        width: 25px;
-        height: 3px;
+    .hamburger {
         background-color: #2F4F4F;
         border-radius: 203px;
         padding: 0.7rem 1rem;
