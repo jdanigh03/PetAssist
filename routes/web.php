@@ -17,7 +17,7 @@ Route::get('/login', function () {
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware('auth');
+});
 
 Route::get('/perfilusuario', function () {
     return view('perfilusuario');
