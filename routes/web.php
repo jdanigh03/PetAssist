@@ -74,22 +74,9 @@ Route::get('/consultar-historial', function(){
 });
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
-Route::post('/inicio', [SessionsController::class, 'store'])->name('login.store');
+Route::match(['get', 'post'], '/inicio', [SessionsController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
-Route::get('auth/google', function () {
-    return Socialite::driver('google')->redirect();
-})->name('google.login');
-
-Route::get('auth/google/callback', function () {
-    $googleUser = Socialite::driver('google')->stateless()->user();
-    $user = User::firstOrCreate(
-        ['email' => $googleUser->getEmail()],
-        ['name' => $googleUser->getName()]
-    );
-    Auth::login($user);
-    return redirect('/home');
-});

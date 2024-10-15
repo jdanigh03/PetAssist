@@ -14,6 +14,11 @@
             --text-secondary: #555;
         }
 
+        html {
+        scroll-behavior: smooth;
+        }
+
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f5e7;
