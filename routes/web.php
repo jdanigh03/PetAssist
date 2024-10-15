@@ -5,7 +5,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminController;
 
 Route::get('/inicio', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/login', function () {
@@ -41,10 +41,6 @@ Route::get('/register', [RegisterController::class, 'create'])
 
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register.store');
-
-Route::get('/inicio-web', function () {
-    return view('welcome');
-});
 
 Route::get('/historial-medico-mascota', function () {
     return view('hmm.card'); 
