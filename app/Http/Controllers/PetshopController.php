@@ -11,5 +11,11 @@ class PetshopController extends Controller
     {
         $productos = ProductoPetshop::all(); // Obtiene todos los productos
         return view('welcome', ['productos' => $productos]); 
+
     }
-}
+    public function petshop()
+    {
+        $productos = ProductoPetshop::all();
+        return view('petshop', ['productos' => $productos]);
+    }
+    }

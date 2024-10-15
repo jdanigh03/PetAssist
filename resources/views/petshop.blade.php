@@ -33,7 +33,7 @@
             display: flex;
             width: 100%;
             max-width: 400px;
-            background-color: #4ed8a0;
+            background-color: #F5F5DC;
             border: 2px solid black;
             border-radius: 10px;
             padding: 8px;
@@ -119,7 +119,7 @@
             border: 2px solid black;
             border-radius: 10px;
             padding: 10px;
-            width: 45%;
+            width: 30%;
             text-align: left;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
@@ -197,27 +197,16 @@
 
         <h2>Sugerencias</h2>
         <div class="sugerencias">
-            <div class="sugerencia">
-                <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 1">
-                <div class="sugerencia-texto">
-                    <h3>Nombre</h3>
-                    <p>Precio</p>
+            @foreach ($productos as $producto)
+                <div class="sugerencia">
+                    <img src="{{ $producto->Imagen }}" alt="{{ $producto->Nombre }}">
+                    <div class="sugerencia-texto">
+                        <h3>{{ $producto->Nombre }}</h3>
+                        <p>Precio: ${{ number_format($producto->Precio, 2) }}</p>
+                        <a href="/login">Ver producto</a>
+                    </div>
                 </div>
-            </div>
-            <div class="sugerencia">
-                <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 2">
-                <div class="sugerencia-texto">
-                    <h3>Nombre</h3>
-                    <p>Precio</p>
-                </div>
-            </div>
-            <div class="sugerencia">
-                <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 2">
-                <div class="sugerencia-texto">
-                    <h3>Nombre</h3>
-                    <p>Precio</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 
