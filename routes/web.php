@@ -13,7 +13,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 })->middleware('auth');
 
 Route::get('/perfilusuario', function () {
@@ -42,9 +42,6 @@ Route::get('/register', [RegisterController::class, 'create'])
 Route::post('/register', [RegisterController::class, 'store'])
     ->name('register.store');
 
-Route::get('/inicio-web', function () {
-    return view('welcome');
-});
 Route::get('/contactos', function () {
     return view('contactos.contactos');
 });
@@ -73,7 +70,7 @@ Route::get('/consultar-historial', function(){
 });
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
-Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
+Route::post('/inicio', [SessionsController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');

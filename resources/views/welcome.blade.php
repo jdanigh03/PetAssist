@@ -407,7 +407,7 @@
 <body>
     <header>
         <div class="container">
-            <a href="#" class="logo">Go Can</a>
+            <a href="/" class="logo">Go Can</a>
         </div>
         <div class="container-nav-inicio">
             <nav>
@@ -417,8 +417,8 @@
                     <li><a href="#petshop">Petshop</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
-                <button class="btn-submit" onclick="window.location.href='/login'">Registrarse</button>
-                <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
+                <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
+                <button class="btn-submit" onclick="window.location.href='/mascotas'">Iniciar Sesión</button>
             </nav>
         </div>
     </header>
