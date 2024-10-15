@@ -3,6 +3,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/inicio', function () {
     return view('welcome');
@@ -72,3 +75,16 @@ Route::post('/login', [SessionsController::class, 'store'])->name('login.store')
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('auth/google', function () {
+    return Socialite::driver('google')->redirect();
+})->name('google.login');
+
+Route::get('auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->stateless()->user();
+    $user = User::firstOrCreate(
+        ['email' => $googleUser->getEmail()],
+        ['name' => $googleUser->getName()]
+    );
+    Auth::login($user);
+    return redirect('/home');
+});
