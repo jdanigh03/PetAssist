@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go Can</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <link rel="stylesheet" hr¿¿ef="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
     <style>
         :root {
             --primary: #2F4F4F;
@@ -28,8 +28,7 @@
 
         header {
             background-color: var(--secondary);
-            position: fixed;
-            width: 100%;
+
             box-shadow: 0 1px 1px 2px #2F4F4F;
             padding: 20px;
             display: flex;
@@ -281,7 +280,10 @@
             transform: scale(1.1);
         }
 
-        /* Estilos para la sección de Petshop */
+        .mapa-vet-inicio {
+            width: 100%;
+        }
+
         .petshop {
             padding: 40px 20px;
             background-color: #f8f8f8;
@@ -297,6 +299,10 @@
         .carousel {
             display: flex;
             overflow-x: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
@@ -347,13 +353,18 @@
         }
 
         .label-contacto {
-            display: flex;
-            flex-direction: column-reverse;
+            display: inline-flex;
+            align-items: center; 
+            gap: 10px; 
+            margin-top: 10px; 
         }
 
+
         .label-contacto input {
-            display: unset;
+            display: inline-block;
+            margin-right: 10px;
         }
+
 
         @media (max-width: 768px) {
             header {
@@ -400,6 +411,7 @@
             .product-card {
                 min-width: 50%;
             }
+
         }
     </style>
 </head>
@@ -465,23 +477,15 @@
         <div class="container">
             <h2>Petshop</h2>
             <div class="carousel">
-                <div class="product-card">
-                    <img src="https://www.doctormascota.cl/wp-content/uploads/2024/07/1722451489028.jpg"
-                        alt="Producto 1">
-                    <h3>Nombre del producto 1</h3>
-                    <p>Descripción breve del producto 1.</p>
-                    <p>Precio: $19.99</p>
-                    <a href="/login">Ver producto</a>
-                </div>
-                <div class="product-card">
-                    <img src="https://www.doctormascota.cl/wp-content/uploads/2024/07/1722451489028.jpg"
-                        alt="Producto 2">
-                    <h3>Nombre del producto 2</h3>
-                    <p>Descripción breve del producto 2.</p>
-                    <p>Precio: $29.99</p>
-                    <a href="/login">Ver producto</a>
-                </div>
-                <!-- Agrega más productos aquí -->
+                @foreach ($productos as $producto)
+                    <div class="product-card">
+                        <img src="{{ $producto->Imagen }}" alt="{{ $producto->Nombre }}">
+                        <h3>{{ $producto->Nombre }}</h3>
+                        <p>{{ $producto->Descripcion }}</p>
+                        <p>Precio: ${{ number_format($producto->Precio, 2) }}</p>
+                        <a href="/login">Ver producto</a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -505,6 +509,7 @@
                     <input type="checkbox" name="informacion">
                     Me interesa recibir más información y promociones
                 </label>
+                
 
                 <button type="submit">Enviar</button>
             </form>
@@ -514,13 +519,14 @@
                 <p>Ignacio Ramírez 2240, Zona Central, La Paz, Baja California Sur</p>
                 <p>Tel: 612-129-3443</p>
                 <p>Email: contacto@koraveterinaria.com.mx</p>
-                <iframe src="https://www.google.com/maps/d/embed?mid=1L66q39sAMiYNQgbMAknyqkQT0Gsz-Ls&ehbc=2E312F"
-                    width="640" height="480"></iframe>
+                <iframe class="mapa-vet-inicio"
+                    src="https://www.google.com/maps/d/embed?mid=1L66q39sAMiYNQgbMAknyqkQT0Gsz-Ls&ehbc=2E312F"
+                    height="480"></iframe>
                 <div class="social-buttons">
-                    <a href="https://wa.me/69927071" target="_blank">
+                    <a href="https://wa.me/message/JTIX5UW6PVDXM1" target="_blank">
                         <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" class="social-icon">
                     </a>
-                    <a href="https://www.facebook.com/kora.veterinaria" target="_blank">
+                    <a href="https://www.facebook.com/profile.php?id=100066704146049" target="_blank">
                         <img src="{{ asset('img/facebook.png') }}" alt="Facebook" class="social-icon">
                     </a>
                 </div>

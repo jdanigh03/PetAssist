@@ -6,8 +6,9 @@ use App\Http\Controllers\AdminController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\AuthController;
-Route::get('/inicio', function () {
+use App\Http\Controllers\PetshopController;
+
+Route::get('/petshop', function () {
     return view('petshop');
 });
 
@@ -74,6 +75,8 @@ Route::get('/consultar-historial', function(){
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
 Route::post('/inicio', [SessionsController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
+Route::get('/', [PetshopController::class, 'index']);
+Route::get('/petshop', [PetshopController::class, 'petshop']);
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
