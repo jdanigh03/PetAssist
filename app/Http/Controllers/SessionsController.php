@@ -22,7 +22,7 @@ class SessionsController extends Controller {
         }
         
         // Si no es admin, redirigir a la página principal
-        return redirect()->intended('/');
+        return redirect()->intended('/inicio');
     }
 
     return back()->withErrors([

@@ -5,7 +5,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminController;
 
 Route::get('/inicio', function () {
-    return view('welcome');
+    return view('petshop');
 });
 
 Route::get('/login', function () {
@@ -27,8 +27,13 @@ Route::get('/editarperfilusuario', function () {
 Route::get('/mascotas', function () {
     return view('mascotas');
 })->middleware('auth');
+
 Route::get('/mascotas/perfil', function () {
     return view('perfilmascotas');
+})->middleware('auth');
+
+Route::get('/pantallaproveedores', function () {
+    return view('pantallaproveedores');
 })->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'create'])
