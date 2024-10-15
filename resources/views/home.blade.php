@@ -4,21 +4,29 @@
 
 @section('content')
     <style>
+        /* Importa la tipografía Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
         body {
-            background-image: none;
-            background-color: #78D4CC;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f7;
+            padding-bottom: 100px;
+            padding-top: 80px;
+            overflow-y: auto;
             min-height: 100vh;
-            overflow: auto;
         }
 
         .home-cliente {
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            width: 100%;
-            margin: 0 auto;
             padding: 20px;
             padding-bottom: 120px;
+            min-height: calc(100vh - 160px);
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #000000;
         }
 
         .buscador {
@@ -29,7 +37,7 @@
             border: 2px solid black;
             border-radius: 10px;
             padding: 8px;
-            margin-bottom: 20px;
+            margin: 20px auto;
         }
 
         .buscador input[type="text"] {
@@ -47,63 +55,61 @@
         }
 
         .carrusel {
-            width: auto;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
         }
 
         .carrusel img {
-            margin: 20px;
             width: 100%;
-            max-width: 300px;
             height: auto;
             object-fit: cover;
             border-radius: 10px;
-            margin-bottom: 10px;
         }
 
         .categorias {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
         }
 
         .categorias a {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s ease;
             text-decoration: none;
             color: black;
             font-weight: bold;
-            margin: 10px;
+            text-align: center;
+        }
+
+        .categorias a:hover {
+            background-color: #f9f9f9;
+            transform: translateY(-5px);
         }
 
         .container-img {
             font-size: 16px;
-            background-color: #d3ff54;
+
             color: #222;
             padding: 0.5rem 0.7rem;
             border-radius: 20px;
             font-weight: bold;
             text-decoration: none;
-            border: 3px solid black;
-            transition: background-color 0.3s ease;
-        }
 
-        .categorias img {
-            width: auto;
-            height: 30px;
-            border-radius: 10px;
+            transition: background-color 0.3s ease;
         }
 
         .sugerencias {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            max-width: 400px;
-            width: 100%;
-            align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
+            width: 100%;
+            gap: 20px;
+            margin: 20px 0;
         }
 
         .sugerencia {
@@ -113,51 +119,37 @@
             border: 2px solid black;
             border-radius: 10px;
             padding: 10px;
-            width: 49%;
-            margin-bottom: 10px;
-            align-items: center;
-            justify-content: center;
+            width: 45%;
             text-align: left;
-        }
-
-        .img-sug {
-            display: flex;
-            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .sugerencia img {
-            width: auto;
-            height: 80px;
+            width: 100%;
+            max-width: 150px;
+            height: auto;
             object-fit: contain;
             border-radius: 10px;
+            margin-bottom: 10px;
         }
 
         .sugerencia-texto {
+            flex: 1;
             display: flex;
             flex-direction: column;
             font-size: 14px;
             margin-left: 20px;
         }
 
-        @media (min-width: 320px) {
-            .sugerencia img {
-                height: 60px;
-            }
 
-
-        }
-
-        @media (min-width: 768px) {
+        @media (max-width: 768px) {
             .home-cliente {
-                scale: 1.5;
-                padding-top: 200px;
-                width: 40%;
+                padding-top: 0px;
             }
 
-            .sugerencia img {
-                height: 85px;
+            .sugerencia {
+                width: 100%;
             }
-
         }
     </style>
 
@@ -197,7 +189,7 @@
             </a>
             <a href="#">
                 <div class="container-img">
-                    <img src="{{ asset('img/medicamentos.png') }}"" alt="Medicamentos">
+                    <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>
                 Medicamentos
             </a>
@@ -206,18 +198,21 @@
         <h2>Sugerencias</h2>
         <div class="sugerencias">
             <div class="sugerencia">
-                <div class="img-sug">
-                    <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 1">
-                </div>
+                <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 1">
                 <div class="sugerencia-texto">
                     <h3>Nombre</h3>
                     <p>Precio</p>
                 </div>
             </div>
             <div class="sugerencia">
-                <div class="img-sug">
-                    <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 2">
+                <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 2">
+                <div class="sugerencia-texto">
+                    <h3>Nombre</h3>
+                    <p>Precio</p>
                 </div>
+            </div>
+            <div class="sugerencia">
+                <img src="{{ asset('img/pedigree.png') }}" alt="Sugerencia 2">
                 <div class="sugerencia-texto">
                     <h3>Nombre</h3>
                     <p>Precio</p>
@@ -225,7 +220,5 @@
             </div>
         </div>
     </div>
-
-
 
 @endsection

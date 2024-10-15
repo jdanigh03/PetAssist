@@ -47,15 +47,15 @@ h1, h2 {
     color: #4caf50;
 }
 
-.container-img {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.container-img-adm {
+    box-shadow: none;
     border-radius: 10px;
     padding: 10px;
     background-color: white;
     transition: transform 0.3s;
 }
 
-.container-img:hover {
+.container-img-adm:hover {
     transform: scale(1.05);
     background-color: #f1f1f1;
 }
