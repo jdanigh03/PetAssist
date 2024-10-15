@@ -1,27 +1,33 @@
-body{
-    padding-top: 80px;
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
 .container {
-    background-color: #F5F5DC;
+    flex-grow: 1;
+    background-color: #f5f5dc;
     padding: 2rem;
+    margin: 20px;
 }
 
 .login-title {
-    color: #2F4F4F;
+    color: #2f4f4f;
 }
 
 .login-input {
     width: 100%;
     padding: 0.5rem;
     margin: 0.5rem 0;
-    border: 1px solid #2F4F4F;
+    border: 1px solid #2f4f4f;
 }
 
 .error-message {
-    border: 1px solid #FF0000;
-    background-color: #FFE6E6;
-    color: #FF0000;
+    border: 1px solid #ff0000;
+    background-color: #ffe6e6;
+    color: #ff0000;
     padding: 0.75rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -29,8 +35,8 @@ body{
 }
 
 .btn-submit {
-    background-color: #2F4F4F;
-    color: #FFFFFF;
+    background-color: #2f4f4f;
+    color: #ffffff;
     padding: 0.75rem 2rem;
     border-radius: 5px;
     border: none;
@@ -43,7 +49,7 @@ body{
 }
 
 .separator span {
-    color: #2F4F4F;
+    color: #2f4f4f;
 }
 
 .google-button {
@@ -51,9 +57,9 @@ body{
     justify-content: center;
     align-items: center;
     padding: 0.75rem;
-    background-color: #FFFFFF;
-    border: 1px solid #2F4F4F;
-    color: #2F4F4F;
+    background-color: #ffffff;
+    border: 1px solid #2f4f4f;
+    color: #2f4f4f;
     text-decoration: none;
     border-radius: 5px;
 }

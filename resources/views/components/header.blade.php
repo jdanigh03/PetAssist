@@ -43,6 +43,8 @@
         margin-left: auto;
     }
 
+    .container-boton-header img {}
+
     .login-button,
     .logout-button {
         background-color: #2F4F4F;
@@ -74,17 +76,18 @@
         font-size: 1.2rem;
     }
 
-    / .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
+    .hamburger {
+        background-color: #2F4F4F;
+        border-radius: 203px;
+        padding: 0.7rem 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-left: auto;
     }
 
-    .hamburger div {
-        width: 25px;
-        height: 3px;
-        background-color: #2F4F4F;
+    .hamburger img {
+        width: 18px;
     }
 
     .dropdown-menu {
@@ -143,11 +146,7 @@
             @endif
         </nav>
 
-        <div class="hamburger" onclick="toggleMenu()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        
 
         <div class="dropdown-menu">
             @if (auth()->check())
@@ -164,9 +163,14 @@
 
         <div class="container-boton-header">
             @if (auth()->check())
-            <button type="submit" class="login-button">
-                <img src="https://www.iconpacks.net/icons/1/free-bell-icon-860-thumb.png" class="noti" alt="">
-            </button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
+                    alt="">
+            </div>
+                <button type="submit" class="login-button">
+                    <img src="https://static-00.iconduck.com/assets.00/notification-icon-2047x2048-qbq87wz5.png"
+                        class="noti" alt="">
+                </button>
             @endif
             @if (auth()->check())
                 <form action="{{ route('login.destroy') }}" method="POST">
