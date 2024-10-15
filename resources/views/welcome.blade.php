@@ -523,10 +523,10 @@
                     src="https://www.google.com/maps/d/embed?mid=1L66q39sAMiYNQgbMAknyqkQT0Gsz-Ls&ehbc=2E312F"
                     height="480"></iframe>
                 <div class="social-buttons">
-                    <a href="https://wa.me/69927071" target="_blank">
+                    <a href="https://wa.me/message/JTIX5UW6PVDXM1" target="_blank">
                         <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" class="social-icon">
                     </a>
-                    <a href="https://www.facebook.com/kora.veterinaria" target="_blank">
+                    <a href="https://www.facebook.com/profile.php?id=100066704146049" target="_blank">
                         <img src="{{ asset('img/facebook.png') }}" alt="Facebook" class="social-icon">
                     </a>
                 </div>
