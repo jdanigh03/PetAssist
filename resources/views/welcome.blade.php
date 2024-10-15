@@ -418,7 +418,7 @@
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
                 <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
-                <button class="btn-submit" onclick="window.location.href='/mascotas'">Iniciar Sesión</button>
+                <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
             </nav>
         </div>
     </header>
