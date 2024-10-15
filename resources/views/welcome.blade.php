@@ -36,10 +36,11 @@
             flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            
+
         }
+
         .container-nav-inicio {
-            padding-right: 30px; 
+            padding-right: 30px;
         }
 
         .logo {
@@ -354,7 +355,6 @@
             display: unset;
         }
 
-        /* Media Queries para ajustar el diseño en pantallas más pequeñas */
         @media (max-width: 768px) {
             header {
                 flex-wrap: unset;
@@ -399,7 +399,6 @@
 
             .product-card {
                 min-width: 50%;
-                /* Ajusta el ancho mínimo de las tarjetas del carrusel */
             }
         }
     </style>
@@ -415,8 +414,8 @@
                 <ul>
                     <li><a href="#servicios">Servicios</a></li>
                     <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
                     <li><a href="#petshop">Petshop</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
                 </ul>
                 <button class="btn-submit" onclick="window.location.href='/login'">Registrarse</button>
                 <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
@@ -515,6 +514,8 @@
                 <p>Ignacio Ramírez 2240, Zona Central, La Paz, Baja California Sur</p>
                 <p>Tel: 612-129-3443</p>
                 <p>Email: contacto@koraveterinaria.com.mx</p>
+                <iframe src="https://www.google.com/maps/d/embed?mid=1L66q39sAMiYNQgbMAknyqkQT0Gsz-Ls&ehbc=2E312F"
+                    width="640" height="480"></iframe>
                 <div class="social-buttons">
                     <a href="https://wa.me/69927071" target="_blank">
                         <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" class="social-icon">
