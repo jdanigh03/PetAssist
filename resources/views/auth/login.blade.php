@@ -24,12 +24,5 @@
                 Enviar
             </button>
         </form>
-        <div class="separator">
-            <span>-- ó --</span>
-        </div>
-        <a href="{{ route('google.login') }}" class="google-button">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google logo" class="google-logo">
-    Iniciar sesión con Google
-</a>
     </div>
 @endsection

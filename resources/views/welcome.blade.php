@@ -455,13 +455,13 @@
             <h2>Servicios</h2>
             <div class="servicios-cards">
                 <div class="servicio-card">
-                    <img src="icono-bienestar.svg" alt="Bienestar">
+                    <img src="{{asset('img/Bienestar.jpg')}}" alt="Bienestar">
                     <h3>Atención Médica</h3>
                     <p>Vacunas, chequeos, spa y limpieza dental para mascotas saludables.</p>
                     <a href="/login">Agendar Cita</a>
                 </div>
                 <div class="servicio-card">
-                    <img src="icono-urgencias.svg" alt="Urgencias">
+                    <img src="{{asset('img/Urgencia.jpg')}}" alt="Urgencias">
                     <h3>Petshop</h3>
                     <p>Encuentra todo lo que tu mascota necesita en nuestro petshop online.</p>
                     <a href="/login">Realizar Compras</a>
