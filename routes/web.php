@@ -5,7 +5,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminController;
 
 Route::get('/inicio', function () {
-    return view('home');
+    return view('petshop');
 });
 
 Route::get('/login', function () {

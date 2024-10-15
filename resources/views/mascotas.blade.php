@@ -83,7 +83,7 @@
                 <img class="foto-mascota"
                     src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
                     alt="">
-                <a href="#" class="btn-ver-mas">Ver más</a>
+                <a href="/mascotas/perfil" class="btn-ver-mas">Ver más</a>
             </div>
             <div class="info-mascota">
                 <h2>Nombre mascota</h2>
@@ -98,7 +98,7 @@
                 <img class="foto-mascota"
                     src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
                     alt="">
-                <a href="#" class="btn-ver-mas">Ver más</a>
+                <a href="/mascotas/perfil" class="btn-ver-mas">Ver más</a>
             </div>
             <div class="info-mascota">
                 <h2>Nombre mascota</h2>
@@ -113,7 +113,7 @@
                 <img class="foto-mascota"
                     src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
                     alt="">
-                <a href="#" class="btn-ver-mas">Ver más</a>
+                <a href="/mascotas/perfil" class="btn-ver-mas">Ver más</a>
             </div>
             <div class="info-mascota">
                 <h2>Nombre mascota</h2>
@@ -128,7 +128,7 @@
                 <img class="foto-mascota"
                     src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
                     alt="">
-                <a href="#" class="btn-ver-mas">Ver más</a>
+                <a href="/mascotas/perfil" class="btn-ver-mas">Ver más</a>
             </div>
             <div class="info-mascota">
                 <h2>Nombre mascota</h2>
@@ -143,7 +143,7 @@
                 <img class="foto-mascota"
                     src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
                     alt="">
-                <a href="#" class="btn-ver-mas">Ver más</a>
+                <a href="/mascotas/perfil" class="btn-ver-mas">Ver más</a>
             </div>
             <div class="info-mascota">
                 <h2>Nombre mascota</h2>
