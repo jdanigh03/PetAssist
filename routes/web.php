@@ -16,6 +16,14 @@ Route::get('/', function () {
     return view('home');
 })->middleware('auth');
 
+Route::get('/perfilusuario', function () {
+    return view('perfilusuario');
+});
+
+Route::get('/editarperfilusuario', function () {
+    return view('editarperfilusuario');
+});
+
 Route::get('/mascotas', function () {
     return view('mascotas');
 })->middleware('auth');
@@ -32,7 +40,9 @@ Route::post('/register', [RegisterController::class, 'store'])
 Route::get('/inicio-web', function () {
     return view('welcome');
 });
-
+Route::get('/contactos', function () {
+    return view('contactos.contactos');
+});
 Route::get('/historial-medico-mascota', function () {
     return view('hmm.card'); 
 })->name('historial.medico');

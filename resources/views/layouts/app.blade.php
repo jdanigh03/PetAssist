@@ -242,6 +242,28 @@
             height: 1.5rem;
             margin-right: 0.5rem;
         }
+        textarea {
+    width: 100%; 
+    height: 150px; 
+    margin-bottom: 15px; 
+        }
+        .social-buttons {
+    display: flex; 
+    gap: 10px; 
+    margin-top: 20px;
+}
+
+#whatsapp-button, #facebook-button {
+    display: inline-block;
+    padding: 10px; 
+    border-radius: 50%; 
+    transition: transform 0.2s; 
+}
+
+#whatsapp-button:hover, #facebook-button:hover {
+    transform: scale(1.1); 
+}
+
     </style>
 </head>
 
