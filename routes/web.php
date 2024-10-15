@@ -49,6 +49,13 @@ Route::get('/reservar-cita', function(){
     return view('citas.reservarCitas');
 });
 
+Route::get('/citas-agendadas', function(){
+    return view('citas.citasAgendadas');
+});
+
+Route::get('/consultar-historial', function(){
+    return view('veterinario.consultarHistorialMascota');
+});
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
 Route::post('/login', [SessionsController::class, 'store'])->name('login.store');

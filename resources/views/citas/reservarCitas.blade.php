@@ -30,20 +30,17 @@
                 <input type="date" id="fecha" name="fecha" required>
             </div>
 
-            <!-- Selección de hora -->
             <div class="form-group">
                 <label for="hora">Selecciona la hora:</label>
                 <input type="time" id="hora" name="hora" required>
             </div>
         </div>
 
-        <!-- Motivo de la cita -->
         <div class="form-group">
             <label for="motivo">Motivo de la cita:</label>
             <textarea id="motivo" name="motivo" rows="3" placeholder="Describe el motivo de la cita" required></textarea>
         </div>
 
-        <!-- Selección del veterinario (opcional) -->
         <div class="form-group">
             <label for="veterinario">Selecciona un veterinario (opcional):</label>
             <select id="veterinario" name="veterinario">
@@ -53,7 +50,6 @@
             </select>
         </div>
 
-        <!-- Botón de reserva -->
         <button type="submit" class="btn-reservar">Reservar Cita</button>
     </form>
 </div>
