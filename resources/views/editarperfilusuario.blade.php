@@ -99,7 +99,7 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Centra la imagen y el texto */
-            justify-content: center            
+            justify-content: center;            
             background-color: #fff; /* Fondo blanco para cada item */
             padding: 10px;
             border-radius: 10px;
