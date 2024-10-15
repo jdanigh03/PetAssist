@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\AuthController;
 Route::get('/inicio', function () {
     return view('petshop');
 });
@@ -71,22 +71,24 @@ Route::get('/citas-agendadas', function(){
 Route::get('/consultar-historial', function(){
     return view('veterinario.consultarHistorialMascota');
 });
-
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
 Route::post('/inicio', [SessionsController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+
 Route::get('auth/google', function () {
     return Socialite::driver('google')->redirect();
 })->name('google.login');
 
 Route::get('auth/google/callback', function () {
     $googleUser = Socialite::driver('google')->stateless()->user();
+    
     $user = User::firstOrCreate(
         ['email' => $googleUser->getEmail()],
         ['name' => $googleUser->getName()]
     );
+
     Auth::login($user);
-    return redirect('/home');
+    return redirect('/'); // Redirige a la página que desees.
 });
