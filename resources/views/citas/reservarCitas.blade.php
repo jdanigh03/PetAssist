@@ -49,7 +49,6 @@
                 <option value="2">Dra. María López</option>
             </select>
         </div>
-
         <button type="submit" class="btn-reservar">Reservar Cita</button>
     </form>
 </div>
