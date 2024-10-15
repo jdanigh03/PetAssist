@@ -347,13 +347,18 @@
         }
 
         .label-contacto {
-            display: flex;
-            flex-direction: column-reverse;
+            display: inline-flex;
+            align-items: center; 
+            gap: 10px; 
+            margin-top: 10px; 
         }
 
+
         .label-contacto input {
-            display: unset;
+            display: inline-block;
+            margin-right: 10px;
         }
+
 
         @media (max-width: 768px) {
             header {
@@ -481,7 +486,7 @@
                     <p>Precio: $29.99</p>
                     <a href="/login">Ver producto</a>
                 </div>
-                <!-- Agrega más productos aquí -->
+                
             </div>
         </div>
     </section>
@@ -505,6 +510,7 @@
                     <input type="checkbox" name="informacion">
                     Me interesa recibir más información y promociones
                 </label>
+                
 
                 <button type="submit">Enviar</button>
             </form>
