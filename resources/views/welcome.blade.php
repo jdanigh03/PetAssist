@@ -1,159 +1,538 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetAssist</title>
-    <link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
-</head>
-<body>
-    <header class="navbar">
-        <div class="logo">
-            <span>PetAssist</span>
-        </div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="#features">Servicios</a></li>
-                <li><a href="#about-section">Acerca de</a></li>
-                <li><a href="#new-commitment-section">Enfoque</a></li>
-                <li><a href="/login" class="button">Empezar ahora</a></li>
-            </ul>
+    <title>Go Can</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --secondary: #F5F5DC;
+            --text-primary: #333;
+            --text-secondary: #555;
+        }
 
-            <div class="hamburger" onclick="toggleMenu()">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-        </nav>
-        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f5e7;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        header {
+            background-color: var(--secondary);
+            position: fixed;
+            width: 100%;
+            box-shadow: 0 1px 1px 2px #2F4F4F;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            
+        }
+        .container-nav-inicio {
+            padding-right: 30px; 
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            order: 1;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            order: 2;
+            width: 100%;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        nav li {
+            margin-left: 0;
+        }
+
+        .btn-submit {
+            background-color: #2f4f4f;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        /* Estilos de la sección hero */
+        .hero {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .hero button {
+            background-color: var(--secondary);
+            color: var(--primary);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos de la sección "Sobre Nosotros" */
+        .sobre-nosotros {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .sobre-nosotros h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* Estilos de la sección de servicios */
+        .servicios {
+            background-color: #f8f8f8;
+            padding: 40px 20px;
+        }
+
+        .servicios h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .servicios-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .servicio-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            flex: 1 1 250px;
+            min-width: 250px;
+        }
+
+        .servicio-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .servicio-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .servicio-card a {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        /* Estilos de la sección "Contacto" */
+        .contacto {
+            background-color: #f5f5e7;
+            padding: 40px 20px;
+        }
+
+        .contacto .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .contacto h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            width: 100%;
+            text-align: center;
+        }
+
+        .contacto form {
+            flex: 1 1 400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contacto form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contacto form input,
+        .contacto form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .contacto form textarea {
+            height: 150px;
+        }
+
+        .contacto form button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .contacto .info {
+            flex: 1 1 400px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contacto .info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contacto .info p {
+            margin-bottom: 10px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            /* Ajusta el tamaño de los iconos */
+            height: 40px;
+            border-radius: 50%;
+            /* Haz que los iconos sean circulares */
+            transition: transform 0.2s;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        #whatsapp-button,
+        #facebook-button {
+            display: inline-block;
+            padding: 10px;
+            border-radius: 50%;
+            transition: transform 0.2s;
+        }
+
+        #whatsapp-button:hover,
+        #facebook-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilos para la sección de Petshop */
+        .petshop {
+            padding: 40px 20px;
+            background-color: #f8f8f8;
+        }
+
+        .petshop h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--primary);
+        }
+
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .product-card {
+            scroll-snap-align: start;
+            min-width: 250px;
+            max-width: 250px;
+            flex: 0 0 auto;
+            margin-right: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .product-card a {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .label-contacto {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        .label-contacto input {
+            display: unset;
+        }
+
+        /* Media Queries para ajustar el diseño en pantallas más pequeñas */
+        @media (max-width: 768px) {
+            header {
+                flex-wrap: unset;
+            }
+
+            .container-nav-inicio {
+                scale: 0.8;
+            }
+
+            .btn-submit {
+                padding: 0.55rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .sobre-nosotros h2 {
+                font-size: 1.8rem;
+            }
+
+            .servicios h2,
+            .contacto h2,
+            .petshop h2 {
+                font-size: 1.8rem;
+            }
+
+            .servicios-cards,
+            .contacto .container {
+                flex-direction: column;
+            }
+
+            .servicio-card,
+            .contacto form,
+            .contacto .info {
+                flex: 1 0 100%;
+            }
+
+            .product-card {
+                min-width: 50%;
+                /* Ajusta el ancho mínimo de las tarjetas del carrusel */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Go Can</a>
+        </div>
+        <div class="container-nav-inicio">
+            <nav>
+                <ul>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#petshop">Petshop</a></li>
+                </ul>
+                <button class="btn-submit" onclick="window.location.href='/login'">Registrarse</button>
+                <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
+            </nav>
+        </div>
     </header>
-    
 
     <section class="hero">
-        <div class="hero-text">
-            <h1>PetAssist el sistema veterinario que necesitas</h1>
-            <p>Lleva la administración de tu clínica veterinaria al siguiente nivel. PetAssist es la solución integral que te permite gestionar de manera eficiente tanto el cuidado de los animales como las operaciones de tu tienda de mascotas.</p>
-            <a href="/login" class="button">Empezar ahora</a>
-        </div>
-        <div class="hero-image">
-            <!-- Usamos el helper asset() para cargar la imagen del logo -->
-            <img src="{{ asset('img/Logo PetAssist 2.webp') }}" alt="PetAssist Logo">
+        <div class="container">
+            <h1>El mejor trato humano pensado para mascotas.</h1>
+            <p>Somos una nueva experiencia veterinaria en Bolivia. Conoce nuestra sucursal o agenda tu cita.
+                cita.</p>
+            <button onclick="window.location.href='/login'">Agenda tu cita</button>
         </div>
     </section>
-    <section id="features" class="features">
-        <div class="feature-item">
-            <h2>1</h2>
-            <h3>Gestión veterinario</h3>
-            <p>PetAssist te ofrece todas las herramientas necesarias para gestionar eficientemente las consultas, tratamientos y seguimiento de cada paciente. Optimiza el tiempo de atención y organiza todos los procesos clínicos en un solo lugar.</p>
-        </div>
-    
-        <div class="feature-item">
-            <h2>2</h2>
-            <h3>Gestión de PetShop</h3>
-            <p>Con PetAssist también podrás manejar tu inventario de productos, ventas, y pedidos de manera organizada. Mantén control de stock y gestiona tu tienda de mascotas de forma rápida y eficiente, desde cualquier dispositivo.</p>
-        </div>
-    
-        <div class="feature-item">
-            <h2>3</h2>
-            <h3>Historial médico de las mascotas</h3>
-            <p>Accede al historial médico completo de cada mascota con PetAssist. Ten toda la información importante a la mano, como vacunas, tratamientos previos y análisis clínicos, para brindar un servicio más preciso y personalizado.</p>
-        </div>
-    
-        <div class="feature-item">
-            <h2>4</h2>
-            <h3>Control de inventario y suministros</h3>
-            <p>Con PetAssist, olvídate de las sorpresas con tu inventario. Monitorea tus productos en tiempo real y gestiona pedidos de manera eficiente. Todo lo que necesitas para mantener tu clínica y tienda de mascotas funcionando sin problemas.</p>
-        </div>
-    
-        <div class="feature-item">
-            <h2>5</h2>
-            <h3>Gestión de Clientes y Fidelización</h3>
-            <p>Con PetAssist, no solo gestionas animales y productos, sino también a tus clientes. Mantén un registro detallado de cada cliente y sus mascotas, envía recordatorios automáticos para citas y vacunaciones, y ofrece promociones personalizadas para fomentar la fidelización y mejorar la experiencia del cliente.</p>
+    <section class="sobre-nosotros" id="nosotros">
+        <div class="container">
+            <h2>Nosotros</h2>
+            <p>Somos Go Can, una clínica veterinaria dedicada a brindar el mejor cuidado para tus mascotas. Contamos con
+                un equipo de profesionales altamente capacitados y apasionados por el bienestar animal. </p>
         </div>
     </section>
-    <section class="about-section">
-        <div class="about-content">
-            <h1>Todo sobre PetAssist</h1>
-            <p>
-                PetAssist tiene la capacidad para combinar en un solo lugar la gestión veterinaria y la administración de una tienda de mascotas. Desde el historial médico completo de cada mascota hasta el control en tiempo real de inventarios y ventas, PetAssist te ofrece todas las funcionalidades necesarias para tener un negocio organizado y eficiente. 
-            </p>
-            <p>
-                Si buscas una solución que te permita brindar un servicio personalizado y optimizado, PetAssist es la respuesta. Ofrecemos una plataforma diseñada para cubrir las necesidades tanto de pequeñas clínicas como de grandes centros veterinarios.
-            </p>
-            <p>
-                Además, nuestros módulos de fidelización de clientes y recordatorios automáticos para citas y vacunaciones aseguran que tus clientes se sientan valorados y bien atendidos.
-            </p>
-            <p>
-                Nuestro compromiso es claro: mejorar la vida de las personas y sus mascotas, ofreciendo una plataforma tecnológica avanzada y accesible para cualquier negocio del sector. La satisfacción del cliente es nuestra prioridad, y nos esforzamos para garantizar que cada usuario tenga una experiencia sin igual con nuestro sistema.
-            </p>
-        </div>
-        <div class="about-image">
-            <img src="{{ asset('img/Logo PetAssist 2.webp') }}" alt="Imagen de PetAssist">
-        </div>
-    </section>
-    <section class="new-commitment-section">
-        <div class="new-commitment-content">
-            <h1>Nuestro compromiso es cuidar lo que más amas</h1>
-            <div class="new-commitment-box">
-                <p>
-                    PetAssist está diseñado para ayudarte a brindar el mejor cuidado a las mascotas, facilitando la gestión clínica y de tienda de forma integrada. Desde el control del historial médico hasta la gestión de inventarios, PetAssist te ofrece una solución completa para que puedas centrarte en lo que realmente importa.
-                </p>
+    <section class="servicios" id="servicios">
+        <div class="container">
+            <h2>Servicios</h2>
+            <div class="servicios-cards">
+                <div class="servicio-card">
+                    <img src="icono-bienestar.svg" alt="Bienestar">
+                    <h3>Atención Médica</h3>
+                    <p>Vacunas, chequeos, spa y limpieza dental para mascotas saludables.</p>
+                    <a href="/login">Agendar Cita</a>
+                </div>
+                <div class="servicio-card">
+                    <img src="icono-urgencias.svg" alt="Urgencias">
+                    <h3>Petshop</h3>
+                    <p>Encuentra todo lo que tu mascota necesita en nuestro petshop online.</p>
+                    <a href="/login">Realizar Compras</a>
+                </div>
             </div>
         </div>
     </section>
-    <section class="service-section">
-        <h1>Un servicio integral</h1>
-        <div class="service-cards">
-            <div class="service-card purple">
-                <h2>Disponibilidad</h2>
-                <p>
-                    PetAssist está disponible en cualquier dispositivo, permitiéndote acceder a la información médica de las mascotas y al inventario de la tienda en tiempo real, desde donde estés. Siempre tendrás lo que necesitas a mano.
-                </p>
-            </div>
-            <div class="service-card blue">
-                <h2>Eficiencia</h2>
-                <p>
-                    Optimiza todos los procesos de tu clínica y tienda de mascotas en un solo lugar. Desde la gestión de consultas hasta el control del stock, PetAssist te ahorra tiempo, asegurando que cada tarea se realice de forma rápida y eficiente.
-                </p>
-            </div>
-            <div class="service-card white">
-                <h2>Confianza</h2>
-                <p>
-                    Con PetAssist, tus clientes sabrán que pueden confiar en ti para el cuidado de sus mascotas. El acceso fácil al historial médico y la atención personalizada mejoran la experiencia del cliente, fortaleciendo su lealtad.
-                </p>
+
+
+
+
+    <section class="petshop" id="petshop">
+        <div class="container">
+            <h2>Petshop</h2>
+            <div class="carousel">
+                <div class="product-card">
+                    <img src="https://www.doctormascota.cl/wp-content/uploads/2024/07/1722451489028.jpg"
+                        alt="Producto 1">
+                    <h3>Nombre del producto 1</h3>
+                    <p>Descripción breve del producto 1.</p>
+                    <p>Precio: $19.99</p>
+                    <a href="/login">Ver producto</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://www.doctormascota.cl/wp-content/uploads/2024/07/1722451489028.jpg"
+                        alt="Producto 2">
+                    <h3>Nombre del producto 2</h3>
+                    <p>Descripción breve del producto 2.</p>
+                    <p>Precio: $29.99</p>
+                    <a href="/login">Ver producto</a>
+                </div>
+                <!-- Agrega más productos aquí -->
             </div>
         </div>
     </section>
-    <footer class="footer-section">
-        <div class="footer-logo">
-            <p>PetAssist</p>
+    <section class="contacto" id="contacto">
+        <div class="container">
+            <h2>Contacto</h2>
+            <form>
+                <label for="nombre">Tu Nombre</label>
+                <input type="text" name="nombre" id="nombre" required>
+
+                <label for="email">Tu E-mail</label>
+                <input type="email" name="email" id="email" required>
+
+                <label for="telefono">Tu Número Telefónico</label>
+                <input type="tel" name="telefono" id="telefono" required>
+
+                <label for="comentarios">Comentarios</label>
+                <textarea name="comentarios" id="comentarios" required></textarea>
+
+                <label class="label-contacto">
+                    <input type="checkbox" name="informacion">
+                    Me interesa recibir más información y promociones
+                </label>
+
+                <button type="submit">Enviar</button>
+            </form>
+
+            <div class="info">
+                <h3>Go Can Veterinaria</h3>
+                <p>Ignacio Ramírez 2240, Zona Central, La Paz, Baja California Sur</p>
+                <p>Tel: 612-129-3443</p>
+                <p>Email: contacto@koraveterinaria.com.mx</p>
+                <div class="social-buttons">
+                    <a href="https://wa.me/69927071" target="_blank">
+                        <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" class="social-icon">
+                    </a>
+                    <a href="https://www.facebook.com/kora.veterinaria" target="_blank">
+                        <img src="{{ asset('img/facebook.png') }}" alt="Facebook" class="social-icon">
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="footer-column">
-            <h3>Contacto</h3>
-            <p>+12345678</p>
-            <p>petAssist@gmail.com</p>
-        </div>
-        <div class="footer-column">
-            <h3>Dirección</h3>
-            <p>La Paz, Bolivia</p>
-        </div>
-        <div class="footer-column">
-            <h3>Redes Sociales</h3>
-            <p>Facebook</p>
-            <p>Instagram</p>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Go Can. Todos los derechos reservados.</p>
         </div>
     </footer>
-            
-    
 </body>
-<script>
-    function toggleMenu() {
-        const navLinks = document.querySelector('.nav-links');
-        navLinks.classList.toggle('active');
-    }
-
-    
-
-</script>
 
 </html>
