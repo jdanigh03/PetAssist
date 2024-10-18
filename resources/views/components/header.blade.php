@@ -135,7 +135,7 @@
 
         <nav class="navegacion-header">
             @if (auth()->check())
-                <a href="/">Inicio</a>
+                <a href="/petshop">Inicio</a>
                 <a href="/contactos">Contactos</a>
                 <a href="/citas-agendadas">Agenda</a>
                 <a href="/mascotas">Mascotas</a>
@@ -150,7 +150,7 @@
 
         <div class="dropdown-menu">
             @if (auth()->check())
-                <a href="/">Inicio</a>
+                <a href="/petshop">Inicio</a>
                 <a href="/petshop">PetShop</a>
                 <a href="/contactos">Contactos</a>
                 <a href="/citas-agendadas">Agenda</a>
