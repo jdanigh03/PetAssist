@@ -20,21 +20,22 @@ a {
 
 header {
     background-color: var(--secondary);
-    box-shadow: 0 1px 1px 2px #2F4F4F;
-    padding: 20px;
+    box-shadow: 0 1px 1px 2px rgba(47, 79, 79, 0.3);
+    padding: 10px 20px; 
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
-    position: fixed; 
-    width: 100%; 
-    top: 0; 
-    z-index: 1000; 
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, padding 0.3s;
 }
 
+
 header img {
-    width: 80px; 
-    height: auto; 
+    width: 50px; 
+    height: auto;
     border-radius: 50%;
 }
 
@@ -45,24 +46,21 @@ header .container {
 }
 
 .container-nav-inicio {
-    padding-right: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .logo {
-    display: flex;
-    align-items: center; 
-    font-size: 1.8rem;
+    font-size: 1.5rem; 
     font-weight: bold;
     color: var(--primary);
+    margin-left: 10px;
 }   
 
 nav {
     display: flex;
     align-items: center;
-    order: 2;
-    width: 100%;
-    justify-content: space-around;
-    margin-top: 10px;
+    gap: 20px; 
 }
 
 nav ul {
@@ -70,36 +68,55 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
 }
 
 nav li {
     margin-left: 0;
 }
 
-.btn-submit {
-    background-color: #2f4f4f;
-    color: #ffffff;
-    padding: 0.75rem 2rem;
+nav li a {
+    font-size: 0.95rem; 
+    color: var(--primary);
+    padding: 5px 10px;
     border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav li a:hover {
+    background-color: rgba(47, 79, 79, 0.1); 
+    color: var(--text-secondary);
+}
+
+.btn-submit {
+    background-color: var(--primary);
+    color: #ffffff;
+    padding: 8px 18px; 
+    border-radius: 20px; 
     border: none;
     cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, transform 0.3s;
     margin-left: 10px;
     white-space: nowrap;
 }
 
+.btn-submit:hover {
+    background-color: #1f3f3f; 
+    transform: scale(1.05); 
+}
+
 /* Estilos de la sección hero */
 .hero {
-    position: relative; /* Para que el overlay esté contenido */
+    position: relative; 
     background-image: url('../img/gocan\ logo.jpg'); 
-    background-size: cover; /* Ajusta la imagen para cubrir toda la sección */
+    background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
     padding: 80px 20px;
     color: white;
     text-align: center;
-    height: 400px; /* Ajusta la altura según lo que necesites */
+    height: 400px; 
 }
 
 .hero::before {
@@ -464,8 +481,25 @@ footer {
         flex-wrap: unset;
     }
 
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    nav ul {
+        display: none; 
+    }
+
     .container-nav-inicio {
-        scale: 0.8;
+        scale: 0.9; 
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--primary);
+        cursor: pointer;
     }
 
     .btn-submit {

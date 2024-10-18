@@ -153,6 +153,27 @@
             <p>© 2023 Go Can. Todos los derechos reservados.</p>
         </div>
     </footer>
+
+    <<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const header = document.querySelector("header");
+            let lastScrollTop = 0;
+    
+            window.addEventListener("scroll", function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+                if (scrollTop > lastScrollTop) {
+                    header.classList.add("nav-scroll");
+                    console.log("Scroll hacia abajo, clase añadida", header.classList);
+                } else if (scrollTop === 0) {
+                    header.classList.remove("nav-scroll");
+                    console.log("De vuelta arriba, clase eliminada", header.classList);
+                }
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+        });
+    </script>
+    
 </body>
 
 </html>
