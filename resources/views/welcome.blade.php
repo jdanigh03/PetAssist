@@ -6,424 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go Can</title>
     <link rel="stylesheet" hr¿¿ef="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
-    <style>
-        :root {
-            --primary: #2F4F4F;
-            --secondary: #F5F5DC;
-            --text-primary: #333;
-            --text-secondary: #555;
-        }
-
-        html {
-        scroll-behavior: smooth;
-        }
-
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f5f5e7;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--text-primary);
-        }
-
-        header {
-            background-color: var(--secondary);
-
-            box-shadow: 0 1px 1px 2px #2F4F4F;
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-
-        }
-
-        .container-nav-inicio {
-            padding-right: 30px;
-        }
-
-        .logo {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary);
-            order: 1;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            order: 2;
-            width: 100%;
-            justify-content: space-around;
-            margin-top: 10px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        nav li {
-            margin-left: 0;
-        }
-
-        .btn-submit {
-            background-color: #2f4f4f;
-            color: #ffffff;
-            padding: 0.75rem 2rem;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            margin-left: 10px;
-            white-space: nowrap;
-        }
-
-        /* Estilos de la sección hero */
-        .hero {
-            background-color: var(--primary);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-
-        .hero button {
-            background-color: var(--secondary);
-            color: var(--primary);
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* Estilos de la sección "Sobre Nosotros" */
-        .sobre-nosotros {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .sobre-nosotros h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        /* Estilos de la sección de servicios */
-        .servicios {
-            background-color: #f8f8f8;
-            padding: 40px 20px;
-        }
-
-        .servicios h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-        }
-
-        .servicios-cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .servicio-card {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            flex: 1 1 250px;
-            min-width: 250px;
-        }
-
-        .servicio-card img {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-        }
-
-        .servicio-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .servicio-card a {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        /* Estilos de la sección "Contacto" */
-        .contacto {
-            background-color: #f5f5e7;
-            padding: 40px 20px;
-        }
-
-        .contacto .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .contacto h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            width: 100%;
-            text-align: center;
-        }
-
-        .contacto form {
-            flex: 1 1 400px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .contacto form label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .contacto form input,
-        .contacto form textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .contacto form textarea {
-            height: 150px;
-        }
-
-        .contacto form button {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .contacto .info {
-            flex: 1 1 400px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .contacto .info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-
-        .contacto .info p {
-            margin-bottom: 10px;
-        }
-
-        .social-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .social-icon {
-            width: 40px;
-            /* Ajusta el tamaño de los iconos */
-            height: 40px;
-            border-radius: 50%;
-            /* Haz que los iconos sean circulares */
-            transition: transform 0.2s;
-        }
-
-        .social-icon:hover {
-            transform: scale(1.1);
-        }
-
-        #whatsapp-button,
-        #facebook-button {
-            display: inline-block;
-            padding: 10px;
-            border-radius: 50%;
-            transition: transform 0.2s;
-        }
-
-        #whatsapp-button:hover,
-        #facebook-button:hover {
-            transform: scale(1.1);
-        }
-
-        .mapa-vet-inicio {
-            width: 100%;
-        }
-
-        .petshop {
-            padding: 40px 20px;
-            background-color: #f8f8f8;
-        }
-
-        .petshop h2 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--primary);
-        }
-
-        .carousel {
-            display: flex;
-            overflow-x: auto;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .product-card {
-            scroll-snap-align: start;
-            min-width: 250px;
-            max-width: 250px;
-            flex: 0 0 auto;
-            margin-right: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-card img {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 15px;
-        }
-
-        .product-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-
-        .product-card p {
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        .product-card a {
-            display: inline-block;
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .label-contacto {
-            display: inline-flex;
-            align-items: center; 
-            gap: 10px; 
-            margin-top: 10px; 
-        }
-
-
-        .label-contacto input {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-
-        @media (max-width: 768px) {
-            header {
-                flex-wrap: unset;
-            }
-
-            .container-nav-inicio {
-                scale: 0.8;
-            }
-
-            .btn-submit {
-                padding: 0.55rem 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .sobre-nosotros h2 {
-                font-size: 1.8rem;
-            }
-
-            .servicios h2,
-            .contacto h2,
-            .petshop h2 {
-                font-size: 1.8rem;
-            }
-
-            .servicios-cards,
-            .contacto .container {
-                flex-direction: column;
-            }
-
-            .servicio-card,
-            .contacto form,
-            .contacto .info {
-                flex: 1 0 100%;
-            }
-
-            .product-card {
-                min-width: 50%;
-            }
-
-        }
-    </style>
+    <link rel="stylesheet" href="{{asset('css/goCan.css')}}">
 </head>
 
 <body>
     <header>
         <div class="container">
+            <img src="{{asset('img/logoGoCan.png')}}" alt="">
             <a href="/" class="logo">Go Can</a>
         </div>
         <div class="container-nav-inicio">
@@ -443,8 +32,7 @@
     <section class="hero">
         <div class="container">
             <h1>El mejor trato humano pensado para mascotas.</h1>
-            <p>Somos una nueva experiencia veterinaria en Bolivia. Conoce nuestra sucursal o agenda tu cita.
-                cita.</p>
+            <p>Somos una nueva experiencia veterinaria en Bolivia. Conoce nuestra sucursal o agenda tu cita.</p>
             <button onclick="window.location.href='/login'">Agenda tu cita</button>
         </div>
     </section>
@@ -452,9 +40,32 @@
         <div class="container">
             <h2>Nosotros</h2>
             <p>Somos Go Can, una clínica veterinaria dedicada a brindar el mejor cuidado para tus mascotas. Contamos con
-                un equipo de profesionales altamente capacitados y apasionados por el bienestar animal. </p>
+                un equipo de profesionales altamente capacitados y apasionados por el bienestar animal. Ofrecemos una
+                experiencia única basada en el amor y la empatía hacia las mascotas, asegurando su salud y felicidad a
+                través de servicios de calidad y atención personalizada.</p>
+            
+            <div class="valores-container">
+                <div class="valor-card">
+                    <h3>Misión</h3>
+                    <p>Nuestra misión es proporcionar cuidado veterinario de alta calidad que garantice el bienestar y la
+                        salud de las mascotas, creando un vínculo de confianza con sus dueños mediante atención
+                        profesional y afectuosa.</p>
+                </div>
+                <div class="valor-card">
+                    <h3>Visión</h3>
+                    <p>Ser la clínica veterinaria líder en Bolivia, reconocida por nuestro compromiso con la salud animal,
+                        innovación en servicios y un enfoque centrado en el amor por las mascotas.</p>
+                </div>
+                <div class="valor-card">
+                    <h3>Valores Éticos</h3>
+                    <p>Nos guiamos por valores como el respeto, la responsabilidad, la integridad y la compasión, asegurando
+                        que cada mascota reciba el mejor trato posible, mientras promovemos prácticas sostenibles y éticas
+                        en nuestro trabajo diario.</p>
+                </div>
+            </div>
         </div>
     </section>
+    
     <section class="servicios" id="servicios">
         <div class="container">
             <h2>Servicios</h2>
@@ -463,21 +74,18 @@
                     <img src="{{asset('img/Bienestar.jpg')}}" alt="Bienestar">
                     <h3>Atención Médica</h3>
                     <p>Vacunas, chequeos, spa y limpieza dental para mascotas saludables.</p>
-                    <a href="/login">Agendar Cita</a>
+                    <a href="/login" class="btn-servicio">Agendar Cita</a>
                 </div>
                 <div class="servicio-card">
-                    <img src="{{asset('img/Urgencia.jpg')}}" alt="Urgencias">
+                    <img src="{{asset('img/petshop.avif')}}" alt="Urgencias">
                     <h3>Petshop</h3>
                     <p>Encuentra todo lo que tu mascota necesita en nuestro petshop online.</p>
-                    <a href="/login">Realizar Compras</a>
+                    <a href="/login" class="btn-servicio">Realizar Compras</a>
                 </div>
             </div>
         </div>
     </section>
-
-
-
-
+    
     <section class="petshop" id="petshop">
         <div class="container">
             <h2>Petshop</h2>
