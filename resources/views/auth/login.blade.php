@@ -3,8 +3,16 @@
 @section('title', 'Login')
 
 @section('content')
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-self: stretch;
 
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
     <div class="container">
         <form method="POST" action="{{ route('login.store') }}">

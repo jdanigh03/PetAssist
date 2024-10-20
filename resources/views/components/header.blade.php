@@ -1,6 +1,11 @@
 <style>
     body {
         padding-top: 50px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    form {
+        flex-direction: unset;
     }
 
     .header {
@@ -84,6 +89,8 @@
         gap: 1rem;
         align-items: center;
         margin-left: auto;
+        /* Ocultar por defecto en pantallas grandes */
+        display: none;
     }
 
     .hamburger img {
@@ -111,6 +118,26 @@
         padding: 0.5rem 0;
     }
 
+    .active {
+        background-color: burlywood;
+        padding: 0.5rem 1rem;
+        border-radius: 203px;
+        font-weight: bold;
+        text-decoration: none;
+        border: none;
+    }
+
+    .profile-container {
+        margin-right: 1rem;
+    }
+
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
     @media (max-width: 768px) {
         .navegacion-header {
             display: none;
@@ -135,44 +162,48 @@
 
         <nav class="navegacion-header">
             @if (auth()->check())
-                <a href="/petshop">Inicio</a>
-                <a href="/contactos">Contactos</a>
-                <a href="/citas-agendadas">Agenda</a>
-                <a href="/mascotas">Mascotas</a>
-                <a href="/perfilusuario">Perfil</a>
+                <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
             @else
-                <a href="/">Inicio</a>
-                <a href="/contactos">Contactos</a>
+                <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
             @endif
         </nav>
 
-        
-
         <div class="dropdown-menu">
             @if (auth()->check())
-                <a href="/petshop">Inicio</a>
-                <a href="/petshop">PetShop</a>
-                <a href="/contactos">Contactos</a>
-                <a href="/citas-agendadas">Agenda</a>
-                <a href="/mascotas">Mascotas</a>
-                <a href="/perfilusuario">Perfil</a>
+                <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
             @else
-                <a href="/">Inicio</a>
-                <a href="/contactos">Contactos</a>
+                <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
             @endif
         </div>
 
         <div class="container-boton-header">
             @if (auth()->check())
-            <div class="hamburger" onclick="toggleMenu()">
-                <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
-                    alt="">
-            </div>
+                <div class="profile-container">
+                    <a href="/perfilusuario">
+                        <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
+                            alt="Foto de perfil" class="profile-picture">
+                    </a>
+                </div>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
+                        alt="">
+                </div>
                 <button type="submit" class="login-button">
                     <img src="https://static-00.iconduck.com/assets.00/notification-icon-2047x2048-qbq87wz5.png"
                         class="noti" alt="">
                 </button>
             @endif
+
             @if (auth()->check())
                 <form action="{{ route('login.destroy') }}" method="POST">
                     @csrf
@@ -191,3 +222,14 @@
         </div>
     </div>
 </header>
+<script>
+    const navLinks = document.querySelectorAll('.navegacion-header a, .dropdown-menu a');
+
+
+    navLinks.forEach(link => {
+
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
+    });
+</script>

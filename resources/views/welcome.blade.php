@@ -1,179 +1,270 @@
-<!DOCTYPE html>
-<html lang="es">
+<style>
+    body {
+        padding-top: 50px;
+        font-family: 'Poppins', sans-serif;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Go Can</title>
-    <link rel="stylesheet" hr¿¿ef="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
-    <link rel="stylesheet" href="{{asset('css/goCan.css')}}">
-</head>
+    form {
+        flex-direction: unset;
+    }
 
-<body>
-    <header>
-        <div class="container">
-            <img src="{{asset('img/logoGoCan.png')}}" alt="">
-            <a href="/" class="logo">Go Can</a>
-        </div>
-        <div class="container-nav-inicio">
-            <nav>
-                <ul>
-                    <li><a href="#servicios">Servicios</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="#petshop">Petshop</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-                <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
-                <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
-            </nav>
-        </div>
-    </header>
+    /* Estilos generales del header */
+    .header {
+        background-color: #F5F5DC;
+        box-shadow: 0 1px 1px 2px #2F4F4F;
+        margin: 0;
+        width: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        top: 0;
+        z-index: 1000;
+        padding: 0 20px;
+        height: 80px;
+    }
 
-    <section class="hero">
-        <div class="container">
-            <h1>El mejor trato humano pensado para mascotas.</h1>
-            <p>Somos una nueva experiencia veterinaria en Bolivia. Conoce nuestra sucursal o agenda tu cita.</p>
-            <button onclick="window.location.href='/login'">Agenda tu cita</button>
-        </div>
-    </section>
-    <section class="sobre-nosotros" id="nosotros">
-        <div class="container">
-            <h2>Nosotros</h2>
-            <p>Somos Go Can, una clínica veterinaria dedicada a brindar el mejor cuidado para tus mascotas. Contamos con
-                un equipo de profesionales altamente capacitados y apasionados por el bienestar animal. Ofrecemos una
-                experiencia única basada en el amor y la empatía hacia las mascotas, asegurando su salud y felicidad a
-                través de servicios de calidad y atención personalizada.</p>
-            
-            <div class="valores-container">
-                <div class="valor-card">
-                    <h3>Misión</h3>
-                    <p>Nuestra misión es proporcionar cuidado veterinario de alta calidad que garantice el bienestar y la
-                        salud de las mascotas, creando un vínculo de confianza con sus dueños mediante atención
-                        profesional y afectuosa.</p>
-                </div>
-                <div class="valor-card">
-                    <h3>Visión</h3>
-                    <p>Ser la clínica veterinaria líder en Bolivia, reconocida por nuestro compromiso con la salud animal,
-                        innovación en servicios y un enfoque centrado en el amor por las mascotas.</p>
-                </div>
-                <div class="valor-card">
-                    <h3>Valores Éticos</h3>
-                    <p>Nos guiamos por valores como el respeto, la responsabilidad, la integridad y la compasión, asegurando
-                        que cada mascota reciba el mejor trato posible, mientras promovemos prácticas sostenibles y éticas
-                        en nuestro trabajo diario.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="servicios" id="servicios">
-        <div class="container">
-            <h2>Servicios</h2>
-            <div class="servicios-cards">
-                <div class="servicio-card">
-                    <img src="{{asset('img/Bienestar.jpg')}}" alt="Bienestar">
-                    <h3>Atención Médica</h3>
-                    <p>Vacunas, chequeos, spa y limpieza dental para mascotas saludables.</p>
-                    <a href="/login" class="btn-servicio">Agendar Cita</a>
-                </div>
-                <div class="servicio-card">
-                    <img src="{{asset('img/petshop.avif')}}" alt="Urgencias">
-                    <h3>Petshop</h3>
-                    <p>Encuentra todo lo que tu mascota necesita en nuestro petshop online.</p>
-                    <a href="/login" class="btn-servicio">Realizar Compras</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="petshop" id="petshop">
-        <div class="container">
-            <h2>Petshop</h2>
-            <div class="carousel">
-                @foreach ($productos as $producto)
-                    <div class="product-card">
-                        <img src="{{ $producto->Imagen }}" alt="{{ $producto->Nombre }}">
-                        <h3>{{ $producto->Nombre }}</h3>
-                        <p>{{ $producto->Descripcion }}</p>
-                        <p>Precio: ${{ number_format($producto->Precio, 2) }}</p>
-                        <a href="/login">Ver producto</a>
+    .container-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .logo {
+        height: 4rem;
+        margin-right: 20px;
+    }
+
+    .navegacion-header {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .container-boton-header {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .login-button,
+    .logout-button {
+        background-color: #2F4F4F;
+        color: #FFFFFF;
+        padding: 0.7rem 1rem;
+        border-radius: 203px;
+        font-weight: bold;
+        text-decoration: none;
+        border: none;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logout-button:hover,
+    .login-button:hover {
+        background-color: #556B2F;
+    }
+
+    .noti {
+        height: 18px;
+    }
+
+    .navegacion-header a {
+        text-decoration: none;
+        color: #2F4F4F;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    /* Estilos del dropdown del menú hamburguesa */
+    .hamburger {
+        background-color: #2F4F4F;
+        border-radius: 203px;
+        padding: 0.7rem 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-left: auto;
+        /* Ocultar por defecto en pantallas grandes */
+        display: none;
+    }
+
+    .hamburger img {
+        width: 18px;
+    }
+
+    .dropdown-menu {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: #F5F5DC;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    .dropdown-menu a {
+        text-decoration: none;
+        color: #2F4F4F;
+        font-weight: bold;
+        padding: 0.5rem 0;
+    }
+
+    /* Estilos del dropdown del perfil */
+    .profile-container {
+        position: relative; 
+    }
+
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer; 
+    }
+
+    .profile-dropdown { 
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 0; 
+        background-color: #F5F5DC;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        z-index: 999;
+    }
+
+    .profile-dropdown a {
+        display: block;
+        text-decoration: none;
+        color: #2F4F4F;
+        padding: 0.5rem 1rem;
+    }
+
+    .active {
+        background-color: burlywood;
+        padding: 0.5rem 1rem;
+        border-radius: 203px;
+        font-weight: bold;
+        text-decoration: none;
+        border: none;
+    }
+
+    @media (max-width: 768px) {
+        .navegacion-header {
+            display: none;
+        }
+
+        .hamburger {
+            display: flex;
+        }
+    }
+</style>
+
+<script>
+    // Función para el dropdown del menú hamburguesa
+    function toggleMenu() {
+        const dropdown = document.querySelector('.dropdown-menu');
+        dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // Función para el dropdown del perfil
+    function toggleProfileDropdown() {
+        const dropdown = document.querySelector('.profile-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Cerrar el dropdown del perfil al hacer clic fuera de él
+    document.addEventListener('click', function(event) {
+        const dropdown = document.querySelector('.profile-dropdown');
+        const profileContainer = document.querySelector('.profile-container');
+
+        if (!profileContainer.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+</script>
+
+<header class="header">
+    <div class="container-header">
+        <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
+
+        <nav class="navegacion-header">
+            @if (auth()->check())
+                <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
+            @else
+                <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+            @endif
+        </nav>
+
+        <div class="dropdown-menu"> 
+            @if (auth()->check())
+                <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
+            @else
+                <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+            @endif
+        </div> 
+
+        <div class="container-boton-header">
+            @if (auth()->check())
+                <div class="profile-container">
+                    <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
+                        alt="Foto de perfil" class="profile-picture" onclick="toggleProfileDropdown()">
+
+                    <div class="profile-dropdown">
+                        <a href="/perfilusuario">Ver mi perfil</a>
+                        <form action="{{ route('login.destroy') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="logout-button" style="width: 100%;">Cerrar Sesión</button>
+                        </form>
                     </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    <section class="contacto" id="contacto">
-        <div class="container">
-            <h2>Contacto</h2>
-            <form>
-                <label for="nombre">Tu Nombre</label>
-                <input type="text" name="nombre" id="nombre" required>
-
-                <label for="email">Tu E-mail</label>
-                <input type="email" name="email" id="email" required>
-
-                <label for="telefono">Tu Número Telefónico</label>
-                <input type="tel" name="telefono" id="telefono" required>
-
-                <label for="comentarios">Comentarios</label>
-                <textarea name="comentarios" id="comentarios" required></textarea>
-
-                <label class="label-contacto">
-                    <input type="checkbox" name="informacion">
-                    Me interesa recibir más información y promociones
-                </label>
-                
-
-                <button type="submit">Enviar</button>
-            </form>
-
-            <div class="info">
-                <h3>Go Can Veterinaria</h3>
-                <p>Ignacio Ramírez 2240, Zona Central, La Paz, Baja California Sur</p>
-                <p>Tel: 612-129-3443</p>
-                <p>Email: contacto@koraveterinaria.com.mx</p>
-                <iframe class="mapa-vet-inicio"
-                    src="https://www.google.com/maps/d/embed?mid=1L66q39sAMiYNQgbMAknyqkQT0Gsz-Ls&ehbc=2E312F"
-                    height="480"></iframe>
-                <div class="social-buttons">
-                    <a href="https://wa.me/message/JTIX5UW6PVDXM1" target="_blank">
-                        <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" class="social-icon">
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=100066704146049" target="_blank">
-                        <img src="{{ asset('img/facebook.png') }}" alt="Facebook" class="social-icon">
-                    </a>
                 </div>
-            </div>
+                <div class="hamburger" onclick="toggleMenu()"> 
+                    <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png" alt="">
+                </div>
+                <button type="submit" class="login-button">
+                    <img src="https://static-00.iconduck.com/assets.00/notification-icon-2047x2048-qbq87wz5.png"
+                        class="noti" alt="">
+                </button>
+            @endif
+
+            @guest 
+                <a href="/register" class="login-button">
+                    Registrarse
+                </a>
+                <a href="/login" class="login-button">
+                    Iniciar Sesión
+                </a>
+            @endguest 
         </div>
-    </section>
+    </div>
+</header>
+<script>
+    const navLinks = document.querySelectorAll('.navegacion-header a, .dropdown-menu a');
 
 
-    <footer>
-        <div class="container">
-            <p>© 2023 Go Can. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    navLinks.forEach(link => {
 
-    <<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const header = document.querySelector("header");
-            let lastScrollTop = 0;
-    
-            window.addEventListener("scroll", function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
-                if (scrollTop > lastScrollTop) {
-                    header.classList.add("nav-scroll");
-                    console.log("Scroll hacia abajo, clase añadida", header.classList);
-                } else if (scrollTop === 0) {
-                    header.classList.remove("nav-scroll");
-                    console.log("De vuelta arriba, clase eliminada", header.classList);
-                }
-                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-            });
-        });
-    </script>
-    
-</body>
-
-</html>
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
+    });
+</script>

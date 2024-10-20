@@ -1,16 +1,16 @@
 :root {
-    --primary: #2F4F4F;
-    --secondary: #F5F5DC;
+    --primary: #2f4f4f;
+    --secondary: #f5f5dc;
     --text-primary: #333;
     --text-secondary: #555;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #f5f5e7;
     color: var(--text-primary);
     margin: 0;
-    padding-top: 100px; 
+    padding-top: calc(100vh - var(--header-height));
 }
 
 a {
@@ -21,7 +21,8 @@ a {
 header {
     background-color: var(--secondary);
     box-shadow: 0 1px 1px 2px rgba(47, 79, 79, 0.3);
-    padding: 10px 20px; 
+    padding: 10px 20px;
+    --header-height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,17 +33,16 @@ header {
     transition: background-color 0.3s, padding 0.3s;
 }
 
-
 header img {
-    width: 50px; 
+    width: 50px;
     height: auto;
     border-radius: 50%;
 }
 
 header .container {
     display: flex;
-    align-items: center; 
-    gap: 10px; 
+    align-items: center;
+    gap: 10px;
 }
 
 .container-nav-inicio {
@@ -51,16 +51,17 @@ header .container {
 }
 
 .logo {
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     font-weight: bold;
     color: var(--primary);
     margin-left: 10px;
-}   
+}
 
 nav {
     display: flex;
     align-items: center;
-    gap: 20px; 
+    gap: 20px;
+    padding-right: 30px;
 }
 
 nav ul {
@@ -76,7 +77,7 @@ nav li {
 }
 
 nav li a {
-    font-size: 0.95rem; 
+    font-size: 0.95rem;
     color: var(--primary);
     padding: 5px 10px;
     border-radius: 5px;
@@ -84,15 +85,15 @@ nav li a {
 }
 
 nav li a:hover {
-    background-color: rgba(47, 79, 79, 0.1); 
+    background-color: rgba(47, 79, 79, 0.1);
     color: var(--text-secondary);
 }
 
 .btn-submit {
     background-color: var(--primary);
     color: #ffffff;
-    padding: 8px 18px; 
-    border-radius: 20px; 
+    padding: 8px 18px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
     font-size: 0.9rem;
@@ -102,21 +103,21 @@ nav li a:hover {
 }
 
 .btn-submit:hover {
-    background-color: #1f3f3f; 
-    transform: scale(1.05); 
+    background-color: #1f3f3f;
+    transform: scale(1.05);
 }
 
 /* Estilos de la sección hero */
 .hero {
-    position: relative; 
-    background-image: url('../img/gocan\ logo.jpg'); 
-    background-size: cover; 
+    position: relative;
+    background-image: url("../img/gocan\ logo.jpg");
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding: 80px 20px;
     color: white;
     text-align: center;
-    height: 400px; 
+    height: 400px;
 }
 
 .hero::before {
@@ -126,13 +127,13 @@ nav li a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5); 
-    z-index: 1; 
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .hero .container {
     position: relative;
-    z-index: 2; 
+    z-index: 2;
 }
 
 .hero h1 {
@@ -185,18 +186,18 @@ nav li a:hover {
 .valor-card {
     background-color: var(--secondary);
     padding: 30px;
-    border-radius: 8px; 
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     flex: 1 1 250px;
     min-width: 250px;
-    border: 2px solid black; 
+    border: 2px solid black;
     color: var(--secondary);
 }
 
 .valor-card h3 {
     font-size: 1.5rem;
-    color:var(--text-primary);
+    color: var(--text-primary);
     margin-bottom: 15px;
 }
 
@@ -229,30 +230,30 @@ nav li a:hover {
 .servicio-card {
     background-color: white;
     padding: 30px;
-    border-radius: 12px; 
+    border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
-    flex: 1 1 300px; 
-    max-width: 300px; 
-    transition: transform 0.2s; 
+    flex: 1 1 300px;
+    max-width: 300px;
+    transition: transform 0.2s;
 }
 
 .servicio-card:hover {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 .servicio-card img {
-    width: 80px; 
+    width: 80px;
     height: 80px;
-    object-fit: cover; 
-    border-radius: 50%; 
+    object-fit: cover;
+    border-radius: 50%;
     margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    transition: transform 0.3s; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
 }
 
 .servicio-card img:hover {
-    transform: scale(1.1); 
+    transform: scale(1.1);
 }
 
 .servicio-card h3 {
@@ -272,16 +273,15 @@ nav li a:hover {
     background-color: var(--primary);
     color: white;
     padding: 10px 20px;
-    border-radius: 20px; 
+    border-radius: 20px;
     text-decoration: none;
     font-size: 1rem;
     transition: background-color 0.3s;
 }
 
 .btn-servicio:hover {
-    background-color: #1f3f3f; 
+    background-color: #1f3f3f;
 }
-
 
 /* Estilos de la sección "Contacto" */
 .contacto {
@@ -408,13 +408,14 @@ nav li a:hover {
 
 .carousel {
     display: flex;
-    overflow-x: auto;
-    display: flex;
+    overflow-x: scroll;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .product-card {
@@ -462,19 +463,16 @@ footer {
     text-align: center;
 }
 
-.label-contacto {
-    display: inline-flex;
-    align-items: center; 
-    gap: 10px; 
+.contacto .label-contacto {
+    display: flex; 
+    justify-content: left;
+    gap: 10px;
     margin-top: 10px; 
 }
 
-
 .label-contacto input {
-    display: inline-block;
-    margin-right: 10px;
+    margin-right: 0;
 }
-
 
 @media (max-width: 768px) {
     header {
@@ -486,11 +484,11 @@ footer {
     }
 
     nav ul {
-        display: none; 
+        display: none;
     }
 
     .container-nav-inicio {
-        scale: 0.9; 
+        scale: 0.9;
     }
 
     .mobile-menu-btn {
@@ -538,5 +536,4 @@ footer {
     .product-card {
         min-width: 50%;
     }
-
 }
