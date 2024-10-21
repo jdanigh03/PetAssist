@@ -187,7 +187,6 @@
             flex-direction: column;
             align-items: center;
             align-self: stretch;
-
         }
 
         input[type="text"],
