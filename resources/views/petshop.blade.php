@@ -9,11 +9,12 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f0f4f7;
+            background-color: #f5f5e7;;
             padding-bottom: 100px;
             padding-top: 80px;
             overflow-y: auto;
             min-height: 100vh;
+            
         }
 
         .home-cliente {
@@ -21,6 +22,8 @@
             padding: 20px;
             padding-bottom: 120px;
             min-height: calc(100vh - 160px);
+            padding-right: 100px;
+            padding-left: 100px;
         }
 
         h1,
