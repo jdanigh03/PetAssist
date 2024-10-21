@@ -408,14 +408,17 @@ nav li a:hover {
 
 .carousel {
     display: flex;
-    overflow-x: auto;
+    overflow-x: scroll;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
 }
+
 
 .product-card {
     scroll-snap-align: start;
