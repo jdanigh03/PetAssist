@@ -32,6 +32,7 @@
     .logo {
         height: 4rem;
         margin-right: 20px;
+        border-radius: 20px;
     }
 
     .navegacion-header {
@@ -89,7 +90,6 @@
         gap: 1rem;
         align-items: center;
         margin-left: auto;
-        /* Ocultar por defecto en pantallas grandes */
         display: none;
     }
 

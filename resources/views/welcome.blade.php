@@ -23,8 +23,12 @@
                     <li><a href="#petshop">Petshop</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
-                <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
-                <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
+                @if (auth()->check())
+                    <button class="btn-submit" onclick="window.location.href='/petshop'">Ingresar a PetAssist</button>
+                @else
+                    <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
+                    <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
+                @endif
             </nav>
         </div>
     </header>
@@ -33,7 +37,11 @@
         <div class="container">
             <h1>El mejor trato humano pensado para mascotas.</h1>
             <p>Somos una nueva experiencia veterinaria en Bolivia. Conoce nuestra sucursal o agenda tu cita.</p>
-            <button onclick="window.location.href='/login'">Agenda tu cita</button>
+            @if (auth()->check())
+                <button onclick="window.location.href='/citas-agendadas'">Agenda tu cita</button>
+            @else
+                <button onclick="window.location.href='/login'">Agenda tu cita</button>
+            @endif
         </div>
     </section>
     <section class="sobre-nosotros" id="nosotros">
