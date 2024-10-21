@@ -187,7 +187,6 @@
             flex-direction: column;
             align-items: center;
             align-self: stretch;
-
         }
 
         input[type="text"],
@@ -272,11 +271,16 @@
 </head>
 
 <body>
-    <x-header />
+    @if (auth()->check() || request()->is('login') || request()->is('register'))
+        <x-header />
 
-    <div class="background-overlay"></div>
+        <div class="background-overlay"></div>
 
-    @yield('content')
+        @yield('content')
+    @else
+        <x-header />
+        @include('sistemasinsesion')
+    @endif
 
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
 

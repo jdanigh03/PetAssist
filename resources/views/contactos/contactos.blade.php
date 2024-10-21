@@ -17,6 +17,11 @@
             margin: 130px;
         }
 
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding-top: 200px;
@@ -29,6 +34,15 @@
             padding: 1rem;
             margin: 100px;
 
+        }
+
+        .enviar-form-contacto {
+            background-color: #2f4f4f;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
         }
     </style>
 
@@ -54,7 +68,7 @@
                         <input type="checkbox" name="informacion"> Me interesa recibir más información y promociones
                     </label>
 
-                    <button type="submit">Enviar</button>
+                    <button class="enviar-form-contacto" type="submit">Enviar</button>
                 </form>
             </div>
 
