@@ -60,6 +60,28 @@
             background-color: #ddd;
         }
 
+        .action-buttons {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .action-buttons button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-modificar {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-eliminar {
+            background-color: #e74c3c;
+            color: white;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .historial-citas th, .historial-citas td {
@@ -75,7 +97,7 @@
 </header>
 
 <div class="container2">
-    <h1>Historial de Citas</h1>
+    <h1>Control de Citas</h1>
     <table class="historial-citas">
         <thead>
             <tr>
@@ -85,6 +107,7 @@
                 <th>Hora</th>
                 <th>Veterinario</th>
                 <th>Motivo</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -107,9 +130,15 @@
                         <td>{$cita['hora']}</td>
                         <td>{$cita['veterinario']}</td>
                         <td>{$cita['motivo']}</td>
+                        <td class='action-buttons'>
+                            <button class='btn-modificar'>Modificar</button>
+                            <button class='btn-eliminar'>Eliminar</button>
+                        </td>
                       </tr>";
             }
             ?>
         </tbody>
     </table>
 </div>
+
+@endsection

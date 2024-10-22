@@ -75,16 +75,17 @@
 </header>
 
 <div class="container2">
-    <h1>Historial de Citas</h1>
+    <h1>Control de mascotas</h1>
     <table class="historial-citas">
         <thead>
             <tr>
                 <th>Nombre del Usuario</th>
                 <th>Mascota</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Veterinario</th>
-                <th>Motivo</th>
+                <th>Raza</th>
+                <th>Sexo</th>
+                <th>Especie</th>
+                <th>Color</th>
+                <th>Peso</th>
             </tr>
         </thead>
         <tbody>
@@ -92,10 +93,11 @@
             <?php
             // Datos de ejemplo del historial de citas
             $citas = [
-                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "fecha" => "20/10/2024", "hora" => "10:30 AM", "veterinario" => "Dr. Juan Pérez", "motivo" => "cualquiera"],
-                ["nombre" => "María González", "mascota" => "Pelusa", "fecha" => "22/10/2024", "hora" => "03:00 PM", "veterinario" => "Dra. María López", "motivo" => "cualquiera"],
-                ["nombre" => "Roberto Díaz", "mascota" => "Toby", "fecha" => "25/10/2024", "hora" => "09:00 AM", "veterinario" => "Dr. Carlos Gómez", "motivo" => "cualquiera"],
-                ["nombre" => "Ana Fernández", "mascota" => "Nina", "fecha" => "27/10/2024", "hora" => "01:00 PM", "veterinario" => "Dra. Elena Ruiz", "motivo" => "cualquiera"]
+                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
+                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
+                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
+                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
+                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"]
             ];
 
             // Iteramos sobre las citas para mostrarlas en la tabla
@@ -103,10 +105,11 @@
                 echo "<tr>
                         <td>{$cita['nombre']}</td>
                         <td>{$cita['mascota']}</td>
-                        <td>{$cita['fecha']}</td>
-                        <td>{$cita['hora']}</td>
-                        <td>{$cita['veterinario']}</td>
-                        <td>{$cita['motivo']}</td>
+                        <td>{$cita['raza']}</td>
+                        <td>{$cita['sexo']}</td>
+                        <td>{$cita['especie']}</td>
+                        <td>{$cita['color']}</td>
+                        <td>{$cita['peso']}</td>
                       </tr>";
             }
             ?>

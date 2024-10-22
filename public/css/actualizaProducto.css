@@ -1,0 +1,67 @@
+.container-actualizar {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #374e4d;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+select, input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #eef0e9;
+}
+
+.producto-image {
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-actualizar {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #5bc0de; /* Azul claro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-actualizar:hover {
+    background-color: #46b8da; /* Azul más oscuro */
+}
+
+.alert {
+    padding: 15px;
+    background-color: #4CAF50;
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.alert-danger {
+    background-color: #f44336;
+}

@@ -14,6 +14,14 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
+Route::get('/historialusuariosmodificar', function () {
+    return view('pantallahistorialusuariosmodificar');
+});
+
+Route::get('/controldemascotas', function () {
+    return view('controldemascotasadmin');
+});
+
 Route::get('/historialusuarios', function () {
     return view('pantallahistorialusuarios');
 });
