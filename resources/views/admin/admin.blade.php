@@ -22,13 +22,13 @@
                 </div>
                 Quitar producto
             </a>
-            <a href="#">
+            <a href="consultar-producto">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
                 </div>
                 Consultar producto
             </a>
-            <a href="#">
+            <a href="/actualizar-producto">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>
