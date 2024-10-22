@@ -20,10 +20,14 @@
     }
 
     form {
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: stretch;
         grid-template-columns: 1fr;
         gap: 1rem;
     }
+
 
     .form-group {
         margin: 0;

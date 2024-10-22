@@ -10,13 +10,13 @@
       
         <h2>Control de inventario</h2>
         <div class="categorias">
-            <a href="#">
+            <a href="/aumentar-producto">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
                 </div>
                 Aumentar producto
             </a>
-            <a href="#">
+            <a href="/quitar-producto">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
                 </div>

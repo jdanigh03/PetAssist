@@ -182,13 +182,6 @@
             margin-bottom: 1.5rem;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            align-self: stretch;
-        }
-
         input[type="text"],
         input[type="email"],
         input[type="password"],
