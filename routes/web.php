@@ -7,6 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PetshopController;
+use App\Http\Controllers\MascotaController;
 
 Route::get('/petshop', function () {
     return view('petshop');
@@ -27,14 +28,21 @@ Route::get('/perfilusuario', function () {
 Route::get('/editarperfilusuario', function () {
     return view('editarperfilusuario');
 });
+#Mascotas
 
 Route::get('/mascotas', function () {
     return view('mascotas');
+})->middleware('auth');
+Route::get('/nueva-mascota', function () {
+    return view('nuevamascota');
 })->middleware('auth');
 
 Route::get('/mascotas/perfil', function () {
     return view('perfilmascotas');
 })->middleware('auth');
+
+
+
 
 Route::get('/pantallaproveedores', function () {
     return view('pantallaproveedores');
@@ -93,3 +101,4 @@ Route::get('auth/google/callback', function () {
     Auth::login($user);
     return redirect('/home');
 });
+

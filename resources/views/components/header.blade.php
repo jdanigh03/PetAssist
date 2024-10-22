@@ -212,10 +212,19 @@
 
         <nav class="navegacion-header">
             @if (auth()->check())
-                <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
-                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
-                <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
-                <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                @if (auth()->user()->role == 'admin')
+                    <a href="/admin" class="{{ request()->is('admin') ? 'active' : '' }}">Inicio</a>
+                    <a href="/gestion-productos" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Gestión
+                        de productos</a>
+                    <a href="/gestion-clientes" class="{{ request()->is('gestion-clientes') ? 'active' : '' }}">Gestión
+                        de clientes</a>
+                @else
+                    <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                    <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                    <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                    <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                    <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
+                @endif
             @else
                 <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
                 <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
@@ -224,10 +233,20 @@
 
         <div class="dropdown-menu">
             @if (auth()->check())
-                <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
-                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
-                <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
-                <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                @if (auth()->user()->role == 'admin')
+                    <a href="/admin" class="{{ request()->is('admin') ? 'active' : '' }}">Inicio</a>
+                    <a href="/gestion-productos"
+                        class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Gestión de productos</a>
+                    <a href="/gestion-clientes" class="{{ request()->is('gestion-clientes') ? 'active' : '' }}">Gestión
+                        de clientes</a>
+                @else
+                    <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                    <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                    <a href="/citas-agendadas"
+                        class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                    <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                    <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
+                @endif
             @else
                 <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
                 <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
@@ -241,7 +260,6 @@
                         class="noti" alt="">
                 </button>
 
-
                 <div class="hamburger" onclick="toggleMenu()">
                     <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
                         alt="">
@@ -250,7 +268,11 @@
                     <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
                         alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">
                     <div class="profile-menu" id="profileMenu">
-                        <a href="/perfilusuario">Ver mi perfil</a>
+                        @if (auth()->user()->role == 'admin')
+                            <a href="/perfil">Ver mi perfil</a>
+                        @else
+                            <a href="/perfilusuario">Ver mi perfil</a>
+                        @endif
                         <form action="{{ route('login.destroy') }}" method="POST">
                             @csrf
                             <button type="submit" class="logout-link">Cerrar Sesión</button>
