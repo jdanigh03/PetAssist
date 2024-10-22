@@ -216,7 +216,6 @@
                 <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
                 <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
                 <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
-                <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
             @else
                 <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
                 <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
@@ -229,7 +228,6 @@
                 <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
                 <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
                 <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
-                <a href="/perfilusuario" class="{{ request()->is('perfilusuario') ? 'active' : '' }}">Perfil</a>
             @else
                 <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
                 <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
