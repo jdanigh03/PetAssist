@@ -26,7 +26,7 @@ class SessionsController extends Controller {
     }
 
     return back()->withErrors([
-        'message' => 'Invalid credentials, please try again.',
+        'message' => 'Credenciales invalidas. Intente de nuevo',
     ]);
 }
 
