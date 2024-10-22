@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PetshopController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\CitaController;
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -76,7 +76,7 @@ Route::get('/reservar-cita', [CitaController::class, 'reservar'])->name('citas.r
 
 
 Route::post('/reservar-cita', [CitaController::class, 'store'])->name('citas.store');
-
+Route::get('/citas-agendadas', [CitaController::class, 'citasAgendadas'])->name('citas.agendadas');
 
 Route::get('/consultar-historial', function(){
     return view('veterinario.consultarHistorialMascota');
@@ -109,11 +109,25 @@ Route::get('aumentar-producto', [ProductController::class, 'mostrarFormularioAgr
 // Ruta para procesar la solicitud de agregar producto
 Route::post('aumentar-producto', [ProductController::class, 'agregarProducto'])->name('productos.agregar');
 
-// Ruta para mostrar el formulario de quitar producto
+// Ruta para mostrar el formulario de quitar producto y detalles
 Route::get('quitar-producto', [ProductController::class, 'mostrarFormularioEliminar'])->name('productos.quitar');
-
-// Ruta para mostrar detalles del producto seleccionado antes de eliminar
-Route::get('quitar-producto/{id}', [ProductController::class, 'mostrarDetallesProducto'])->name('productos.detalles');
 
 // Ruta para eliminar el producto confirmado
 Route::delete('quitar-producto', [ProductController::class, 'eliminarProducto'])->name('productos.eliminar');
+
+Route::get('consultar-producto', function(){
+    return view('admin.consultarProducto');
+});
+
+// Ruta para mostrar la página de consultar productos
+Route::get('consultar-producto', [ProductController::class, 'mostrarProductos'])->name('productos.consultar');
+
+Route::get('actualizar-producto', function(){
+    return view('admin.actualizarProducto');
+});
+
+// Ruta para mostrar el formulario de actualizar productos
+Route::get('actualizar-producto', [ProductController::class, 'mostrarFormularioActualizar'])->name('productos.actualizar');
+
+// Ruta para procesar la actualización del producto
+Route::post('actualizar-producto', [ProductController::class, 'actualizarProducto'])->name('productos.actualizar.confirmar');
