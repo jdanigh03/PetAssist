@@ -70,13 +70,6 @@ Route::get('/inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
 })->name('inicio.veterinario');
 
-Route::get('/reservar-cita', function(){
-    return view('citas.reservarCitas');
-});
-
-Route::get('/citas-agendadas', function(){
-    return view('citas.citasAgendadas');
-});
 
 Route::get('/consultar-historial', function(){
     return view('veterinario.consultarHistorialMascota');
