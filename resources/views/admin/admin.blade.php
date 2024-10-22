@@ -22,13 +22,13 @@
                 </div>
                 Quitar producto
             </a>
-            <a href="#">
+            <a href="consultar-producto">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
                 </div>
                 Consultar producto
             </a>
-            <a href="#">
+            <a href="/actualizar-producto">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>
@@ -38,25 +38,25 @@
 
         <h2>Control de clientes</h2>
         <div class="categorias">
-            <a href="#">
+            <a href="/historialusuariosmodificar">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
                 </div>
                 Control de citas
             </a>
-            <a href="#">
+            <a href="/historialusuarios">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
                 </div>
                 Historial de visitas
             </a>
-            <a href="#">
+            <!-- <a href="#">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
                 </div>
                 Cuentas pendientes
-            </a>
-            <a href="#">
+            </a> -->
+            <a href="/controldemascotas">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>

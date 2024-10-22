@@ -214,15 +214,13 @@
         <nav class="navegacion-header">
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
-                    <a href="/admin" class="{{ request()->is('admin') ? 'active' : '' }}">Inicio</a>
-                    <a href="/gestion-productos" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Gestión
-                        de productos</a>
-                    <a href="/gestion-clientes" class="{{ request()->is('gestion-clientes') ? 'active' : '' }}">Gestión
-                        de clientes</a>
+                    <a href="/" class="">Inicio</a>
+                    <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones
+                        de administrador</a>
                 @else
                     <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
-                    <a href="/citas-agenda" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                    <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
                     <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
                 @endif
             @else

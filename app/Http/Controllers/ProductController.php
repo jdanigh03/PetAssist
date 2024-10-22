@@ -78,4 +78,64 @@ class ProductController extends Controller
             return redirect()->route('productos.quitar')->with('error', 'No se encontró el producto seleccionado');
         }
     }
+
+    public function mostrarProductos()
+    {
+        $productos = ProductoPetshop::all(); // Obtener todos los productos del inventario
+        return view('admin.consultarProducto', compact('productos'));
+    }
+
+    public function mostrarFormularioActualizar(Request $request)
+    {
+        $productos = ProductoPetshop::all(); // Obtener todos los productos para el selector
+        $producto = null;
+
+        // Cargar los detalles si se ha seleccionado un producto
+        if ($request->has('producto_id')) {
+            $producto = ProductoPetshop::find($request->producto_id);
+        }
+
+        return view('admin.actualizarProducto', compact('productos', 'producto'));
+    }
+
+    public function actualizarProducto(Request $request)
+    {
+        // Validar los datos del formulario
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'precio' => 'required|numeric|min:0',
+            'cantidad' => 'required|integer|min:0',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'categoria' => 'required|string|max:100',
+        ]);
+
+        // Buscar el producto
+        $producto = ProductoPetshop::find($request->producto_id);
+
+        if ($producto) {
+            // Manejar la imagen si se subió una nueva
+            if ($request->hasFile('imagen')) {
+                $imagenPath = $request->file('imagen')->store('public/productos');
+                $imagenPath = str_replace('public/', '/storage/', $imagenPath);
+                $producto->Imagen = $imagenPath;
+            }
+
+            // Actualizar los detalles del producto
+            $producto->Nombre = $request->nombre;
+            $producto->Descripcion = $request->descripcion;
+            $producto->Precio = $request->precio;
+            $producto->Cantidad = $request->cantidad;
+            $producto->Categoria = $request->categoria;
+            $producto->save();
+
+            // Registrar en logs
+            Log::info("Producto actualizado: " . $producto->Nombre);
+
+            // Redirigir con un mensaje de éxito
+            return redirect()->route('productos.actualizar')->with('success', 'Producto actualizado exitosamente');
+        } else {
+            return redirect()->route('productos.actualizar')->with('error', 'No se encontró el producto seleccionado');
+        }
+    }
 }
