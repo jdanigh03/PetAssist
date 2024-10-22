@@ -21,8 +21,6 @@
                 <option value="2">Pelusa</option>
             </select>
         </div>
-
-        <!-- Contenedor con fecha y hora en una sola línea -->
         <div class="flex-group">
             <!-- Selección de fecha -->
             <div class="form-group">
