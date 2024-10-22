@@ -71,11 +71,11 @@ Route::get('/inicio-veterinario', function(){
 
 Route::get('/citas-agenda', [CitaController::class, 'index'])->name('citas.agenda');
     
-// Ruta para mostrar el formulario de reservar cita
 Route::get('/reservar-cita', [CitaController::class, 'reservar'])->name('citas.reservar');
 
-// Ruta para almacenar una nueva cita
+
 Route::post('/reservar-cita', [CitaController::class, 'store'])->name('citas.store');
+
 
 Route::get('/consultar-historial', function(){
     return view('veterinario.consultarHistorialMascota');

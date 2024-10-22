@@ -11,20 +11,17 @@ class CitaController extends Controller
     // Mostrar la agenda de citas
     public function index()
     {
-        // Obtener las citas del usuario autenticado
+       
         $citas = Cita::where('user_id', Auth::id())->get();
         
-        // Retornar la vista con las citas
         return view('citas.agenda', ['citas' => $citas]);
     }
 
-    // Reservar una nueva cita (Solo muestra el formulario de reserva)
     public function reservar()
     {
         return view('citas.reservarCitas');
     }
 
-    // Almacenar una nueva cita en la base de datos
     public function store(Request $request)
     {
         // Validar los datos
