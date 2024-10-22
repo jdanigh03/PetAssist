@@ -18,6 +18,9 @@
     h1 {
         color: #2F4F4F;
     }
+    h2{
+        color: #2F4F4F;
+    }
 
     form {
         display: flex;
@@ -85,7 +88,7 @@
 </style>
 
 <div class="container">
-    <h1 class="text-3xl text-center font-bold">Registro de Cliente</h1>
+    <h1 class="text-3xl text-center font-bold">Registrate al sistema PetAssis para acceder a los diferentes servicios que ofrecemos</h1>
     
     <form class="mt-4" method="POST" action="">
         @csrf
@@ -117,7 +120,7 @@
                 <p class="error-message">* {{ $message }}</p>
             @enderror
         </div>
-
+        <h2 class="text-1x2 text-center font-bold">La contraseña debe contener 8 letras o numeros</h2>
         <div class="form-group">
             <input type="password" placeholder="Contraseña" id="password" name="password" required>
             @error('password')        

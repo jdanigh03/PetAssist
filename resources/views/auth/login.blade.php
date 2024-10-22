@@ -17,7 +17,7 @@
     <div class="container">
         <form method="POST" action="{{ route('login.store') }}">
             @csrf
-            <h1 class="text-3xl text-center font-bold login-title">Login</h1>
+            <h1 class="text-3xl text-center font-bold login-title">Inicia sesión con el sistema PetAssist</h1>
             <input type="email" placeholder="Email" id="email" name="email" required class="login-input">
 
             <input type="password" placeholder="Password" id="password" name="password" required class="login-input">
