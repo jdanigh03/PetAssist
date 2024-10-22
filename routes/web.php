@@ -12,9 +12,7 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,10 +72,12 @@ Route::get('/consultar-historial', function(){
 });
 
 Route::get('/login', [SessionsController::class, 'create'])->middleware('guest')->name('login.index');
-Route::post('/inicio', [SessionsController::class, 'store'])->name('login.store');
+Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 Route::get('auth/google', function () {

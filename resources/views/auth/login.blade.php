@@ -20,9 +20,11 @@
                 </p>
             @enderror
 
-            <button type="submit" class="btn-submit">
-                Enviar
-            </button>
+            <a href="/petshop">
+                <button type="submit" class="btn-submit">
+                    Enviar
+                </button>
+            </a>
         </form>
         <div class="separator">
             <span>-- ó --</span>
