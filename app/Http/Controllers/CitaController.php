@@ -46,4 +46,10 @@ class CitaController extends Controller
         // Redirigir a la agenda de citas
         return redirect()->route('citas.agenda');
     }
+    public function citasAgendadas()
+{
+    $citas = Cita::where('user_id', Auth::id())->get();
+    
+    return view('citas.citas-agendadas', ['citas' => $citas]);
+}
 }

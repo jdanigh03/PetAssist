@@ -4,6 +4,8 @@
 
 @section('content')
 
+<link rel="stylesheet" href="{{ asset('css/agendaCitas.css') }}">
+
 <div class="container-agenda">
     <h1>Citas Agendadas</h1>
 

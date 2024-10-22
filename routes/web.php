@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PetshopController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\CitaController;
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -76,7 +76,7 @@ Route::get('/reservar-cita', [CitaController::class, 'reservar'])->name('citas.r
 
 
 Route::post('/reservar-cita', [CitaController::class, 'store'])->name('citas.store');
-
+Route::get('/citas-agendadas', [CitaController::class, 'citasAgendadas'])->name('citas.agendadas');
 
 Route::get('/consultar-historial', function(){
     return view('veterinario.consultarHistorialMascota');
