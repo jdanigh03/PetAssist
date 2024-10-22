@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PetshopController;
 use App\Http\Controllers\MascotaController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/petshop', function () {
     return view('petshop');
@@ -88,5 +89,29 @@ Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+Route::get('aumentar-producto', function(){
+    return view('admin.aumentarProducto');
+});
 
+Route::get('aumentar-producto', [ProductController::class, 'mostrarFormularioAgregar'])->name('productos.aumentar');
 
+Route::post('aumentar-producto', [ProductController::class, 'agregarProducto'])->name('productos.agregar');
+
+Route::get('quitar-producto', function(){
+    return view('admin.quitarProducto');
+});
+
+// Ruta para mostrar el formulario de agregar producto
+Route::get('aumentar-producto', [ProductController::class, 'mostrarFormularioAgregar'])->name('productos.aumentar');
+
+// Ruta para procesar la solicitud de agregar producto
+Route::post('aumentar-producto', [ProductController::class, 'agregarProducto'])->name('productos.agregar');
+
+// Ruta para mostrar el formulario de quitar producto
+Route::get('quitar-producto', [ProductController::class, 'mostrarFormularioEliminar'])->name('productos.quitar');
+
+// Ruta para mostrar detalles del producto seleccionado antes de eliminar
+Route::get('quitar-producto/{id}', [ProductController::class, 'mostrarDetallesProducto'])->name('productos.detalles');
+
+// Ruta para eliminar el producto confirmado
+Route::delete('quitar-producto', [ProductController::class, 'eliminarProducto'])->name('productos.eliminar');
