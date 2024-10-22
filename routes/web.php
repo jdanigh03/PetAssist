@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PetshopController;
 use App\Http\Controllers\MascotaController;
-
+use App\Http\Controllers\CitaController;
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -69,13 +69,13 @@ Route::get('/inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
 })->name('inicio.veterinario');
 
-Route::get('/reservar-cita', function(){
-    return view('citas.reservarCitas');
-});
+Route::get('/citas-agenda', [CitaController::class, 'index'])->name('citas.agenda');
+    
+// Ruta para mostrar el formulario de reservar cita
+Route::get('/reservar-cita', [CitaController::class, 'reservar'])->name('citas.reservar');
 
-Route::get('/citas-agendadas', function(){
-    return view('citas.citasAgendadas');
-});
+// Ruta para almacenar una nueva cita
+Route::post('/reservar-cita', [CitaController::class, 'store'])->name('citas.store');
 
 Route::get('/consultar-historial', function(){
     return view('veterinario.consultarHistorialMascota');
