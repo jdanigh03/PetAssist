@@ -6,8 +6,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 125vh;
-
+            height: 150vh;
+            padding-top: 200px;
         }
 
         .container {
@@ -15,6 +15,11 @@
             background-color: #F5F5DC;
             padding: 3rem;
             margin: 130px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
         }
 
         @media (max-width: 768px) {
@@ -29,6 +34,15 @@
             padding: 1rem;
             margin: 100px;
 
+        }
+
+        .enviar-form-contacto {
+            background-color: #2f4f4f;
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
         }
     </style>
 
@@ -54,20 +68,20 @@
                         <input type="checkbox" name="informacion"> Me interesa recibir más información y promociones
                     </label>
 
-                    <button type="submit">Enviar</button>
+                    <button class="enviar-form-contacto" type="submit">Enviar</button>
                 </form>
             </div>
 
             <div class="col-md-6">
-                <h3>Kora Veterinaria</h3>
-                <p>Ignacio Ramírez 2240, Zona Central, La Paz, Baja California Sur</p>
-                <p>Tel: 612-129-3443</p>
-                <p>Email: contacto@koraveterinaria.com.mx</p>
+                <h3>Go Can Clínica Veterinaria</h3>
+                <p>Cota Cota calle 30, La Paz, Zona Sur</p>
+                <p>Tel: 123456789</p>
+                <p>Email: contacto@gocanveterinaria.com</p>
                 <a href="https://wa.me/69927071" target="_blank" id="whatsapp-button">
                     <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" style="width: 50px; height: 50px;">
                 </a>
 
-                <a href="https://www.facebook.com/kora.veterinaria" target="_blank" id="facebook-button">
+                <a href="https://www.facebook.com/CEIVETGOCAN" target="_blank" id="facebook-button">
                     <img src="{{ asset('img/facebook.png') }}" alt="Facebook" style="width: 50px; height: 50px;">
                 </a>
 

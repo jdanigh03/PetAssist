@@ -115,20 +115,6 @@
         </div>
 
         <div class="form-group">
-            <input type="text" placeholder="Ciudad" id="ciudad" name="ciudad" required>
-            @error('ciudad')        
-                <p class="error-message">* {{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <input type="text" placeholder="País" id="pais" name="pais" required>
-            @error('pais')        
-                <p class="error-message">* {{ $message }}</p>
-            @enderror
-        </div>
-
-        <div class="form-group">
             <input type="password" placeholder="Contraseña" id="password" name="password" required>
             @error('password')        
                 <p class="error-message">* {{ $message }}</p>

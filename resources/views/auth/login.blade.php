@@ -3,8 +3,16 @@
 @section('title', 'Login')
 
 @section('content')
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            align-self: stretch;
 
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+        }
+    </style>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
     <div class="container">
         <form method="POST" action="{{ route('login.store') }}">
@@ -26,12 +34,5 @@
                 </button>
             </a>
         </form>
-        <div class="separator">
-            <span>-- ó --</span>
-        </div>
-        <a href="{{ route('google.login') }}" class="google-button">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png" alt="Google logo" class="google-logo">
-    Iniciar sesión con Google
-</a>
     </div>
 @endsection
