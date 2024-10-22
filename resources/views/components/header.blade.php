@@ -222,7 +222,7 @@
                 @else
                     <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
-                    <a href="/citas-agenda" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                    <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
                     <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
                 @endif
             @else

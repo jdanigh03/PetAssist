@@ -14,7 +14,9 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
-
+Route::get('/historialusuarios', function () {
+    return view('pantallahistorialusuarios');
+});
 
 Route::get('/', function () {
     return view('welcome');
