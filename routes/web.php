@@ -139,3 +139,6 @@ Route::get('actualizar-producto', [ProductController::class, 'mostrarFormularioA
 
 // Ruta para procesar la actualización del producto
 Route::post('actualizar-producto', [ProductController::class, 'actualizarProducto'])->name('productos.actualizar.confirmar');
+
+Route::get('/', [PetshopController::class, 'index'])->name('welcome');
+Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
