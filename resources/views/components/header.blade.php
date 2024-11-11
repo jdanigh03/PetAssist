@@ -262,8 +262,7 @@
                         alt="">
                 </div>
                 <div class="profile-container">
-                    <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                        alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">
+                    <img src="{{ auth()->user()->profile_picture ?? '/img/perfilPredeterminado.png' }}" alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">
                     <div class="profile-menu" id="profileMenu">
                         @if (auth()->user()->role == 'admin')
                             <a href="/perfil">Ver mi perfil</a>

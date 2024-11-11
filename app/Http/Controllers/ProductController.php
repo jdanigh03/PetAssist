@@ -16,41 +16,29 @@ class ProductController extends Controller
 
     // Método para agregar el producto
     public function agregarProducto(Request $request)
-    {
-        // Validar los datos del formulario
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'precio' => 'required|numeric|min:0',
-            'cantidad' => 'required|integer|min:0',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'categoria' => 'required|string|max:100',
-        ]);
+{
+    $request->validate([
+        'nombre' => 'required|string|max:255',
+        'descripcion' => 'nullable|string',
+        'precio' => 'required|numeric|min:0',
+        'cantidad' => 'required|integer|min:0',
+        'imagen' => 'required|string', // Validar que la URL de la imagen esté presente
+        'categoria' => 'required|string|max:100',
+    ]);
 
-        // Manejar la imagen si se subió
-        $imagenPath = null;
-        if ($request->hasFile('imagen')) {
-            $imagenPath = $request->file('imagen')->store('public/productos');
-            $imagenPath = str_replace('public/', '/storage/', $imagenPath);
-        }
+    $producto = new ProductoPetshop();
+    $producto->Nombre = $request->input('nombre');
+    $producto->Descripcion = $request->input('descripcion');
+    $producto->Precio = $request->input('precio');
+    $producto->Cantidad = $request->input('cantidad');
+    $producto->Imagen = $request->input('imagen'); // Guardar la URL de ImgBB
+    $producto->Categoria = $request->input('categoria');
+    $producto->save();
 
-        // Crear el producto en la base de datos
-        $producto = new ProductoPetshop();
-        $producto->Nombre = $request->nombre;
-        $producto->Descripcion = $request->descripcion;
-        $producto->Precio = $request->precio;
-        $producto->Cantidad = $request->cantidad;
-        $producto->Imagen = $imagenPath;
-        $producto->Categoria = $request->categoria;
-        $producto->save();
+    Log::info("Producto agregado: " . $producto->Nombre);
 
-        // Registrar en logs
-        Log::info("Producto agregado: " . $producto->Nombre);
-
-        // Redirigir con un mensaje de éxito
-        return redirect()->route('productos.aumentar')->with('success', 'Producto agregado exitosamente');
-    }
-
+    return redirect()->route('productos.aumentar')->with('success', 'Producto agregado exitosamente');
+}
     // Método para mostrar el formulario de eliminar productos y sus detalles en la misma vista
     public function mostrarFormularioEliminar(Request $request)
     {
@@ -106,7 +94,7 @@ class ProductController extends Controller
             'descripcion' => 'nullable|string',
             'precio' => 'required|numeric|min:0',
             'cantidad' => 'required|integer|min:0',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'imagen' => 'required|string',
             'categoria' => 'required|string|max:100',
         ]);
 
