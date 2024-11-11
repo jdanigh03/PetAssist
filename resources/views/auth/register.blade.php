@@ -5,37 +5,50 @@
 @section('content')
 
 <style>
-    
     .container {
         max-width: 800px;
         margin: 4rem auto;
         background-color: #F5F5DC;
         padding: 2rem;
         border-radius: 8px;
-        overflow-y: auto; /
+        overflow-y: auto;
     }
 
     h1 {
         color: #2F4F4F;
+        text-align: center; /* Centrar el título */
     }
-    h2{
+
+    h2 {
         color: #2F4F4F;
+        text-align: center; /* Centrar el subtítulo */
+        grid-column: span 2; /* Que el h2 ocupe las dos columnas */
+        margin-bottom: 1rem; /* Agregar un margen inferior */
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: stretch;
-        grid-template-columns: 1fr;
+    .container form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajustar a dos columnas */
         gap: 1rem;
+        align-items: start; /* Alinear elementos al inicio */
     }
-
 
     .form-group {
-        margin: 0;
+        display: flex; /* Para alinear label e input */
+        flex-direction: column; /* Label encima del input */
     }
 
+    .form-group label {
+        margin-bottom: 0.5rem;
+        color: #2F4F4F; /* Color para las etiquetas */
+    }
+
+    input, select { /* Estilos para inputs y selects */
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fff; /* Fondo blanco para inputs */
+    }
 
 
     input:focus {
@@ -57,22 +70,13 @@
         cursor: pointer;
         border: none;
         transition: background-color 0.3s ease;
+        margin-top: 1rem; /* Agregar margen superior */
     }
 
     button:hover {
         background-color: #556B2F;
     }
 
-    @media (min-width: 768px) {
-        form {
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        button {
-            grid-column: span 2;
-        }
-    }
 
     .error-message {
         border: 1px solid red;
@@ -80,56 +84,58 @@
         background-color: #FFE0E0;
         color: red;
         padding: 0.5rem;
+        grid-column: span 1; /* Ajusta la columna del mensaje de error */
+        margin-top: 0.2rem;
     }
 
-    body {
-        overflow-y: auto;
-    }
 </style>
 
 <div class="container">
-    <h1 class="text-3xl text-center font-bold">Registrate al sistema PetAssis para acceder a los diferentes servicios que ofrecemos</h1>
+    <h1 >Regístrate al sistema PetAssis para acceder a los diferentes servicios que ofrecemos</h1>
     
+
     <form class="mt-4" method="POST" action="">
         @csrf
 
         <div class="form-group">
-            <input type="text" placeholder="Nombre completo" id="name" name="name" required>
+            <input type="text" id="name" name="name" placeholder="Nombre completo" required>
             @error('name')        
                 <p class="error-message">* {{ $message }}</p>
             @enderror
         </div>
 
         <div class="form-group">
-            <input type="email" placeholder="Correo electrónico" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
             @error('email')        
                 <p class="error-message">* {{ $message }}</p>
             @enderror
         </div>
 
         <div class="form-group">
-            <input type="tel" placeholder="Teléfono" id="telefono" name="telefono" required>
+            <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" required>
             @error('telefono')        
                 <p class="error-message">* {{ $message }}</p>
             @enderror
         </div>
 
         <div class="form-group">
-            <input type="text" placeholder="Dirección" id="direccion" name="direccion" required>
+            <input type="text" id="direccion" name="direccion" placeholder="Dirección" required>
             @error('direccion')        
                 <p class="error-message">* {{ $message }}</p>
             @enderror
         </div>
-        <h2 class="text-1x2 text-center font-bold">La contraseña debe contener 8 letras o numeros</h2>
+
+        <h2>La contraseña debe contener 8 letras o números</h2>
+
         <div class="form-group">
-            <input type="password" placeholder="Contraseña" id="password" name="password" required>
+            <input type="password" id="password" name="password" placeholder="Contraseña" required>
             @error('password')        
                 <p class="error-message">* {{ $message }}</p>
             @enderror
         </div>
 
         <div class="form-group">
-            <input type="password" placeholder="Confirmar contraseña" id="password_confirmation" name="password_confirmation" required>
+            <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar contraseña" required>
         </div>
 
         <button type="submit">Enviar</button>
