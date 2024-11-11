@@ -144,12 +144,7 @@
                         <label for="subir_imagen_radio">Subir archivo</label>
                     </div>
 
-                    <div id="contenedor-imagen-predeterminada"> <select name="imagen_predeterminada"
-                            id="imagen_predeterminada">
-                            <option value="/img/default_image.jpg" data-image-src="/img/perfilPredeterminado.png">Imagen 1
-                            </option>
-                            <option value="/img/otra_imagen.png" data-image-src="/img/perrito.jpg">Imagen 2</option>
-                        </select>
+                    <div id="contenedor-imagen-predeterminada">
                         <img id="preview-predeterminada" src="/img/perfilPredeterminado.png" alt="Imagen predeterminada"
                             width="100">
                     </div>
@@ -158,7 +153,9 @@
                         <input type="file" id="profile_picture" name="profile_picture" accept="image/*"> <button
                             type="button" id="btn-subir-imagen" class="boton-perfil">Subir Imagen</button>
                         <div id="imagen-preview"></div>
-                        <input type="hidden" id="imagen-url" name="profile_picture_url">
+
+                        <input type="hidden" id="imagen-url" name="imagen_subida_url">
+
                     </div>
 
             </div>

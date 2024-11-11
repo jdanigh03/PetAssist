@@ -25,16 +25,10 @@ class RegisterController extends Controller
 
         $profilePictureUrl = null;
 
-        if ($request->tipo_imagen === 'predeterminada') {
-            $profilePictureUrl = $request->imagen_predeterminada;
-        } elseif ($request->tipo_imagen === 'subir') {
-
-            $profilePictureUrl = $request->input('profile_picture_url');
-
-
+        if ($request->tipo_imagen === 'subir') {
+            $profilePictureUrl = $request->input('imagen_subida_url');
         } else {
-
-            $profilePictureUrl = '/img/default.jpg'; // O la ruta a tu imagen por defecto
+            $profilePictureUrl = '/img/perfilPredeterminado.png'; 
         }
 
 
@@ -48,6 +42,6 @@ class RegisterController extends Controller
 
 
 
-        return redirect()->route('login.index')->with('success', 'Tu cuenta ha sido creada. Por favor, inicia sesión.');
+        return redirect()->route('login.index')->with('success', 'Tu cuenta ha sido creada correctamente. Por favor, inicia sesión.');
     }
 }
