@@ -283,10 +283,10 @@ nav li a:hover {
     background-color: #1f3f3f;
 }
 
-/* Estilos de la sección "Contacto" */
 .contacto {
-    background-color: #f5f5e7;
+    background-color:var(--primary);
     padding: 40px 20px;
+    color: #333;
 }
 
 .contacto .container {
@@ -306,7 +306,6 @@ nav li a:hover {
 
 .contacto form {
     flex: 1 1 400px;
-    background-color: white;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
