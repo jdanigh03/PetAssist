@@ -41,7 +41,7 @@ Route::get('/nueva-mascota', function () {
 Route::get('/mascotas/perfil', function () {
     return view('perfilmascotas');
 })->middleware('auth');
-
+Route::post('/productos/subirImagen', [ProductController::class, 'subirImagen'])->name('productos.subirImagen');
 
 
 
