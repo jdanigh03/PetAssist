@@ -1,20 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'home')
+@section('title', 'Petshop')
 
 @section('content')
     <style>
-        /* Importa la tipografía Poppins */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f5f5e7;;
+            background-color: #f5f5e7;
             padding-bottom: 100px;
             padding-top: 80px;
             overflow-y: auto;
             min-height: 100vh;
-            
         }
 
         .home-cliente {
@@ -96,13 +94,11 @@
 
         .container-img {
             font-size: 16px;
-
             color: #222;
             padding: 0.5rem 0.7rem;
             border-radius: 20px;
             font-weight: bold;
             text-decoration: none;
-
             transition: background-color 0.3s ease;
         }
 
@@ -143,7 +139,6 @@
             font-size: 14px;
             margin-left: 20px;
         }
-
 
         @media (max-width: 768px) {
             .home-cliente {
@@ -202,15 +197,14 @@
         <div class="sugerencias">
             @foreach ($productos as $producto)
                 <div class="sugerencia">
-                    <img src="{{ $producto->Imagen }}" alt="{{ $producto->Nombre }}">
+                    <img src="{{ asset('storage/' . $producto->Imagen) }}" alt="{{ $producto->Nombre }}">
                     <div class="sugerencia-texto">
                         <h3>{{ $producto->Nombre }}</h3>
-                        <p>Precio: ${{ number_format($producto->Precio, 2) }}</p>
+                        <p>Precio: Bs {{ number_format($producto->Precio, 2) }}</p>
                         <a href="/login">Ver producto</a>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
-
 @endsection

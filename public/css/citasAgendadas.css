@@ -2,7 +2,17 @@ body {
     background-color: #f5f5e7; /* Fondo alineado con el navbar */
     color: #333;
 }
-
+.container-info-citasagenda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    background-color: #f5f5dc; /* Fondo personalizado dentro del contenedor */
+    padding: 20px;
+    border: 2px solid black; /* Borde negro */
+    border-radius: 10px; /* Bordes redondeados opcional */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera opcional */
+}
 .container-citas {
     max-width: 900px;
     margin: 0 auto;

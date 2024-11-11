@@ -58,7 +58,9 @@
                     <p>Nuestra misión es proporcionar cuidado veterinario de alta calidad que garantice el bienestar y
                         la
                         salud de las mascotas, creando un vínculo de confianza con sus dueños mediante atención
-                        profesional y afectuosa.</p>
+                        profesional y afectuosa.
+                    
+                    </p>
                 </div>
                 <div class="valor-card">
                     <h3>Visión</h3>

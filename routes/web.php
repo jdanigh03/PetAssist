@@ -14,8 +14,16 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
-Route::get('/login', function () {
-    return view('auth.login');
+Route::get('/historialusuariosmodificar', function () {
+    return view('pantallahistorialusuariosmodificar');
+});
+
+Route::get('/controldemascotas', function () {
+    return view('controldemascotasadmin');
+});
+
+Route::get('/historialusuarios', function () {
+    return view('pantallahistorialusuarios');
 });
 
 Route::get('/', function () {
@@ -87,6 +95,8 @@ Route::match(['get', 'post'], '/inicio', [SessionsController::class, 'store'])->
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 Route::get('aumentar-producto', function(){
@@ -129,3 +139,6 @@ Route::get('actualizar-producto', [ProductController::class, 'mostrarFormularioA
 
 // Ruta para procesar la actualización del producto
 Route::post('actualizar-producto', [ProductController::class, 'actualizarProducto'])->name('productos.actualizar.confirmar');
+
+Route::get('/', [PetshopController::class, 'index'])->name('welcome');
+Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
