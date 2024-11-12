@@ -150,4 +150,5 @@ Route::post('actualizar-producto', [ProductController::class, 'actualizarProduct
 
 Route::get('/', [PetshopController::class, 'index'])->name('welcome');
 Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
-Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusuario');
+Route::get('/perfilusuario', [UserController::class, 'perfil'])->name(name: 'perfilusuario');
+Route::put('/actualizar-perfil', [UserController::class, 'actualizar'])->name('user.actualizar');
