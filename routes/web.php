@@ -12,6 +12,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RazaController;
+use App\Http\Controllers\ProveedorController;
+
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -56,14 +58,15 @@ Route::get('/obtener-razas/{especie}', [RazaController::class, 'obtenerRazasPorE
 
 Route::post('/productos/subirImagen', [ProductController::class, 'subirImagen'])->name('productos.subirImagen');
 
+Route::get('/proveedores', function(){
+    return view('proveedor.proveedor');
+});
+// Ruta para mostrar la pantalla de oferta de productos para proveedores
+Route::get('/proveedor/ofertar', [ProveedorController::class, 'mostrarFormularioOfertar'])->name('proveedor.ofertar');
 
+// Ruta para procesar la oferta de productos
+Route::post('/proveedor/ofertar', [ProveedorController::class, 'procesarOferta'])->name('proveedor.ofertar.procesar');
 
-
-
-
-Route::get('/pantallaproveedores', function () {
-    return view('pantallaproveedores');
-})->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'create'])
     ->name('register.index');

@@ -140,11 +140,14 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle">Control de personal</a>
                             <div class="dropdown-content">
-                                <a href="/cambiar-rol-personal">Cambiar rol personal</a>
+                                <a href="/cambiar-rol">Cambiar rol personal</a>
                                 <a href="/generar-reporte">Generar reporte</a>
                                 <a href="/movimientos-inventario">Movimientos inventario</a>
                             </div>
                         </div>
+                    @elseif (auth()->user()->role == 'proveedor')
+                        <a href="/proveedor/inicio">Inicio</a>
+                        <a href="/proveedores">Ofertar productos</a>
                     @else
                         <a href="/petshop">Inicio</a>
                         <a href="/contactos">Contactos</a>
@@ -156,7 +159,7 @@
                     <a href="/contactos">Contactos</a>
                 @endif
             </nav>
-
+            
             <div class="container-boton-header">
                 @if (auth()->check())
                     <div class="profile-container">
