@@ -1,167 +1,231 @@
-<head>
-    <style>
-        body {
-            padding-top: 50px;
-            font-family: 'Poppins', sans-serif;
-        }
+<style>
+    body {
+        padding-top: 50px;
+        font-family: 'Poppins', sans-serif;
+    }
 
-        .header {
-            background-color: #F5F5DC;
-            box-shadow: 0 1px 1px 2px #2F4F4F;
-            width: 100%;
-            position: fixed;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            top: 0;
-            z-index: 1000;
-            padding: 0 20px;
-            height: 80px;
-        }
+    form {
+        flex-direction: unset;
+    }
 
-        .container-header {
-            display: flex;
-            align-items: center;
-            width: 100%;
-        }
+    .header {
+        background-color: #F5F5DC;
+        box-shadow: 0 1px 1px 2px #2F4F4F;
+        margin: 0;
+        width: 100%;
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        top: 0;
+        z-index: 1000;
+        padding: 0 20px;
+        height: 80px;
+    }
 
-        .logo {
-            height: 4rem;
-            margin-right: 20px;
-            border-radius: 20px;
-        }
+    .container-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
 
+    .logo {
+        height: 4rem;
+        margin-right: 20px;
+        border-radius: 20px;
+    }
+
+    .navegacion-header {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+        flex-grow: 1;
+    }
+
+    .container-boton-header {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-left: auto;
+    }
+
+    .container-boton-header img {}
+
+    .login-button,
+    .logout-button {
+        background-color: #2F4F4F;
+        color: #FFFFFF;
+        padding: 0.7rem 1rem;
+        border-radius: 203px;
+        font-weight: bold;
+        text-decoration: none;
+        border: none;
+        transition: background-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logout-button:hover,
+    .login-button:hover {
+        background-color: #556B2F;
+    }
+
+    .noti {
+        height: 18px;
+    }
+
+    .navegacion-header a {
+        text-decoration: none;
+        color: #2F4F4F;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .hamburger {
+        background-color: #2F4F4F;
+        border-radius: 203px;
+        padding: 0.7rem 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-left: auto;
+        display: none;
+    }
+
+    .hamburger img {
+        width: 18px;
+    }
+
+    .dropdown-menu {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        background-color: #F5F5DC;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    .dropdown-menu a {
+        text-decoration: none;
+        color: #2F4F4F;
+        font-weight: bold;
+        padding: 0.5rem 0;
+        padding: 0.5rem 2rem;
+    }
+
+    .active {
+        background-color: burlywood;
+        padding: 0.5rem 2rem;
+        border-radius: 203px;
+        font-weight: bold;
+        text-decoration: none;
+        border: none;
+    }
+
+    .profile-container {
+        margin-right: 1rem;
+    }
+
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .profile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #F5F5DC;
+        box-shadow: 0 1px 1px 1px #2F4F4F;
+        padding: 1rem;
+        z-index: 1000;
+        border: 1px solid #2F4F4F;
+        border-radius: 5px;
+    }
+
+    .profile-menu a {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #2F4F4F;
+        text-decoration: none;
+        background-image: url({{ asset('img/perfil.png') }});
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 16px 16px;
+        padding-left: 30px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+    }
+
+    .profile-menu a:hover,
+    .logout-link:hover {
+        background-color: #e0e0d1;
+        border-radius: 10px;
+    }
+
+    .logout-link {
+        background: none;
+        border: none;
+        padding: 0.5rem 1rem;
+        color: #2F4F4F;
+        text-decoration: none;
+        cursor: pointer;
+        background-image: url({{ asset('img/cerrarsesion.png') }});
+        background-repeat: no-repeat;
+        background-position: left center;
+        background-size: 16px 16px;
+        padding-left: 30px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+    }
+    
+
+    @media (max-width: 768px) {
         .navegacion-header {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            flex-grow: 1;
-        }
-
-        .navegacion-header a {
-            text-decoration: none;
-            color: #2F4F4F;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .dropdown-content {
             display: none;
-            position: absolute;
-            background-color: #F5F5DC;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
         }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-content a {
-            color: #2F4F4F;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #e0e0d1;
-        }
-
-        .container-boton-header {
+        .hamburger {
             display: flex;
-            align-items: center;
-            gap: 1rem;
         }
+    }
+</style>
 
-        .profile-container img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
+<script>
+    function toggleMenu() {
+        const dropdown = document.querySelector('.dropdown-menu');
+        dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+</script>
 
-        .profile-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: #F5F5DC;
-            border: 1px solid #2F4F4F;
-            border-radius: 5px;
-            padding: 1rem;
-            z-index: 1000;
-        }
+<header class="header">
+    <div class="container-header">
+        <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
 
-        .profile-container:hover .profile-menu {
-            display: block;
-        }
-    </style>
-</head>
-
-<body>
-    <header class="header">
-        <div class="container-header">
-            <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
-
-            <nav class="navegacion-header">
-                @if (auth()->check())
-                    @if (auth()->user()->role == 'admin')
-                        <div class="dropdown">
-                            <a class="dropdown-toggle">Gestión de productos</a>
-                            <div class="dropdown-content">
-                                <a href="/aumentar-producto">Aumentar producto</a>
-                                <a href="/quitar-producto">Quitar producto</a>
-                                <a href="/consultar-producto">Consultar producto</a>
-                                <a href="/actualizar-producto">Actualizar producto</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <a class="dropdown-toggle">Gestión de clientes</a>
-                            <div class="dropdown-content">
-                                <a href="/historialusuariosmodificar">Control de citas</a>
-                                <a href="/historialusuarios">Historial de visitas</a>
-                                <a href="/controldemascotas">Control de mascotas</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <a class="dropdown-toggle">Control de personal</a>
-                            <div class="dropdown-content">
-                                <a href="/cambiar-rol">Cambiar rol personal</a>
-                                <a href="/generar-reporte">Generar reporte</a>
-                                <a href="/movimientos-inventario">Movimientos inventario</a>
-                            </div>
-                        </div>
-                    @elseif (auth()->user()->role == 'proveedor')
-                        <a href="/proveedor/inicio">Inicio</a>
-                        <a href="/proveedores">Ofertar productos</a>
-                    @else
-                        <a href="/petshop">Inicio</a>
-                        <a href="/contactos">Contactos</a>
-                        <a href="/citas-agendadas">Agenda</a>
-                        <a href="/mascotas">Mascotas</a>
-                    @endif
+        <nav class="navegacion-header">
+            @if (auth()->check())
+                @if (auth()->user()->role == 'admin')
+                    <a href="/" class="">Inicio</a>
+                    <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones
+                        de administrador</a>
                 @else
-                    <a href="/">Inicio</a>
-                    <a href="/contactos">Contactos</a>
+                    <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                    <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                    <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
+                    <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
                 @endif
             @else
                 <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                
-                <!-- <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>-->
+                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
             @endif
         </nav>
 
@@ -201,25 +265,40 @@
                     <img src="{{ auth()->user()->profile_picture ?? '/img/perfilPredeterminado.png' }}" alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">
                     <div class="profile-menu" id="profileMenu">
                         @if (auth()->user()->role == 'admin')
-            </nav>
-            
-            <div class="container-boton-header">
-                @if (auth()->check())
-                    <div class="profile-container">
-                        <img src="{{ auth()->user()->profile_picture ?? '/img/perfilPredeterminado.png' }}" alt="Foto de perfil" class="profile-picture">
-                        <div class="profile-menu">
                             <a href="/perfil">Ver mi perfil</a>
-                            <form action="{{ route('login.destroy') }}" method="POST">
-                                @csrf
-                                <button type="submit" class="logout-link">Cerrar Sesión</button>
-                            </form>
-                        </div>
+                        @else
+                            <a href="/perfilusuario">Ver mi perfil</a>
+                        @endif
+                        <form action="{{ route('login.destroy') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="logout-link">Cerrar Sesión</button>
+                        </form>
                     </div>
-                @else
-                    <a href="/register" class="login-button">Registrarse</a>
-                    <a href="/login" class="login-button">Iniciar Sesión</a>
-                @endif
-            </div>
+                </div>
+            @else
+                <a href="/register" class="login-button">
+                    Registrarse
+                </a>
+                <a href="/login" class="login-button">
+                    Iniciar Sesión
+                </a>
+            @endif
         </div>
-    </header>
-</body>
+    </div>
+</header>
+<script>
+    const navLinks = document.querySelectorAll('.navegacion-header a, .dropdown-menu a');
+
+
+    navLinks.forEach(link => {
+
+        if (link.href === window.location.href) {
+            link.classList.add('active');
+        }
+    });
+
+    function toggleProfileMenu() {
+        const profileMenu = document.getElementById('profileMenu');
+        profileMenu.style.display = profileMenu.style.display === 'block' ? 'none' : 'block';
+    }
+</script>
