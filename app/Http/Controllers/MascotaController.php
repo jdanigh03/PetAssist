@@ -13,7 +13,14 @@ class MascotaController extends Controller
 {
     public function index()
 {
+
     $mascotas = Auth::user()->mascotas;
+
+    if ($mascotas == null) {
+        $mascotas = collect([]);
+    }
+
+
 
     return view('mascotas', ['mascotas' => $mascotas]);
 }
