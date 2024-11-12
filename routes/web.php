@@ -74,9 +74,7 @@ Route::post('/register', [RegisterController::class, 'store'])
 Route::get('/contactos', function () {
     return view('contactos.contactos');
 });
-Route::get('/historial-medico-mascota', function () {
-    return view('hmm.card'); 
-})->name('historial.medico');
+Route::get('/historial-medico-mascota/{mascota}', [CitaController::class, 'historialMedicoMascota'])->name('historial.medico');
 
 Route::get('/historial-detallado-mascota', function(){
     return view('hmm.detallesCita');
@@ -152,3 +150,4 @@ Route::get('/', [PetshopController::class, 'index'])->name('welcome');
 Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
 Route::get('/perfilusuario', [UserController::class, 'perfil'])->name(name: 'perfilusuario');
 Route::put('/actualizar-perfil', [UserController::class, 'actualizar'])->name('user.actualizar');
+Route::get('/consultar-historial', [MascotaController::class, 'consultarHistorialMascota'])->name('veterinario.consultarHistorial');

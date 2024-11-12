@@ -4,51 +4,94 @@
 
 @section('content')
 
-<style>
-    .container-info-citasagenda {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    background-color: #f5f5dc; /* Fondo personalizado dentro del contenedor */
-    padding: 20px;
-    border: 2px solid black; /* Borde negro */
-    border-radius: 10px; /* Bordes redondeados opcional */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera opcional */
-}
-</style>
+    <style>
+        .container-citas {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            overflow-y: auto;
+            padding-bottom: 50px;
+        }
 
-<link rel="stylesheet" href="{{ asset('css/citasAgendadas.css') }}">
+        .container-info-citasagenda {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            background-color: #f5f5dc;
+            padding: 20px;
+            border: 2px solid #2f4f4f;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
 
-<div class="container-citas">
-    <h1>Citas Agendadas</h1>
+        .card-cita {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
 
-    <div class="container-info-citasagenda">
-        <div class="cards-container">
-            <div class="card-cita">
-                <div class="cita-header">
-                    <h2>Mascota: Firulais</h2>
-                    <img src="https://via.placeholder.com/80" alt="Foto de Firulais" class="mascota-foto"> <!-- Imagen de la mascota -->
-                </div>
-                <p><strong>Fecha:</strong> 20 de Octubre, 2024</p>
-                <p><strong>Hora:</strong> 10:30 AM</p>
-                <p><strong>Motivo:</strong> Vacunación</p>
-                <p><strong>Veterinario:</strong> Dr. Juan Pérez</p>
-            </div>
+        }
 
-            <div class="card-cita">
-                <div class="cita-header">
-                    <h2>Mascota: Pelusa</h2>
-                    <img src="https://via.placeholder.com/80" alt="Foto de Pelusa" class="mascota-foto"> <!-- Imagen de la mascota -->
-                </div>
-                <p><strong>Fecha:</strong> 22 de Octubre, 2024</p>
-                <p><strong>Hora:</strong> 3:00 PM</p>
-                <p><strong>Motivo:</strong> Revisión General</p>
-                <p><strong>Veterinario:</strong> Dra. María López</p>
-            </div>
+        .cita-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .mascota-foto {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 900px) {
+
+            .card-cita {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .card-cita {
+                width: 100%;
+            }
+        }
+    </style>
+
+
+    <div class="container-citas">
+        <h1>Citas Agendadas</h1>
+
+        <div class="container-info-citasagenda">
+            @if ($citas->count() > 0)
+                @foreach ($citas as $cita)
+                    <div class="card-cita">
+                        <div class="cita-header">
+                            <h2>Mascota: {{ $cita->mascota->Nombre }}</h2>
+                            <img src="{{ $cita->mascota->foto }}" alt="Foto de {{ $cita->mascota->Nombre }}"
+                                class="mascota-foto" onerror="this.src='/img/perfilPredeterminado.png'">
+                        </div>
+                        <p><strong>Fecha:</strong> {{ $cita->fecha }}</p>
+                        <p><strong>Hora:</strong> {{ $cita->hora }}</p>
+                        <p><strong>Motivo:</strong> {{ $cita->motivo }}</p>
+                        <p><strong>Veterinario:</strong> {{ $cita->veterinario?->name ?? 'No asignado' }}</p>
+                    </div>
+                @endforeach
+            @else
+                <p>No tienes citas agendadas por el momento.</p>
+            @endif
         </div>
     </div>
-</div>
 
 @endsection
-
