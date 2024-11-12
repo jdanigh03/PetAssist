@@ -12,6 +12,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RazaController;
+use App\Http\Controllers\PageController;
+
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -151,3 +153,6 @@ Route::post('actualizar-producto', [ProductController::class, 'actualizarProduct
 Route::get('/', [PetshopController::class, 'index'])->name('welcome');
 Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
 Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusuario');
+
+Route::get('/aviso-privacidad', [PageController::class, 'avisoPrivacidad'])->name('aviso-privacidad');
+Route::get('/terminos-condiciones', [PageController::class, 'terminosCondiciones'])->name('terminos-condiciones');
