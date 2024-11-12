@@ -5,33 +5,39 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SessionsController extends Controller {
-    
-    public function create() {
-        return view('auth.login'); 
+class SessionsController extends Controller
+{
+    public function create()
+    {
+        return view('auth.login');
     }
 
     public function store(Request $request)
-{
-    $credentials = $request->only('email', 'password');
+    {
+        $credentials = $request->only('email', 'password');
 
-    if (Auth::attempt($credentials)) {
-        // Verificar si es un administrador
-        if (Auth::user()->role == 'admin') {
-            return redirect()->route('admin.index');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate(); // Importante: regenerar la sesión
+            $user = Auth::user();
+
+            if ($user->role == 'admin') {
+                return redirect()->route('admin.index');
+            } elseif ($user->role == 'veterinario') {
+                return redirect()->route('inicio.veterinario');
+            } else {
+                return redirect()->intended('/petshop');
+            }
         }
-        
-        // Si no es admin, redirigir a la página principal
-        return redirect()->intended('/petshop');
+
+        return back()->withErrors([
+            'message' => 'Credenciales invalidas. Intente de nuevo',
+        ]);
     }
 
-    return back()->withErrors([
-        'message' => 'Credenciales invalidas. Intente de nuevo',
-    ]);
-}
-
-    public function destroy() {
+    public function destroy()
+    {
         Auth::logout();
+        
         return redirect()->route('login.index');
     }
 }

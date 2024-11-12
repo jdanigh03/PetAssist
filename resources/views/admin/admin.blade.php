@@ -5,65 +5,34 @@
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
-    <div class="home-cliente">
-        <h1>Bienvenido a PetAssist administrador</h1>
-      
-        <h2>Control de inventario</h2>
-        <div class="categorias">
-            <a href="/aumentar-producto">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
-                </div>
-                Aumentar producto
-            </a>
-            <a href="/quitar-producto">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
-                </div>
-                Quitar producto
-            </a>
-            <a href="consultar-producto">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
-                </div>
-                Consultar producto
-            </a>
-            <a href="/actualizar-producto">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
-                </div>
-                Actualizar producto
-            </a>
-        </div>
+<div class="home-cliente">
+    <h1>Bienvenido a PetAssist administrador</h1>
 
-        <h2>Control de clientes</h2>
-        <div class="categorias">
-            <a href="/historialusuariosmodificar">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
-                </div>
-                Control de citas
-            </a>
-            <a href="/historialusuarios">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
-                </div>
-                Historial de visitas
-            </a>
-            <!-- <a href="#">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
-                </div>
-                Cuentas pendientes
-            </a> -->
-            <a href="/controldemascotas">
-                <div class="container-img-adm">
-                    <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
-                </div>
-                Control de mascotas
-            </a>
-        </div>
+    <div class="categorias">
+        <!-- Botón para Control de inventario -->
+        <a href="/control-inventario">
+            <div class="container-img-adm">
+                <img src="{{ asset('img/medicamentos.png') }}" alt="Control de inventario">
+            </div>
+            Control de inventario
+        </a>
+
+        <!-- Botón para Control de clientes -->
+        <a href="/control-clientes">
+            <div class="container-img-adm">
+                <img src="{{ asset('img/medicamentos.png') }}" alt="Control de clientes">
+            </div>
+            Control de clientes
+        </a>
+
+        <!-- Botón para Control de personal -->
+        <a href="/control-personal">
+            <div class="container-img-adm">
+                <img src="{{ asset('img/medicamentos.png') }}" alt="Control de personal">
+            </div>
+            Control de personal
+        </a>
     </div>
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+</div>
 
 @endsection

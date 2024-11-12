@@ -48,6 +48,11 @@ class User extends Authenticatable
 {
     return $this->role === 'admin';
 }
+public function isVeterinario()
+{
+    return $this->role === 'veterinario';
+}
+
 public function mascotas()
 {
     return $this->hasMany(Mascota::class);

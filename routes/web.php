@@ -12,8 +12,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RazaController;
-use App\Http\Controllers\PageController;
-
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -58,14 +56,15 @@ Route::get('/obtener-razas/{especie}', [RazaController::class, 'obtenerRazasPorE
 
 Route::post('/productos/subirImagen', [ProductController::class, 'subirImagen'])->name('productos.subirImagen');
 
+Route::get('/proveedores', function(){
+    return view('proveedor.proveedor');
+});
+// Ruta para mostrar la pantalla de oferta de productos para proveedores
+Route::get('/proveedor/ofertar', [ProveedorController::class, 'mostrarFormularioOfertar'])->name('proveedor.ofertar');
 
+// Ruta para procesar la oferta de productos
+Route::post('/proveedor/ofertar', [ProveedorController::class, 'procesarOferta'])->name('proveedor.ofertar.procesar');
 
-
-
-
-Route::get('/pantallaproveedores', function () {
-    return view('pantallaproveedores');
-})->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'create'])
     ->name('register.index');
@@ -76,9 +75,7 @@ Route::post('/register', [RegisterController::class, 'store'])
 Route::get('/contactos', function () {
     return view('contactos.contactos');
 });
-Route::get('/historial-medico-mascota', function () {
-    return view('hmm.card'); 
-})->name('historial.medico');
+Route::get('/historial-medico-mascota/{mascota}', [CitaController::class, 'historialMedicoMascota'])->name('historial.medico');
 
 Route::get('/historial-detallado-mascota', function(){
     return view('hmm.detallesCita');
@@ -144,6 +141,26 @@ Route::get('actualizar-producto', function(){
     return view('admin.actualizarProducto');
 });
 
+Route::get('cambiar-rol', function(){
+    return view('admin.cambiarRol');
+});
+
+// Ruta para la sección de Control de Inventario
+Route::get('control-inventario', function() {
+    return view('admin.inventarioControl');
+});
+
+// Ruta para la sección de Control de Clientes
+Route::get('control-clientes', function() {
+    return view('admin.controlClientes');
+});
+
+// Ruta para la sección de Control de Personal
+Route::get('control-personal', function() {
+    return view('admin.controlPersonal');
+});
+
+
 // Ruta para mostrar el formulario de actualizar productos
 Route::get('actualizar-producto', [ProductController::class, 'mostrarFormularioActualizar'])->name('productos.actualizar');
 
@@ -153,6 +170,3 @@ Route::post('actualizar-producto', [ProductController::class, 'actualizarProduct
 Route::get('/', [PetshopController::class, 'index'])->name('welcome');
 Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
 Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusuario');
-
-Route::get('/aviso-privacidad', [PageController::class, 'avisoPrivacidad'])->name('aviso-privacidad');
-Route::get('/terminos-condiciones', [PageController::class, 'terminosCondiciones'])->name('terminos-condiciones');

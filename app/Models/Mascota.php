@@ -70,4 +70,6 @@ class Mascota extends Model
     }
 
 
+    
+
 }

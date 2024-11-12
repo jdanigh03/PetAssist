@@ -4,7 +4,7 @@
 
 @section('content')
 
-<style>
+    <style>
         .container-perfil-mascota {
             display: flex;
             flex-direction: column;
@@ -35,9 +35,9 @@
         .profile-header2 {
             background-color: #F5F5DC;
             padding: 10px;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             justify-content: center;
-            display:flex;
+            display: flex;
         }
 
         .profile-image-mascota {
@@ -55,7 +55,7 @@
             object-fit: cover;
             border: 3px solid #fff;
         }
-        
+
         .profile-name {
             font-size: 20px;
             font-weight: bold;
@@ -93,17 +93,19 @@
         .btn:hover {
             background-color: #556B2F;
         }
+
         .mascota-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;           
-            background-color: #fff; 
+            justify-content: center;
+            background-color: #fff;
             padding: 10px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 150px; 
+            width: 150px;
         }
+
         .editar-boton {
             position: absolute;
             top: 10px;
@@ -120,16 +122,19 @@
         .editar-boton img {
             width: 100%;
             height: 100%;
-            border-radius: 50%; /* Haz que la imagen también sea redonda */
-            object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+            border-radius: 50%;
+            /* Haz que la imagen también sea redonda */
+            object-fit: cover;
+            /* Asegura que la imagen se ajuste correctamente */
         }
+
         .mascota-boton {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .mascota-boton img {
@@ -140,69 +145,57 @@
             border: 3px solid #fff;
         }
 
+        .no-mascotas {
+            text-align: center;
+            /* Centrar el texto */
+            margin-top: 2rem;
+        }
     </style>
 
-<div class="container-perfil-mascota">
-    <h1>Perfil</h1>
-    <div class="profile-card">
-        <div class="profile-header">
-            <a href="/editarperfilusuario">
-                <button class="editar-boton">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
-            </a>
-            <!-- Mostrar la foto de perfil del usuario si existe -->
-            <img src="{{ $user->profile_picture ?? 'https://cdn-icons-png.flaticon.com/512/1077/1077063.png' }}"
-                alt="Foto de perfil del usuario" class="profile-image-mascota">
-            <h1 class="profile-name">{{ $user->name }}</h1>
-        </div>
-        <div class="profile-info">
-            <p><strong>Dirección:</strong> {{ $user->direccion }}</p>
-            <p><strong>Teléfono de referencia:</strong> {{ $user->telefono }}</p>
-            <p><strong>Correo electrónico:</strong> {{ $user->email }}</p>
-        </div>
+    <div class="container-perfil-mascota">
+        <h1>Perfil</h1>
+        <div class="profile-card">
+            <div class="profile-header">
+                <a href="/editarperfilusuario">
+                    <button class="editar-boton">
+                        <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg"
+                            alt="Editar">
+                    </button>
+                </a>
+                <img src="{{ $user->profile_picture ?? '/img/perfilPredeterminado.png' }}" alt="Foto de perfil del usuario"
+                    class="profile-image-mascota" onerror="this.src='/img/perfilPredeterminado.png'">
+                <h1 class="profile-name">{{ $user->name }}</h1>
+            </div>
+            <div class="profile-info">
+                <p><strong>Dirección:</strong> {{ $user->direccion }}</p>
+                <p><strong>Teléfono de referencia:</strong> {{ $user->telefono }}</p>
+                <p><strong>Correo electrónico:</strong> {{ $user->email }}</p>
+            </div>
+
             <div class="profile-header">
                 <h1 class="profile-name">Mascotas</h1>
             </div>
+
             <div class="profile-header2">
-                <div class="mascota-item">
-                    <a href="/mascotas">
-                        <button class="mascota-boton">
-                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
-                        </button>
-                    </a>
-                    <h1 class="profile-name">Nombre</h1>
-                </div>
-                <div class="mascota-item">
-                    <a href="/mascotas">
-                        <button class="mascota-boton">
-                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
-                        </button>
-                    </a>
-                    <h1 class="profile-name">Nombre</h1>
-                </div>
-                <div class="mascota-item">
-                    <a href="/mascotas">
-                        <button class="mascota-boton">
-                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
-                        </button>
-                    </a>
-                    <h1 class="profile-name">Nombre</h1>
-                </div>
-                <div class="mascota-item">
-                    <a href="/mascotas">
-                        <button class="mascota-boton">
-                            <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                                alt="Foto de perfil de la mascota" class="profile-image-mascota2">
-                        </button>
-                    </a>
-                    <h1 class="profile-name">Nombre</h1>
-                </div>
+                @if ($user->mascotas->count() > 0)
+                    @foreach ($user->mascotas as $mascota)
+                        <div class="mascota-item">
+                            <a href="{{ route('mascotas.perfil', $mascota) }}">
+                                <button class="mascota-boton">
+                                    <img src="{{ $mascota->foto }}" alt="Foto de {{ $mascota->nombre }}"
+                                        class="profile-image-mascota2" onerror="this.src='/img/perfilPredeterminado.png'">
+                                </button>
+                            </a>
+                            <h1 class="profile-name">{{ $mascota->nombre }}</h1>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="no-mascotas">
+                        <p>No tienes mascotas añadidas. ¿Deseas añadir una?</p>
+                        <a href="{{ route('mascotas.crear') }}" class="btn">Añadir Mascota</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
-
 @endsection
