@@ -140,7 +140,7 @@
             </div>
         @endif
 
-        @if (count($mascotas) == 0)
+        @if ($mascotas->count() == 0)
             <div class="container-mascotas">
                 <h2 class="titulo-mascotas">Agrega tus mascotas</h2>
                 <p class="mensaje-mascotas">Al cargar a tus peludos, los verás aquí.</p>
