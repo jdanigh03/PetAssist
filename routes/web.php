@@ -140,6 +140,26 @@ Route::get('actualizar-producto', function(){
     return view('admin.actualizarProducto');
 });
 
+Route::get('cambiar-rol', function(){
+    return view('admin.cambiarRol');
+});
+
+// Ruta para la sección de Control de Inventario
+Route::get('control-inventario', function() {
+    return view('admin.inventarioControl');
+});
+
+// Ruta para la sección de Control de Clientes
+Route::get('control-clientes', function() {
+    return view('admin.controlClientes');
+});
+
+// Ruta para la sección de Control de Personal
+Route::get('control-personal', function() {
+    return view('admin.controlPersonal');
+});
+
+
 // Ruta para mostrar el formulario de actualizar productos
 Route::get('actualizar-producto', [ProductController::class, 'mostrarFormularioActualizar'])->name('productos.actualizar');
 
@@ -151,3 +171,4 @@ Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
 Route::get('/perfilusuario', [UserController::class, 'perfil'])->name(name: 'perfilusuario');
 Route::put('/actualizar-perfil', [UserController::class, 'actualizar'])->name('user.actualizar');
 Route::get('/consultar-historial', [MascotaController::class, 'consultarHistorialMascota'])->name('veterinario.consultarHistorial');
+Route::post('/cambiar-rol', [AdminController::class, 'cambiarRol'])->name('admin.cambiarRol');
