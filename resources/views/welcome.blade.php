@@ -44,6 +44,27 @@
             @endif
         </div>
     </section>
+
+    <section class="servicios" id="servicios">
+        <div class="container">
+            <h2>Servicios</h2>
+            <div class="servicios-cards">
+                <div class="servicio-card">
+                    <img src="{{ asset('img/Bienestar.jpg') }}" alt="Bienestar">
+                    <h3>Atención Médica</h3>
+                    <p>Vacunas, chequeos, spa y limpieza dental para mascotas saludables.</p>
+                    <a href="/login" class="btn-servicio">Agendar Cita</a>
+                </div>
+                <div class="servicio-card">
+                    <img src="{{ asset('img/petshop.avif') }}" alt="Urgencias">
+                    <h3>Petshop</h3>
+                    <p>Encuentra todo lo que tu mascota necesita en nuestro petshop online.</p>
+                    <a href="/login" class="btn-servicio">Realizar Compras</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="sobre-nosotros" id="nosotros">
         <div class="container">
             <h2>Nosotros</h2>
@@ -75,26 +96,6 @@
                         que cada mascota reciba el mejor trato posible, mientras promovemos prácticas sostenibles y
                         éticas
                         en nuestro trabajo diario.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="servicios" id="servicios">
-        <div class="container">
-            <h2>Servicios</h2>
-            <div class="servicios-cards">
-                <div class="servicio-card">
-                    <img src="{{ asset('img/Bienestar.jpg') }}" alt="Bienestar">
-                    <h3>Atención Médica</h3>
-                    <p>Vacunas, chequeos, spa y limpieza dental para mascotas saludables.</p>
-                    <a href="/login" class="btn-servicio">Agendar Cita</a>
-                </div>
-                <div class="servicio-card">
-                    <img src="{{ asset('img/petshop.avif') }}" alt="Urgencias">
-                    <h3>Petshop</h3>
-                    <p>Encuentra todo lo que tu mascota necesita en nuestro petshop online.</p>
-                    <a href="/login" class="btn-servicio">Realizar Compras</a>
                 </div>
             </div>
         </div>
@@ -147,12 +148,10 @@
 
             <div class="info">
                 <h3>Go Can Veterinaria</h3>
-                <p>Ignacio Ramírez 2240, Zona Central, La Paz, Baja California Sur</p>
-                <p>Tel: 612-129-3443</p>
-                <p>Email: contacto@koraveterinaria.com.mx</p>
-                <iframe class="mapa-vet-inicio"
-                    src="https://www.google.com/maps/d/embed?mid=1L66q39sAMiYNQgbMAknyqkQT0Gsz-Ls&ehbc=2E312F"
-                    height="480"></iframe>
+                <p>Cota cota calle 30</p>
+                <p>Tel: 765444321</p>
+                <p>Email: contacto@gocan.com</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3824.7053567725598!2d-68.06489812568967!3d-16.54096614177963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x915f21d8e26c54b7%3A0xeedb4e89ec40a988!2sCentro%20Integral%20Veterinario%20%22Go%20Can%22!5e0!3m2!1ses-419!2sbo!4v1731331683799!5m2!1ses-419!2sbo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <div class="social-buttons">
                     <a href="https://wa.me/message/JTIX5UW6PVDXM1" target="_blank">
                         <img src="{{ asset('img/whatsapp.png') }}" alt="WhatsApp" class="social-icon">

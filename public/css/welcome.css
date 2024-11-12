@@ -308,6 +308,10 @@ html {
     font-size: 14px;
 }
 
+.contacto {
+    background-color: #1d2b29;
+}
+
 @media (max-width: 768px) {
     .navbar nav ul {
         display: none;

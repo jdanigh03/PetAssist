@@ -89,18 +89,16 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Aquí se mostrarán las citas -->
             <?php
             // Datos de ejemplo del historial de citas
             $citas = [
-                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
-                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
-                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
-                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"],
-                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "raza" => "chihuahua", "sexo" => "masculino", "especie" => "perro", "color" => "café", "peso" => "10kg"]
-            ];
+            ["nombre" => "María López", "mascota" => "Luna", "raza" => "labrador", "sexo" => "femenino", "especie" => "perro", "color" => "negro", "peso" => "25kg"],
+            ["nombre" => "José García", "mascota" => "Tom", "raza" => "siamés", "sexo" => "masculino", "especie" => "gato", "color" => "blanco", "peso" => "6kg"],
+            ["nombre" => "Ana Fernández", "mascota" => "Max", "raza" => "golden retriever", "sexo" => "masculino", "especie" => "perro", "color" => "dorado", "peso" => "30kg"],
+            ["nombre" => "Luis Herrera", "mascota" => "Bella", "raza" => "beagle", "sexo" => "femenino", "especie" => "perro", "color" => "tricolor", "peso" => "12kg"],
+            ["nombre" => "Carla Jiménez", "mascota" => "Milo", "raza" => "persa", "sexo" => "masculino", "especie" => "gato", "color" => "gris", "peso" => "8kg"]
+        ];
 
-            // Iteramos sobre las citas para mostrarlas en la tabla
             foreach ($citas as $cita) {
                 echo "<tr>
                         <td>{$cita['nombre']}</td>

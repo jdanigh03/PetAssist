@@ -19,13 +19,6 @@
             text-align: center;
         }
 
-        h2 {
-            color: #2F4F4F;
-            text-align: center;
-            grid-column: span 2;
-            margin-bottom: 1rem;
-        }
-
         .container form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -50,7 +43,6 @@
             border-radius: 5px;
             background-color: #fff;
         }
-
 
         input:focus {
             background-color: white;
@@ -94,11 +86,30 @@
             grid-column: span 1;
             margin-top: 0.2rem;
         }
+
+        .profile-section {
+            grid-column: span 2;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .profile-section h3 {
+            margin-bottom: 1rem;
+            color: #2F4F4F;
+        }
+
+        .profile-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
     </style>
 
     <div class="container">
-        <h1>Regístrate al sistema PetAssis para acceder a los diferentes servicios que ofrecemos</h1>
-
+        <h1>Regístrate al sistema PetAssist para acceder a los diferentes servicios que ofrecemos</h1>
 
         <form class="mt-4" method="POST" action="">
             @csrf
@@ -132,117 +143,61 @@
             </div>
 
             <div class="form-group">
-                <h for="profile_picture">Foto de perfil:</label>
-
-                    <div>
-                        <input type="radio" name="tipo_imagen" id="imagen_predeterminada_radio" value="predeterminada"
-                            checked>
-                        <label for="imagen_predeterminada_radio">Imagen predeterminada</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="tipo_imagen" id="subir_imagen_radio" value="subir">
-                        <label for="subir_imagen_radio">Subir archivo</label>
-                    </div>
-
-                    <div id="contenedor-imagen-predeterminada">
-                        <img id="preview-predeterminada" src="/img/perfilPredeterminado.png" alt="Imagen predeterminada"
-                            width="100">
-                    </div>
-
-                    <div id="contenedor-subir-imagen" style="display: none;">
-                        <input type="file" id="profile_picture" name="profile_picture" accept="image/*"> <button
-                            type="button" id="btn-subir-imagen" class="boton-perfil">Subir Imagen</button>
-                        <div id="imagen-preview"></div>
-
-                        <input type="hidden" id="imagen-url" name="imagen_subida_url">
-
-                    </div>
-
-            </div>
-            <script>
-                const radioPredeterminada = document.getElementById('imagen_predeterminada_radio');
-                const radioSubir = document.getElementById('subir_imagen_radio');
-                const contenedorPredeterminada = document.getElementById('contenedor-imagen-predeterminada');
-                const contenedorSubir = document.getElementById('contenedor-subir-imagen');
-                const selectPredeterminada = document.getElementById('imagen_predeterminada');
-                const previewPredeterminada = document.getElementById('preview-predeterminada');
-
-                radioPredeterminada.addEventListener('change', () => {
-                    contenedorPredeterminada.style.display = 'block';
-                    contenedorSubir.style.display = 'none';
-                });
-
-                radioSubir.addEventListener('change', () => {
-                    contenedorPredeterminada.style.display = 'none';
-                    contenedorSubir.style.display = 'block';
-                });
-
-                selectPredeterminada.addEventListener('change', () => {
-                    const selectedOption = selectPredeterminada.options[selectPredeterminada.selectedIndex];
-                    const imageSrc = selectedOption.getAttribute('data-image-src');
-                    previewPredeterminada.src = imageSrc;
-                });
-
-
-
-                const btnSubirImagen = document.getElementById('btn-subir-imagen');
-                const imagenInput = document.getElementById('profile_picture');
-                const imagenUrlInput = document.getElementById('imagen-url');
-                const imagenPreview = document.getElementById('imagen-preview');
-
-                btnSubirImagen.addEventListener('click', () => {
-                    const file = imagenInput.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-
-                        reader.onloadend = function() {
-                            const formData = new FormData();
-                            formData.append('key', '81fd551e66f3e290dce7e02e4f730eac');
-                            formData.append('image', reader.result.split(',')[1]);
-
-                            fetch("https://api.imgbb.com/1/upload", {
-                                    method: 'POST',
-                                    body: formData
-                                })
-                                .then(response => response.json())
-                                .then(data => {
-                                    if (data.success) {
-                                        imagenUrlInput.value = data.data.url;
-                                        imagenPreview.innerHTML = `<img src="${data.data.url}" width="100">`;
-                                        console.log(data.data.url);
-                                    } else {
-                                        alert(data.error);
-                                    }
-                                })
-                                .catch(error => console.error('Error:', error));
-                        }
-
-                        reader.readAsDataURL(file);
-                    } else {
-                        alert('Selecciona una imagen primero.');
-                    }
-                });
-            </script>
-
-
-
-
-            <h2>La contraseña debe contener 8 letras o números</h2>
-
-            <div class="form-group">
                 <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <small class="text-muted">La contraseña debe contener al menos 8 caracteres.</small>
                 @error('password')
                     <p class="error-message">* {{ $message }}</p>
                 @enderror
             </div>
 
             <div class="form-group">
-                <input type="password" id="password_confirmation" name="password_confirmation"
-                    placeholder="Confirmar contraseña" required>
+                <input type="password" id="password_confirmation" name="password_confirmation" placeholder="Confirmar contraseña" required>
+                <small class="text-muted">Las contraseñas deben coincidir.</small>
             </div>
 
+            <!-- Sección de foto de perfil -->
+            <div class="profile-section">
+                <h3>Foto de perfil:</h3>
+                <div class="profile-option">
+                    <input type="radio" name="tipo_imagen" id="imagen_predeterminada_radio" value="predeterminada" checked>
+                    <label for="imagen_predeterminada_radio">Imagen predeterminada</label>
+                </div>
+                <div id="contenedor-imagen-predeterminada">
+                    <img id="preview-predeterminada" src="/img/perfilPredeterminado.png" alt="Imagen predeterminada">
+                </div>
+
+                <div class="profile-option">
+                    <input type="radio" name="tipo_imagen" id="subir_imagen_radio" value="subir">
+                    <label for="subir_imagen_radio">Subir archivo</label>
+                </div>
+                <div id="contenedor-subir-imagen" style="display: none;">
+                    <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                    <button type="button" id="btn-subir-imagen" class="boton-perfil">Subir Imagen</button>
+                    <div id="imagen-preview"></div>
+                    <input type="hidden" id="imagen-url" name="imagen_subida_url">
+                </div>
+            </div>
+
+            <!-- Botón de envío -->
             <button type="submit">Enviar</button>
         </form>
     </div>
+
+    <script>
+        const radioPredeterminada = document.getElementById('imagen_predeterminada_radio');
+        const radioSubir = document.getElementById('subir_imagen_radio');
+        const contenedorPredeterminada = document.getElementById('contenedor-imagen-predeterminada');
+        const contenedorSubir = document.getElementById('contenedor-subir-imagen');
+
+        radioPredeterminada.addEventListener('change', () => {
+            contenedorPredeterminada.style.display = 'block';
+            contenedorSubir.style.display = 'none';
+        });
+
+        radioSubir.addEventListener('change', () => {
+            contenedorPredeterminada.style.display = 'none';
+            contenedorSubir.style.display = 'block';
+        });
+    </script>
 
 @endsection
