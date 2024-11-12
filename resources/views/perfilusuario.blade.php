@@ -96,13 +96,13 @@
         .mascota-item {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centra la imagen y el texto */
-            justify-content: center            
-            background-color: #fff; /* Fondo blanco para cada item */
+            align-items: center;
+            justify-content: center;           
+            background-color: #fff; 
             padding: 10px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 150px; /* Ancho de cada contenedor */
+            width: 150px; 
         }
         .editar-boton {
             position: absolute;
@@ -142,24 +142,25 @@
 
     </style>
 
-    <div class="container-perfil-mascota">
-        <h1>Perfil</h1>
-        <div class="profile-card">
-            <div class="profile-header">
-                <a href="/editarperfilusuario">
-                    <button class="editar-boton">
-                        <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                    </button>
-                </a>
-                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png"
-                    alt="Foto de perfil de la mascota" class="profile-image-mascota">
-                <h1 class="profile-name">Nombre del usuario</h1>
-            </div>
-            <div class="profile-info">
-                <p><strong>Dirección del usuario</strong></p>
-                <p><strong>Teléfono de referencia:</strong> </p>
-                <p><strong>Correo electronico</strong> </p>
-            </div>
+<div class="container-perfil-mascota">
+    <h1>Perfil</h1>
+    <div class="profile-card">
+        <div class="profile-header">
+            <a href="/editarperfilusuario">
+                <button class="editar-boton">
+                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
+                </button>
+            </a>
+            <!-- Mostrar la foto de perfil del usuario si existe -->
+            <img src="{{ $user->profile_picture ?? 'https://cdn-icons-png.flaticon.com/512/1077/1077063.png' }}"
+                alt="Foto de perfil del usuario" class="profile-image-mascota">
+            <h1 class="profile-name">{{ $user->name }}</h1>
+        </div>
+        <div class="profile-info">
+            <p><strong>Dirección:</strong> {{ $user->direccion }}</p>
+            <p><strong>Teléfono de referencia:</strong> {{ $user->telefono }}</p>
+            <p><strong>Correo electrónico:</strong> {{ $user->email }}</p>
+        </div>
             <div class="profile-header">
                 <h1 class="profile-name">Mascotas</h1>
             </div>

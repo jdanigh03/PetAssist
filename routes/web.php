@@ -10,6 +10,7 @@ use App\Http\Controllers\PetshopController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\UserController;
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -142,3 +143,4 @@ Route::post('actualizar-producto', [ProductController::class, 'actualizarProduct
 
 Route::get('/', [PetshopController::class, 'index'])->name('welcome');
 Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
+Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusuario');

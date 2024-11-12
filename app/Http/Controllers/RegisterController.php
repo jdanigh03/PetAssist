@@ -18,6 +18,8 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'telefono' => 'required|string|max:15',
+            'direccion' => 'required|string|max:255',
             'tipo_imagen' => 'required|in:predeterminada,subir', 
             'profile_picture' => 'required_if:tipo_imagen,subir|string', 
             'imagen_predeterminada' => 'required_if:tipo_imagen,predeterminada|string',
@@ -37,6 +39,8 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
             'profile_picture' => $profilePictureUrl,
         ]);
 

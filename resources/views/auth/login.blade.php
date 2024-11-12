@@ -21,6 +21,7 @@
             border-radius: 5px;
             text-align: center;
         }
+        
     </style>
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
@@ -50,4 +51,5 @@
             </a>
         </form>
     </div>
+    
 @endsection
