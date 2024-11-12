@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Mascota;
+use App\Models\DetalleCita;
 
 class CitaController extends Controller
 {
@@ -38,14 +39,23 @@ class CitaController extends Controller
             'veterinario' => 'nullable|exists:users,id', 
         ]);
 
-        Cita::create([
+        $cita = Cita::create([ // Guarda la cita y obtén el objeto $cita
             'ID_Animal' => $request->mascota,
             'Fecha_Hora' => $request->fecha . ' ' . $request->hora,
             'motivo' => $request->motivo,
             'ID_Veterinario' => $request->veterinario,
             'user_id' => Auth::id(),
         ]);
-
+    
+    
+        DetalleCita::create([ // Ahora puedes usar $cita->id
+            'cita_id' => $cita->id,
+            'tratamiento' => $request->input('tratamiento'),
+            'medicamentos' => $request->input('medicamentos'),
+            'observaciones' => $request->input('observaciones'),
+            'pruebas_realizadas' => $request->input('pruebas_realizadas'),
+        ]);
+    
         return redirect()->route('citas.agendadas')->with('success', 'Cita reservada correctamente.');
     }
 
@@ -84,5 +94,12 @@ class CitaController extends Controller
         return $cita;
     });
     return view('hmm.card', compact('mascota', 'citas')); // Pasa la mascota y las citas a la vista
+}
+public function mostrarDetalleCita(Cita $cita)
+{
+    $cita->fecha_formateada = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y');
+    $cita->hora_formateada = Carbon::parse($cita->Fecha_Hora)->format('H:i');
+
+    return view('hmm.detallesCita', compact('cita'));
 }
 }

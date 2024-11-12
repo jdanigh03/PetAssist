@@ -31,4 +31,8 @@ class Cita extends Model
     {
         return $this->belongsTo(User::class, 'ID_Veterinario'); // Relación con el modelo User, usando la columna 'ID_Veterinario'
     }
+    public function detalle()
+{
+    return $this->hasOne(DetalleCita::class);
+}
 }

@@ -175,3 +175,4 @@ Route::get('/perfilusuario', [UserController::class, 'perfil'])->name(name: 'per
 Route::put('/actualizar-perfil', [UserController::class, 'actualizar'])->name('user.actualizar');
 Route::get('/consultar-historial', [MascotaController::class, 'consultarHistorialMascota'])->name('veterinario.consultarHistorial');
 Route::post('/cambiar-rol', [AdminController::class, 'cambiarRol'])->name('admin.cambiarRol');
+Route::get('/historial-detallado-mascota/{cita}', [CitaController::class, 'mostrarDetalleCita'])->name('detalles.cita');
