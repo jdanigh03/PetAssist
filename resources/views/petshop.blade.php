@@ -197,7 +197,7 @@
         <div class="sugerencias">
             @foreach ($productos as $producto)
                 <div class="sugerencia">
-                    <img src="{{ asset('storage/' . $producto->Imagen) }}" alt="{{ $producto->Nombre }}">
+                    <img src="{{ asset($producto->Imagen) }}" alt="{{ $producto->Nombre }}">
                     <div class="sugerencia-texto">
                         <h3>{{ $producto->Nombre }}</h3>
                         <p>Precio: Bs {{ number_format($producto->Precio, 2) }}</p>

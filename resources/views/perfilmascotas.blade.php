@@ -75,29 +75,220 @@
         .btn:hover {
             background-color: #556B2F;
         }
+
+        .profile-info form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .profile-info input,
+        .profile-info select {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .profile-info .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .preview-container {
+            position: relative;
+            margin-bottom: 10px;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        #foto-perfil {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+
+        .btn-cambiar-foto {
+            background-color: #2F4F4F;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            transition: background-color 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        .btn-cambiar-foto:hover {
+            background-color: #1f3f3f;
+        }
+
+        .preview-container {
+            position: relative;
+            margin-bottom: 10px;
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #preview,
+        #loading {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #loading {
+            display: none;
+        }
     </style>
 
     <div class="container-perfil-mascota">
-        <h1>Perfil de la Mascota</h1>
+        <h1>Perfil de {{ $mascota->nombre }}</h1>
+
         <div class="profile-card">
             <div class="profile-header">
-                <img src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                    alt="Foto de perfil de la mascota" class="profile-image-mascota">
-                <h1 class="profile-name">Nombre mascota</h1>
+                <div class="preview-container">
+                    <img id="preview" src="{{ $mascota->foto }}" alt="Foto de perfil de {{ $mascota->nombre }}"
+                        class="profile-image-mascota" onerror="this.src='/img/perfilPredeterminado.png'">
+                    <img id="loading" src="/img/loading.gif" alt="Cargando...">
+                    <input type="file" id="foto-perfil" name="foto-perfil" accept="image/*">
+                    <label for="foto-perfil" class="btn-cambiar-foto">Cambiar foto</label>
+                </div>
+                <h1 class="profile-name">{{ $mascota->nombre }}</h1>
             </div>
             <div class="profile-info">
-                <p><strong>Edad:</strong> </p>
-                <p><strong>Raza:</strong> </p>
-                <p><strong>Sexo:</strong> </p>
-                <p><strong>Especie:</strong> </p>
-                <p><strong>Color:</strong> </p>
-                <p><strong>Peso:</strong> </p>
-                <p><strong>Dueñ@:</strong> </p>
-                <p><strong>Teléfono de referencia:</strong> </p>
+                <form action="{{ route('mascotas.actualizar', $mascota) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="imagen-url" name="imagen"> <span id="upload-error"
+                        style="color: red;"></span>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" value="{{ $mascota->nombre }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edad">Edad:</label>
+                        <input type="text" id="edad" name="edad" value="{{ $mascota->edad_string }}" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="raza">Raza:</label>
+                        <input type="text" name="raza" value="{{ $mascota->raza->nombre }}" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="especie">Especie:</label>
+                        <input type="text" name="especie" value="{{ $mascota->raza->especie->nombre }}" readonly>
+                    </div>
+
+
+
+                    <div class="actions">
+                        <button type="submit" class="btn btn-guardar"
+                            onclick="return confirm('¿Estás seguro de que quieres guardar los cambios?')">Guardar
+                            Cambios</button>
+                        <a href="{{ route('mascotas') }}" class="btn">Volver</a>
+                    </div>
+                </form>
+
             </div>
-            <div class="profile-button">
-                <a href="/historial-medico-mascota" class="btn">Ver historial médico de la mascota</a>
-            </div>
+
         </div>
     </div>
-@endsection
+    <script>
+        const fotoPerfilInput = document.getElementById('foto-perfil');
+        const previewImage = document.getElementById('preview');
+        const loadingImage = document.getElementById('loading');
+        const imagenUrlInput = document.getElementById('imagen-url');
+        const btnGuardar = document.querySelector('.btn-guardar');
+        const uploadError = document.getElementById('upload-error');
+
+        let imagenSubida = false;
+
+        fotoPerfilInput.addEventListener('change', () => {
+            const file = fotoPerfilInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    previewImage.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+
+
+                loadingImage.style.display = 'block';
+                previewImage.style.display = 'none';
+                uploadError.textContent = '';
+                btnGuardar.disabled = true;
+
+                const formData = new FormData();
+                formData.append('key', '81fd551e66f3e290dce7e02e4f730eac');
+                formData.append('image', file);
+
+
+                fetch("https://api.imgbb.com/1/upload", {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            imagenUrlInput.value = data.data.url;
+                            imagenSubida = true;
+                            btnGuardar.disabled = false;
+                            loadingImage.style.display = 'none';
+                            previewImage.style.display = 'block';
+                        } else {
+                            uploadError.textContent = 'Error al subir la imagen.';
+                            imagenSubida = false;
+                            btnGuardar.disabled = true;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        uploadError.textContent = 'Error al subir la imagen.';
+                        imagenSubida = false;
+                        btnGuardar.disabled = true;
+                    });
+            }
+        });
+
+
+
+        const form = document.getElementById('form-editar-mascota');
+        form.addEventListener('submit', (event) => {
+            if (!imagenSubida && fotoPerfilInput.files.length > 0) {
+                event.preventDefault();
+                uploadError.textContent = 'Espera a que la imagen se suba o cancela la subida.';
+            }
+        });
+    </script>
