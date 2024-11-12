@@ -10,6 +10,7 @@ use App\Http\Controllers\PetshopController;
 use App\Http\Controllers\MascotaController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CitaController;
+use App\Http\Controllers\RazaController;
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -39,17 +40,23 @@ Route::get('/editarperfilusuario', function () {
 });
 #Mascotas
 
-Route::get('/mascotas', function () {
-    return view('mascotas');
-})->middleware('auth');
-Route::get('/nueva-mascota', function () {
-    return view('nuevamascota');
-})->middleware('auth');
 
-Route::get('/mascotas/perfil', function () {
-    return view('perfilmascotas');
-})->middleware('auth');
+Route::middleware('auth')->group(function () { 
+    Route::get('/mascotas', [MascotaController::class, 'index'])->name('mascotas'); 
+    Route::get('/nueva-mascota', [MascotaController::class, 'crear'])->name('mascotas.crear');
+    Route::post('/guardar-mascota', [MascotaController::class, 'guardar'])->name('mascotas.guardar');
+    Route::get('/mascotas/perfil/{mascota}', [MascotaController::class, 'mostrarPerfil'])->name('mascotas.perfil');
+    Route::delete('/mascotas/{mascota}', [MascotaController::class, 'eliminar'])->name('mascotas.eliminar');
+    Route::put('/mascotas/{mascota}', [MascotaController::class, 'actualizar'])->name('mascotas.actualizar');
+});
+
+Route::get('/obtener-razas/{especie}', [RazaController::class, 'obtenerRazasPorEspecie']);
+
+
 Route::post('/productos/subirImagen', [ProductController::class, 'subirImagen'])->name('productos.subirImagen');
+
+
+
 
 
 

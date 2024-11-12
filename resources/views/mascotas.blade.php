@@ -99,12 +99,10 @@
 
         .btn-ver-mas {
             background-color: #2f4f4f;
-            /* Usando tu color --primary */
             color: #FFFFFF;
             padding: 0.7rem 1rem;
             margin-top: 10px;
             border-radius: 20px;
-            /* Borde redondeado consistente */
             font-weight: bold;
             text-decoration: none;
             border: none;
@@ -121,36 +119,65 @@
         .mascotas-layout p {
             text-align: left;
         }
+
+        .alert-success-mascota {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
     </style>
 
     <div class="mascotas-layout">
         <h1>Tus Mascotas</h1>
 
-
-
-        <div class="container-info-mascota">
-            <div class="foto-container">
-                <img class="foto-mascota"
-                    src="https://media.istockphoto.com/id/513133900/es/foto/oro-retriever-sentado-en-frente-de-un-fondo-blanco.jpg?s=612x612&w=0&k=20&c=0lRWImB8Y4p6X6YGt06c6q8I3AqBgKD-OGQxjLCI5EY="
-                    alt="Foto de mascota">
-                <a href="/mascotas/perfil" class="btn-ver-mas">Ver más</a>
+        @if (session('success'))
+            <div class="alert alert-success-mascota">
+                {{ session('success') }}
             </div>
-            <div class="info-mascota">
-                <h2>Nombre de la mascota</h2>
-                <p>Edad: 2 años</p>
-                <p>Raza: Golden Retriever</p>
-                <p>Sexo: Macho</p>
-                <p>Dueñ@: Tu Nombre</p>
+        @endif
+
+        @if (count($mascotas) == 0)
+            <div class="container-mascotas">
+                <h2 class="titulo-mascotas">Agrega tus mascotas</h2>
+                <p class="mensaje-mascotas">Al cargar a tus peludos, los verás aquí.</p>
+                <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
             </div>
-        </div>
+        @else
+            @foreach ($mascotas as $mascota)
+                <div class="container-info-mascota">
+                    <div class="foto-container">
+
+                        <img class="foto-mascota" src="{{ $mascota->foto }}" alt="Foto de {{ $mascota->nombre }}"
+                            onerror="this.src='/img/perfilPredeterminado.png'">
+
+                        <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Ver más</a>
 
 
+                        <form action="{{ route('mascotas.eliminar', $mascota) }}" method="POST"
+                            onsubmit="return confirm('¿Estás seguro de que quieres borrar a {{ $mascota->nombre }}?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn-ver-mas btn-eliminar">Eliminar</button>
 
-        <div class="container-mascotas">
-            <h2 class="titulo-mascotas">Agrega tus mascotas</h2>
-            <p class="mensaje-mascotas">Al cargar a tus peludos, los verás aquí.</p>
-            <a href="/nueva-mascota" class="boton-nueva-mascota">Nueva mascota</a>
-        </div>
+                        </form>
+                    </div>
+                    <div class="info-mascota">
+                        <h2>{{ $mascota->nombre }}</h2>
+                        <p>Edad: {{ $mascota->edad_string }}</p>
+                        <p>Raza: {{ $mascota->raza->nombre }}</p>
+                        <p>Especie: {{ $mascota->raza->especie->nombre }}</p>
+                    </div>
+                </div>
+            @endforeach
 
+
+            <div class="container-mascotas">
+                <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
+            </div>
+        @endif
     </div>
 @endsection
