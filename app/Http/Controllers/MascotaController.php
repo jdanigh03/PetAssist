@@ -98,4 +98,9 @@ class MascotaController extends Controller
 
     return redirect()->route('mascotas.perfil', $mascota)->with('success', 'Mascota actualizada correctamente.');
 }
+public function consultarHistorialMascota()
+{
+    $mascotas = Mascota::with('raza', 'raza.especie', 'user')->get(); // Obtén todas las mascotas con las relaciones necesarias
+    return view('veterinario.consultarHistorialMascota', compact('mascotas'));
+}
 }
