@@ -69,6 +69,18 @@
             border-radius: 5px;
             text-align: center;
         }
+        .btn{
+            grid-column: span 3;
+            background-color: #2F4F4F;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
     </style>
 
     <div class="container">
@@ -91,7 +103,7 @@
             @enderror
 
             <a href="/petshop">
-                <button type="submit" class="btn-submit">
+                <button type="submit" class="btn">
                     Enviar
                 </button>
             </a>
