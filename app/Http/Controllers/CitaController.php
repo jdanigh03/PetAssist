@@ -14,8 +14,6 @@ class CitaController extends Controller
 {
     public function index()
     {
-        // Para la agenda general (probablemente del administrador), 
-        // muestra todas las citas o puedes filtrarlas según tus necesidades.
         $citas = Cita::with('mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario')
                      ->get();
         return view('citas.agenda', ['citas' => $citas]); 
@@ -39,7 +37,7 @@ class CitaController extends Controller
             'veterinario' => 'nullable|exists:users,id', 
         ]);
 
-        $cita = Cita::create([ // Guarda la cita y obtén el objeto $cita
+        $cita = Cita::create([ 
             'ID_Animal' => $request->mascota,
             'Fecha_Hora' => $request->fecha . ' ' . $request->hora,
             'motivo' => $request->motivo,
@@ -48,7 +46,7 @@ class CitaController extends Controller
         ]);
     
     
-        DetalleCita::create([ // Ahora puedes usar $cita->id
+        DetalleCita::create([
             'cita_id' => $cita->id,
             'tratamiento' => $request->input('tratamiento'),
             'medicamentos' => $request->input('medicamentos'),
@@ -61,13 +59,13 @@ class CitaController extends Controller
 
     public function citasAgendadas()
     {
-        $user = Auth::user(); // Obtiene el usuario actual.
-        $citas = Cita::query(); // Inicializa la consulta.
+        $user = Auth::user();
+        $citas = Cita::query(); 
         
         if ($user->role === 'veterinario') {
-            $citas->where('ID_Veterinario', $user->id); // Si el usuario es vet, muestra sus citas.
+            $citas->where('ID_Veterinario', $user->id); 
         } else {
-            $citas->where('user_id', $user->id); // De lo contrario, las del usuario común.
+            $citas->where('user_id', $user->id);
         }
 
 
@@ -84,16 +82,16 @@ class CitaController extends Controller
     }
     public function historialMedicoMascota(Mascota $mascota)
 {
-    $citas = Cita::where('ID_Animal', $mascota->id) // Usa $mascota->id (que corresponde a ID_Animal en la tabla mascotas)
+    $citas = Cita::where('ID_Animal', $mascota->id)
                   ->with('veterinario')
                   ->orderBy('Fecha_Hora', 'desc')
                   ->get();
     $citas = $citas->map(function ($cita) {
-        $cita->fecha_formateada = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y'); // Formatea la fecha
-        $cita->hora_formateada = Carbon::parse($cita->Fecha_Hora)->format('H:i'); // Formatea la hora
+        $cita->fecha_formateada = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y');
+        $cita->hora_formateada = Carbon::parse($cita->Fecha_Hora)->format('H:i');
         return $cita;
     });
-    return view('hmm.card', compact('mascota', 'citas')); // Pasa la mascota y las citas a la vista
+    return view('hmm.card', compact('mascota', 'citas'));
 }
 public function mostrarDetalleCita(Cita $cita)
 {
@@ -101,5 +99,43 @@ public function mostrarDetalleCita(Cita $cita)
     $cita->hora_formateada = Carbon::parse($cita->Fecha_Hora)->format('H:i');
 
     return view('hmm.detallesCita', compact('cita'));
+}
+public function mostrarFormularioConsulta()
+{
+    $citas = Cita::doesntHave('detalle')->with('mascota')->get();
+
+    if ($citas->isEmpty()) {
+        return view('veterinario.ingresarConsulta', ['citas' => null])->with('mensaje', 'No hay citas disponibles para ingresar consultas.'); // Manejar el caso de que no haya citas
+    }
+
+    return view('veterinario.ingresarConsulta', compact('citas'));
+}
+     
+
+public function guardarConsulta(Request $request)
+{
+    $validatedData = $request->validate([
+        'cita_id' => 'required|exists:citas,id',
+        'nombre_mascota' => 'required|string',
+        'tratamiento' => 'nullable|string',
+        'medicamentos' => 'nullable|string',
+        'observaciones' => 'nullable|string',
+        'pruebas_realizadas' => 'nullable|string',
+    ]);
+
+    $detalleExistente = DetalleCita::where('cita_id', $validatedData['cita_id'])->first();
+    if ($detalleExistente) {
+        return redirect()->route('consultas.mostrar')->with('error', 'Ya existe una consulta para esta cita.');
+    }
+
+    DetalleCita::create([
+        'cita_id' => $validatedData['cita_id'],
+        'tratamiento' => $validatedData['tratamiento'],
+        'medicamentos' => $validatedData['medicamentos'],
+        'observaciones' => $validatedData['observaciones'],
+        'pruebas_realizadas' => $validatedData['pruebas_realizadas'],
+    ]);
+
+    return redirect()->route('consultas.mostrar')->with('success', 'Consulta añadida correctamente.');
 }
 }

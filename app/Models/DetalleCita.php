@@ -9,6 +9,7 @@ class DetalleCita extends Model
 {
     use HasFactory;
 
+    protected $table = 'detalles_citas';
     protected $fillable = [
         'cita_id',
         'tratamiento',

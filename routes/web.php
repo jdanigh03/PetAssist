@@ -52,6 +52,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/mascotas/perfil/{mascota}', [MascotaController::class, 'mostrarPerfil'])->name('mascotas.perfil');
     Route::delete('/mascotas/{mascota}', [MascotaController::class, 'eliminar'])->name('mascotas.eliminar');
     Route::put('/mascotas/{mascota}', [MascotaController::class, 'actualizar'])->name('mascotas.actualizar');
+    Route::get('/ingresar-consulta', [CitaController::class, 'mostrarFormularioConsulta'])->name('consultas.mostrar');
+    Route::post('/ingresar-consulta', [CitaController::class, 'guardarConsulta'])->name('consultas.guardar');
 });
 
 Route::get('/obtener-razas/{especie}', [RazaController::class, 'obtenerRazasPorEspecie']);
