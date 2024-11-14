@@ -12,6 +12,8 @@
             width: 100%;
             margin: 0 auto;
             padding: 20px;
+            margin-top: 70px;
+            margin-bottom: 20px;
             overflow-y: auto;
             padding-bottom: 50px;
         }

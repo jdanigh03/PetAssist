@@ -7,6 +7,8 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 40px;
+    margin-top: 120px;
+    margin-bottom: 30px;
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -67,12 +69,12 @@ select {
 }
 
 .btn-quitar:hover {
-    background-color: #c9302c; 
+    background-color: #c9302c;
 }
 
 .alert {
     padding: 15px;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: white;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -80,5 +82,5 @@ select {
 }
 
 .alert-danger {
-    background-color: #f44336; 
+    background-color: #f44336;
 }

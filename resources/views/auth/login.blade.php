@@ -4,6 +4,54 @@
 
 @section('content')
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            flex-grow: 1;
+            background-color: #f5f5dc;
+            padding: 2rem;
+            margin: 20px;
+            margin-top: 120px;
+            padding-top: 50px;
+        }
+
+        .login-title {
+            color: #2f4f4f;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid #2f4f4f;
+        }
+
+        .error-message {
+            border: 1px solid #ff0000;
+            background-color: #ffe6e6;
+            color: #ff0000;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+
+        .separator {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .separator span {
+            color: #2f4f4f;
+        }
+
+
         form {
             display: flex;
             flex-direction: column;
@@ -21,9 +69,7 @@
             border-radius: 5px;
             text-align: center;
         }
-        
     </style>
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 
     <div class="container">
         @if (session('success'))
@@ -51,5 +97,5 @@
             </a>
         </form>
     </div>
-    
+
 @endsection

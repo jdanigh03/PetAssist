@@ -5,9 +5,11 @@
 @section('content')
 
     <style>
+        
         .container {
             max-width: 800px;
             margin: 4rem auto;
+            margin-top:100px;
             background-color: #F5F5DC;
             padding: 2rem;
             border-radius: 8px;
@@ -20,6 +22,7 @@
         }
 
         .container form {
+            width: 700px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
@@ -29,6 +32,7 @@
         .form-group {
             display: flex;
             flex-direction: column;
+            align-items: center
         }
 
         .form-group label {
@@ -53,8 +57,8 @@
             color: #2F4F4F;
         }
 
-        button {
-            grid-column: span 2;
+        button.button-enviar {
+            grid-column: span 3;
             background-color: #2F4F4F;
             color: white;
             padding: 0.75rem 2rem;
@@ -66,7 +70,7 @@
             margin-top: 1rem;
         }
 
-        button:hover {
+        button.button-enviar:hover {
             background-color: #556B2F;
         }
 
@@ -88,7 +92,7 @@
         }
 
         .profile-section {
-            grid-column: span 2;
+            grid-column: span 3;
             padding: 1rem;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -215,7 +219,7 @@
 
 
 
-            <button type="submit">Enviar</button>
+            <button class="button-enviar" type="submit">Enviar</button>
         </form>
     </div>
     <script>

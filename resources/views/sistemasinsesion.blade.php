@@ -10,6 +10,7 @@
         margin: 3rem auto;
         background-color: #f5f5dc;
         padding: 2rem;
+        margin-top: 100px;
         border-radius: 8px;
         min-width: 350px;
         max-width: 600px;
