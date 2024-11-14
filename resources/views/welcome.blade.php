@@ -7,6 +7,8 @@
     <title>Go Can</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/goCan.css') }}">
+    @extends('components.footer')
+    
 </head>
 
 <body>
@@ -80,14 +82,15 @@
                         la
                         salud de las mascotas, creando un vínculo de confianza con sus dueños mediante atención
                         profesional y afectuosa.
-                    
                     </p>
+                    <img src="{{ asset('img/misionP.jpg') }}" alt="Misión">
                 </div>
                 <div class="valor-card">
                     <h3>Visión</h3>
                     <p>Ser la clínica veterinaria líder en Bolivia, reconocida por nuestro compromiso con la salud
                         animal,
                         innovación en servicios y un enfoque centrado en el amor por las mascotas.</p>
+                    <img src="{{ asset('img/visionP.jpg') }}" alt="Visión">
                 </div>
                 <div class="valor-card">
                     <h3>Valores Éticos</h3>
@@ -96,6 +99,7 @@
                         que cada mascota reciba el mejor trato posible, mientras promovemos prácticas sostenibles y
                         éticas
                         en nuestro trabajo diario.</p>
+                    <img src="{{ asset('img/vis.jpg') }}" alt="Valores Éticos">
                 </div>
             </div>
         </div>
@@ -164,12 +168,6 @@
         </div>
     </section>
 
-
-    <footer>
-        <div class="container">
-            <p>© 2024 Go Can. Todos los derechos reservados.</p>
-        </div>
-    </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

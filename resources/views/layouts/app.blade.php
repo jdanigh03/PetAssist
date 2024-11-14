@@ -14,7 +14,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
-        /* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
         *,
         ::after,
         ::before {
@@ -264,21 +263,23 @@
     </style>
 </head>
 
+
 <body>
-    @if (auth()->check() || request()->is('login') || request()->is('register'))
-        <x-header />
+    <!-- Header -->
+    <x-header />
+    <div class="background-overlay"></div>
+    <main>
+        @if (auth()->check() || request()->is('login') || request()->is('register'))
+            @yield('content')
+        @else
+            @include('sistemasinsesion')
+        @endif
+    </main>
 
-        <div class="background-overlay"></div>
 
-        @yield('content')
-    @else
-        <x-header />
-        @include('sistemasinsesion')
-    @endif
+    @include('components.footer')
 
-    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-
-    </div>
+    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50"></div>
 </body>
 
 </html>
