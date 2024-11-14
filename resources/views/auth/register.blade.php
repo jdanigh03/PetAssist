@@ -279,7 +279,7 @@
                             } else {
                                 alert(data.error);
                                 loadingOverlay.style.display =
-                                    'none';
+                                'none';
                             }
 
                         })

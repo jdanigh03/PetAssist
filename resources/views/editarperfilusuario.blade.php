@@ -4,7 +4,7 @@
 
 @section('content')
 
-<style>
+    <style>
         .container-perfil-mascota {
             display: flex;
             flex-direction: column;
@@ -35,9 +35,9 @@
         .profile-header2 {
             background-color: #F5F5DC;
             padding: 10px;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
             justify-content: center;
-            display:flex;
+            display: flex;
         }
 
         .profile-image-mascota {
@@ -55,7 +55,7 @@
             object-fit: cover;
             border: 3px solid #fff;
         }
-        
+
         .profile-name {
             font-size: 20px;
             font-weight: bold;
@@ -66,7 +66,7 @@
         .profile-info {
             padding: 10px;
             position: relative;
-            right:-10px;
+            right: -10px;
         }
 
         .profile-info p {
@@ -75,6 +75,25 @@
 
         .profile-info p strong {
             font-weight: bold;
+        }
+
+        .profile-info form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .profile-info input {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .profile-info .actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
         }
 
         .btn {
@@ -95,17 +114,19 @@
         .btn:hover {
             background-color: #556B2F;
         }
+
         .mascota-item {
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centra la imagen y el texto */
-            justify-content: center;            
-            background-color: #fff; /* Fondo blanco para cada item */
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
             padding: 10px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 150px; /* Ancho de cada contenedor */
+            width: 150px;
         }
+
         .editar-boton {
             top: 10px;
             right: 10px;
@@ -121,8 +142,8 @@
         .editar-boton img {
             width: 100%;
             height: 100%;
-            border-radius: 50%; /* Haz que la imagen también sea redonda */
-            object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+            border-radius: 50%;
+            object-fit: cover;
         }
 
         .editar-boton2 {
@@ -141,55 +162,200 @@
         .editar-boton2 img {
             width: 100%;
             height: 100%;
-            border-radius: 50%; /* Haz que la imagen también sea redonda */
-            object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #preview-container {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        #preview-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #loading-gif {
+            width: 50px;
+            height: auto;
+        }
+
+        .btn-cambiar-foto {
+            background-color: #2F4F4F;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            transition: background-color 0.3s ease;
+            font-size: 0.8rem;
+        }
+
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 
     <div class="container-perfil-mascota">
-        <h1>Perfil</h1>
+        <h1>Editar Perfil</h1>
+
         <div class="profile-card">
             <div class="profile-header">
-                <button class="editar-boton">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
-                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077063.png"
-                    alt="Foto de perfil de la mascota" class="profile-image-mascota">
+                <div id="preview-container">
+                    <img src="{{ Auth::user()->profile_picture }}" alt="Foto de perfil" class="profile-image-mascota"
+                        onerror="this.src='/img/perfilPredeterminado.png'">
+                    <img id="loading-gif" src="/img/loading.gif" alt="Cargando..." style="display: none;"> <input
+                        type="file" id="profile_picture" name="profile_picture" accept="image/*" style="display: none;">
+                    <label for="profile_picture" class="btn btn-cambiar-foto">Cambiar Imagen</label>
+                    <div id="imagen-preview"></div>
+
+                </div>
             </div>
+
+
+
             <div class="profile-info">
-                <p><strong>Usuario:</strong> </p>
-                <button class="editar-boton2">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
+                <form action="{{ route('user.actualizar') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="imagen-url" name="profile_picture">
+
+
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo:</label>
+                        <input type="text" id="nombre" name="name" value="{{ Auth::user()->name }}" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" value="{{ Auth::user()->direccion }}"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" value="{{ Auth::user()->telefono }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" value="{{ Auth::user()->email }}" required>
+                    </div>
+
+
+                    <div class="actions">
+                        <button type="submit" class="btn"
+                            onclick="return confirm('¿Estás seguro de que quieres guardar los cambios?')">Guardar
+                            Cambios</button>
+                    </div>
+                </form>
             </div>
-            <div class="profile-info">
-                <p><strong>Nombre Completo:</strong> </p>
-                <button class="editar-boton2">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
-            </div>
-            <div class="profile-info">
-                <p><strong>Dirección del usuario</strong> </p>
-                <button class="editar-boton2">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
-            </div>
-            <div class="profile-info">
-                <p><strong>Teléfono de referencia:</strong> </p>
-                <button class="editar-boton2">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
-            </div>
-            <div class="profile-info">
-                <p><strong>Correo electronico</strong> </p>
-                <button class="editar-boton2">
-                    <img src="https://img.freepik.com/vector-premium/lapiz-vector-icono-plano_570429-16516.jpg" alt="Editar">
-                </button>
-            </div>
-            <div class= "profile-button">
-                <a href="#" class="btn">GUARDAR CAMBIOS</a>
-            </div>
+
         </div>
-        
     </div>
-    
+    <div id="loading-overlay">
+        <img id="loading-gif" src="/img/loading.gif" alt="Cargando...">
+    </div>
+
+
+    <script>
+        const imagenInput = document.getElementById('profile_picture');
+        const imagenUrlInput = document.getElementById('imagen-url');
+        const previewContainer = document.getElementById('preview-container');
+        const loadingGif = document.getElementById('loading-gif');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const submitButton = document.querySelector('.actions button[type="submit"]');
+
+
+        previewContainer.addEventListener('click', () => {
+            imagenInput.click();
+        });
+
+        imagenInput.addEventListener('change', () => {
+            const file = imagenInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+
+
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Foto de perfil';
+                    img.classList.add('profile-image-mascota');
+                    previewContainer.innerHTML = '';
+                    previewContainer.appendChild(img);
+
+
+                    loadingGif.style.display = 'block';
+                    loadingOverlay.style.display = 'flex';
+                    submitButton.disabled = true;
+
+                    const formData = new FormData();
+                    formData.append('key', '81fd551e66f3e290dce7e02e4f730eac');
+                    formData.append('image', file);
+
+
+
+                    fetch("https://api.imgbb.com/1/upload", {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                imagenUrlInput.value = data.data.url;
+                                console.log(data.data.url);
+                                loadingOverlay.style.display = 'none';
+                                submitButton.disabled = false;
+                            } else {
+                                alert(data.error);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert("Hubo un error al subir la imagen");
+                        })
+                        .finally(() => {
+                            loadingGif.style.display = 'none';
+                            loadingOverlay.style.display = 'none';
+                            submitButton.disabled =
+                                false;
+
+                        });
+
+                }
+                reader.readAsDataURL(file);
+
+            }
+        });
+    </script>
+@endsection
