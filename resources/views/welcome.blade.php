@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/goCan.css') }}">
     @extends('components.footer')
     
+    
 </head>
 
 <body>

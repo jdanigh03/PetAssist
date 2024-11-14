@@ -251,7 +251,7 @@
                 @endif
             @else
                 <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                
             @endif
         </nav>
 
