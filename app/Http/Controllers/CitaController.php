@@ -102,10 +102,15 @@ public function mostrarDetalleCita(Cita $cita)
 }
 public function mostrarFormularioConsulta()
 {
-    $citas = Cita::doesntHave('detalle')->with('mascota')->get();
+    $veterinarioId = Auth::id(); // Obtener el ID del veterinario actual
+
+    $citas = Cita::
+                 where('ID_Veterinario', $veterinarioId) // Filtrar por el ID del veterinario
+                 ->with('mascota')
+                 ->get();
 
     if ($citas->isEmpty()) {
-        return view('veterinario.ingresarConsulta', ['citas' => null])->with('mensaje', 'No hay citas disponibles para ingresar consultas.'); // Manejar el caso de que no haya citas
+        return view('veterinario.ingresarConsulta', ['citas' => null])->with('mensaje', 'No hay citas disponibles para ingresar consultas.');
     }
 
     return view('veterinario.ingresarConsulta', compact('citas'));
