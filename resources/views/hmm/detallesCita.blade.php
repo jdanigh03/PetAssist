@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="{{ asset('css/detallesCita.css') }}">
 <style>
-.foto-mascota { /* Agrega estilos para la imagen */
+.foto-mascota {
         width: 150px;
         height: 150px;
         border-radius: 50%;

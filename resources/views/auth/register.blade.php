@@ -209,7 +209,7 @@
                     <div id="loading-overlay">
                         <img id="loading-gif" src="/img/loading.gif" alt="Cargando...">
                     </div>
-                    <input type="hidden" id="imagen-url" name="imagen_subida_url">
+                    <input type="hidden" id="imagen-url" name="imagen-url">
                 </div>
             </div>
 
