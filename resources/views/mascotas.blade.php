@@ -154,7 +154,7 @@
                         <img class="foto-mascota" src="{{ $mascota->foto }}" alt="Foto de {{ $mascota->nombre }}"
                             onerror="this.src='/img/perfilPredeterminado.png'">
 
-                        <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Ver más</a>
+                        <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Editar</a>
 
 
                         <form action="{{ route('mascotas.eliminar', $mascota) }}" method="POST"
