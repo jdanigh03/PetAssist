@@ -25,9 +25,7 @@
             padding-left: 100px;
         }
 
-        h1,
-        h2,
-        h3 {
+        h1, h2, h3 {
             color: #000000;
         }
 
@@ -150,6 +148,63 @@
                 width: 100%;
             }
         }
+
+        /* Estilos para el modal */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content img {
+            width: 100%;
+            max-width: 250px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .modal-content h3 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .modal-content p {
+            font-size: 16px;
+            color: #555;
+        }
     </style>
 
     <div class="home-cliente">
@@ -202,10 +257,42 @@
                     <div class="sugerencia-texto">
                         <h3>{{ $producto->Nombre }}</h3>
                         <p>Precio: Bs {{ number_format($producto->Precio, 2) }}</p>
-                        <a href="/login">Ver producto</a>
+                        <a href="#" onclick="showModal('{{ $producto->Nombre }}', '{{ $producto->Descripcion }}', '{{ $producto->Precio }}', '{{ asset($producto->Imagen) }}')">Ver producto</a>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
+
+    <!-- Modal para mostrar detalles del producto -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img id="modalProductImage" src="" alt="Imagen del Producto">
+            <h3 id="modalProductName"></h3>
+            <p id="modalProductDescription"></p>
+            <p>Precio: Bs <span id="modalProductPrice"></span></p>
+        </div>
+    </div>
+
+    <script>
+        function showModal(nombre, descripcion, precio, imagen) {
+            document.getElementById("modalProductName").innerText = nombre;
+            document.getElementById("modalProductDescription").innerText = descripcion;
+            document.getElementById("modalProductPrice").innerText = parseFloat(precio).toFixed(2);
+            document.getElementById("modalProductImage").src = imagen;
+            document.getElementById("productModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("productModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("productModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
 @endsection
