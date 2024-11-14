@@ -10,6 +10,7 @@
             align-items: center;
             width: 100%;
             margin: 0 auto;
+            margin-top: 100px;
             padding: 20px;
             overflow-y: auto;
             max-height: 100vh;
@@ -154,7 +155,7 @@
                         <img class="foto-mascota" src="{{ $mascota->foto }}" alt="Foto de {{ $mascota->nombre }}"
                             onerror="this.src='/img/perfilPredeterminado.png'">
 
-                        <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Ver más</a>
+                        <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Editar</a>
 
 
                         <form action="{{ route('mascotas.eliminar', $mascota) }}" method="POST"

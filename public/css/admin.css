@@ -4,14 +4,15 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f0f4f7;
     padding-bottom: 100px;
-    padding-top: 80px; 
+    padding-top: 80px;
     overflow-y: auto;
     min-height: 100vh;
 }
 
-.home-cliente {
+.home-admin {
     text-align: center;
     padding: 20px;
+    margin-top: 90px;
     padding-bottom: 120px;
     min-height: calc(100vh - 160px);
 }

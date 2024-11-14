@@ -6,20 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('detalles_citas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('cita_id'); // Clave foránea para la cita
+            $table->text('tratamiento')->nullable();
+            $table->text('medicamentos')->nullable();
+            $table->text('observaciones')->nullable();
+            $table->text('pruebas_realizadas')->nullable();
             $table->timestamps();
+
+            $table->foreign('cita_id')->references('id')->on('citas')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('detalles_citas');

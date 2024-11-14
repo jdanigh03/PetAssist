@@ -2,25 +2,26 @@
     body {
         padding-top: 50px;
         font-family: 'Poppins', sans-serif;
+        
     }
 
     form {
         flex-direction: unset;
     }
 
-    .header {
-        background-color: #F5F5DC;
-        box-shadow: 0 1px 1px 2px #2F4F4F;
-        margin: 0;
-        width: 100%;
-        position: fixed;
+    header {
+        background-color: #f5f5dc;
+        box-shadow: 0 1px 1px 2px rgba(47, 79, 79, 0.3);
+        padding: 10px 20px;
+        height: 70px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        width: 100%;
         top: 0;
         z-index: 1000;
-        padding: 0 20px;
-        height: 80px;
+        transition: background-color 0.3s, padding 0.3s;
     }
 
     .container-header {
@@ -69,6 +70,31 @@
     .logout-button:hover,
     .login-button:hover {
         background-color: #556B2F;
+    }
+
+    .btn-submit {
+        background-color: #2f4f4f;
+        color: #ffffff;
+        padding: 8px 18px;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background-color 0.3s, transform 0.3s;
+        margin-left: 10px;
+        white-space: nowrap;
+    }
+
+    .btn-submit:hover {
+        background-color: #1f3f3f;
+        transform: scale(1.05);
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-right: 30px;
     }
 
     .noti {
@@ -187,7 +213,7 @@
         font-family: 'Poppins', sans-serif;
         font-size: 14px;
     }
-    
+
 
     @media (max-width: 768px) {
         .navegacion-header {
@@ -252,17 +278,18 @@
 
         <div class="container-boton-header">
             @if (auth()->check())
-                <button type="submit" class="login-button">
+                {{-- <button type="submit" class="login-button">
                     <img src="https://static-00.iconduck.com/assets.00/notification-icon-2047x2048-qbq87wz5.png"
                         class="noti" alt="">
-                </button>
+                </button> --}}
 
                 <div class="hamburger" onclick="toggleMenu()">
                     <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
                         alt="">
                 </div>
                 <div class="profile-container">
-                    <img src="{{ auth()->user()->profile_picture ?? '/img/perfilPredeterminado.png' }}" alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">
+                    <img src="{{ auth()->user()->profile_picture ?? '/img/perfilPredeterminado.png' }}"
+                        alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">
                     <div class="profile-menu" id="profileMenu">
                         @if (auth()->user()->role == 'admin')
                             <a href="/perfil">Ver mi perfil</a>
@@ -276,12 +303,8 @@
                     </div>
                 </div>
             @else
-                <a href="/register" class="login-button">
-                    Registrarse
-                </a>
-                <a href="/login" class="login-button">
-                    Iniciar Sesión
-                </a>
+                <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
+                <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
             @endif
         </div>
     </div>

@@ -47,10 +47,13 @@ Route::get('/editarperfilusuario', function () {
 Route::middleware('auth')->group(function () { 
     Route::get('/mascotas', [MascotaController::class, 'index'])->name('mascotas'); 
     Route::get('/nueva-mascota', [MascotaController::class, 'crear'])->name('mascotas.crear');
+    Route::put('/actualizar-perfil', [UserController::class, 'actualizar'])->name('user.actualizar');
     Route::post('/guardar-mascota', [MascotaController::class, 'guardar'])->name('mascotas.guardar');
     Route::get('/mascotas/perfil/{mascota}', [MascotaController::class, 'mostrarPerfil'])->name('mascotas.perfil');
     Route::delete('/mascotas/{mascota}', [MascotaController::class, 'eliminar'])->name('mascotas.eliminar');
     Route::put('/mascotas/{mascota}', [MascotaController::class, 'actualizar'])->name('mascotas.actualizar');
+    Route::get('/ingresar-consulta', [CitaController::class, 'mostrarFormularioConsulta'])->name('consultas.mostrar');
+    Route::post('/ingresar-consulta', [CitaController::class, 'guardarConsulta'])->name('consultas.guardar');
 });
 
 Route::get('/obtener-razas/{especie}', [RazaController::class, 'obtenerRazasPorEspecie']);
@@ -79,9 +82,7 @@ Route::get('/contactos', function () {
 });
 Route::get('/historial-medico-mascota/{mascota}', [CitaController::class, 'historialMedicoMascota'])->name('historial.medico');
 
-Route::get('/historial-detallado-mascota', function(){
-    return view('hmm.detallesCita');
-})->name('detalles.cita');
+
 
 Route::get('/inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
@@ -171,6 +172,10 @@ Route::post('actualizar-producto', [ProductController::class, 'actualizarProduct
 
 Route::get('/', [PetshopController::class, 'index'])->name('welcome');
 Route::get('/petshop', [PetshopController::class, 'petshop'])->name('petshop');
+Route::get('/perfilusuario', [UserController::class, 'perfil'])->name(name: 'perfilusuario');
+Route::get('/consultar-historial', [MascotaController::class, 'consultarHistorialMascota'])->name('veterinario.consultarHistorial');
+Route::post('/cambiar-rol', [AdminController::class, 'cambiarRol'])->name('admin.cambiarRol');
+Route::get('/historial-detallado-mascota/{cita}', [CitaController::class, 'mostrarDetalleCita'])->name('detalles.cita');
 Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusuario');
 Route::get('/aviso-privacidad', [PageController::class, 'avisoPrivacidad'])->name('aviso-privacidad');
 Route::get('/terminos-condiciones', [PageController::class, 'terminosCondiciones'])->name('terminos-condiciones');

@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
 @section('title', 'Control de Clientes')
-
+<style>
+    .home-admin {
+        text-align: center;
+        padding: 20px;
+        margin-top: 90px;
+        padding-bottom: 120px;
+        min-height: calc(100vh - 160px);
+    }
+</style>
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
-<div class="home-cliente">
+<div class="home-admin">
     <h1>Control de Clientes</h1>
     <div class="categorias">
         <a href="/historialusuariosmodificar">

@@ -5,12 +5,14 @@
 @section('content')
 
     <style>
-        .container-perfil-mascota {
+        .container-perfil {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
             margin: 0 auto;
+            margin-top: 70px;
+            margin-bottom: 20px;
             padding: 20px;
             overflow-y: auto;
             padding-bottom: 50px;
@@ -152,7 +154,7 @@
         }
     </style>
 
-    <div class="container-perfil-mascota">
+    <div class="container-perfil">
         <h1>Perfil</h1>
         <div class="profile-card">
             <div class="profile-header">

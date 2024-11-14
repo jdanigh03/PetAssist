@@ -19,6 +19,7 @@
             align-items: center;
             padding: 20px;
             padding-bottom: 120px;
+            margin-top: 60px;
             min-height: calc(100vh - 160px);
             padding-right: 100px;
             padding-left: 100px;

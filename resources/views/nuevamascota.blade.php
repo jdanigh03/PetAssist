@@ -10,6 +10,7 @@
             align-items: center;
             width: 100%;
             margin: 0 auto;
+            margin-top: 100px;
             padding: 20px;
             overflow-y: auto;
             max-height: 100vh;

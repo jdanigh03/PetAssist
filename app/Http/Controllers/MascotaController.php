@@ -78,26 +78,23 @@ class MascotaController extends Controller
     }
     
     public function actualizar(Request $request, Mascota $mascota)
-{
-    $request->validate([
-        'nombre' => 'required|string|max:255',
-        'imagen' => 'nullable|string', 
-    ]);
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'imagen' => 'nullable|string', // Validación para la URL de la imagen
+        ]);
 
-    $mascota->nombre = $request->input('nombre');
+        $mascota->nombre = $request->input('nombre');
 
-    if ($request->has('imagen')) {
-        $mascota->foto = $request->input('imagen');
+        // Actualiza la foto solo si se proporciona una nueva URL
+        if ($request->filled('imagen')) { 
+            $mascota->foto = $request->input('imagen');
+        }
+
+        $mascota->save();
+
+        return redirect()->route('mascotas.perfil', $mascota)->with('success', 'Mascota actualizada correctamente.');
     }
-
-    $mascota->save();
-
-
-
-
-
-    return redirect()->route('mascotas.perfil', $mascota)->with('success', 'Mascota actualizada correctamente.');
-}
 public function consultarHistorialMascota()
 {
     $mascotas = Mascota::with('raza', 'raza.especie', 'user')->get(); // Obtén todas las mascotas con las relaciones necesarias
