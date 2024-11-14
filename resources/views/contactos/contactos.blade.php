@@ -10,12 +10,7 @@
             padding-top: 200px;
         }
 
-        .container {
-            flex-grow: 1;
-            background-color: #F5F5DC;
-            padding: 3rem;
-            margin: 130px;
-        }
+    
 
         form {
             display: flex;
@@ -33,7 +28,8 @@
             background-color: #F5F5DC;
             padding: 1rem;
             margin: 100px;
-
+            margin-top: 450px;
+            border:none;
         }
 
         .enviar-form-contacto {
