@@ -95,9 +95,21 @@ class MascotaController extends Controller
 
         return redirect()->route('mascotas.perfil', $mascota)->with('success', 'Mascota actualizada correctamente.');
     }
-public function consultarHistorialMascota()
+    public function consultarHistorialMascota(Request $request)
 {
-    $mascotas = Mascota::with('raza', 'raza.especie', 'user')->get(); // Obtén todas las mascotas con las relaciones necesarias
+    $searchTerm = $request->input('search');
+
+    $mascotas = Mascota::with('raza', 'raza.especie', 'user')
+        ->when($searchTerm, function ($query, $searchTerm) {
+            $query->where('nombre', 'like', '%' . $searchTerm . '%');
+
+            if (is_numeric($searchTerm)) { // Solo si es numérico
+                $query->orWhere('id', $searchTerm);
+            }
+        })
+        ->get();
+
     return view('veterinario.consultarHistorialMascota', compact('mascotas'));
 }
 }
+
