@@ -2,7 +2,7 @@
     body {
         padding-top: 50px;
         font-family: 'Poppins', sans-serif;
-        
+
     }
 
     form {
@@ -243,6 +243,9 @@
                     <a href="/" class="">Inicio</a>
                     <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones
                         de administrador</a>
+                @elseif (auth()->user()->role == 'veterinario')
+                    <a href="/" class="">Inicio</a>
+                    <a href="/inicio-veterinario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>
                 @else
                     <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
@@ -251,7 +254,7 @@
                 @endif
             @else
                 <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                
+
             @endif
         </nav>
 

@@ -61,14 +61,7 @@ Route::get('/obtener-razas/{especie}', [RazaController::class, 'obtenerRazasPorE
 
 Route::post('/productos/subirImagen', [ProductController::class, 'subirImagen'])->name('productos.subirImagen');
 
-Route::get('/proveedores', function(){
-    return view('proveedor.proveedor');
-});
-// Ruta para mostrar la pantalla de oferta de productos para proveedores
-Route::get('/proveedor/ofertar', [ProveedorController::class, 'mostrarFormularioOfertar'])->name('proveedor.ofertar');
 
-// Ruta para procesar la oferta de productos
-Route::post('/proveedor/ofertar', [ProveedorController::class, 'procesarOferta'])->name('proveedor.ofertar.procesar');
 
 
 Route::get('/register', [RegisterController::class, 'create'])

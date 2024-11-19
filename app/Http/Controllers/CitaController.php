@@ -102,45 +102,61 @@ public function mostrarDetalleCita(Cita $cita)
 }
 public function mostrarFormularioConsulta()
 {
-    $veterinarioId = Auth::id(); // Obtener el ID del veterinario actual
+    $veterinarioId = Auth::id();
 
-    $citas = Cita::
-                 where('ID_Veterinario', $veterinarioId) // Filtrar por el ID del veterinario
+    $citas = Cita::where('ID_Veterinario', $veterinarioId)
                  ->with('mascota')
+                 ->whereDoesntHave('detalle', function ($query) {
+                     $query->whereNotNull('tratamiento')
+                           ->orWhereNotNull('medicamentos')
+                           ->orWhereNotNull('observaciones')
+                           ->orWhereNotNull('pruebas_realizadas');
+                 })
                  ->get();
 
     if ($citas->isEmpty()) {
-        return view('veterinario.ingresarConsulta', ['citas' => null])->with('mensaje', 'No hay citas disponibles para ingresar consultas.');
+        return view('veterinario.ingresarConsulta')->with('mensaje', 'No hay citas disponibles para ingresar consultas.');
     }
 
     return view('veterinario.ingresarConsulta', compact('citas'));
 }
-     
+
 
 public function guardarConsulta(Request $request)
 {
     $validatedData = $request->validate([
         'cita_id' => 'required|exists:citas,id',
-        'nombre_mascota' => 'required|string',
         'tratamiento' => 'nullable|string',
         'medicamentos' => 'nullable|string',
         'observaciones' => 'nullable|string',
         'pruebas_realizadas' => 'nullable|string',
     ]);
 
-    $detalleExistente = DetalleCita::where('cita_id', $validatedData['cita_id'])->first();
-    if ($detalleExistente) {
-        return redirect()->route('consultas.mostrar')->with('error', 'Ya existe una consulta para esta cita.');
+    $detalleCita = DetalleCita::where('cita_id', $validatedData['cita_id'])->first();
+
+    if ($detalleCita) {
+        $detalleCita->update([
+            'tratamiento' => $validatedData['tratamiento'],
+            'medicamentos' => $validatedData['medicamentos'],
+            'observaciones' => $validatedData['observaciones'],
+            'pruebas_realizadas' => $validatedData['pruebas_realizadas'],
+        ]);
+
+        $mensaje = 'Consulta actualizada correctamente.';
+    } else {
+        DetalleCita::create([
+            'cita_id' => $validatedData['cita_id'],
+            'tratamiento' => $validatedData['tratamiento'],
+            'medicamentos' => $validatedData['medicamentos'],
+            'observaciones' => $validatedData['observaciones'],
+            'pruebas_realizadas' => $validatedData['pruebas_realizadas'],
+        ]);
+        $mensaje = 'Consulta añadida correctamente.';
     }
 
-    DetalleCita::create([
-        'cita_id' => $validatedData['cita_id'],
-        'tratamiento' => $validatedData['tratamiento'],
-        'medicamentos' => $validatedData['medicamentos'],
-        'observaciones' => $validatedData['observaciones'],
-        'pruebas_realizadas' => $validatedData['pruebas_realizadas'],
-    ]);
 
-    return redirect()->route('consultas.mostrar')->with('success', 'Consulta añadida correctamente.');
+
+
+    return redirect()->route('consultas.mostrar')->with('success', $mensaje);
 }
 }

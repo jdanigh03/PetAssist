@@ -97,10 +97,11 @@
     <div class="container-historial">
         <h1>Consultar Historial Médico</h1>
 
-        <div class="search-bar">
-            <input type="text" id="search" name="search" placeholder="Buscar mascota por nombre o ID..." required>
+        <form action="{{ route('veterinario.consultarHistorial') }}" method="GET"> <div class="search-bar">
+            <input type="text" id="search" name="search" placeholder="Buscar mascota por nombre o ID..." value="{{ request('search') }}">
             <button type="submit" class="btn-search">Buscar</button>
         </div>
+        </form>
 
 
         @if ($mascotas->count() > 0)

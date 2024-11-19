@@ -23,8 +23,8 @@
             border-radius: 8px;
             min-width: 350px;
             max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #2f4f4f;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);   
+            border: none;
             text-align: center;
             margin-bottom: 20px;
         }
