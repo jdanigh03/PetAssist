@@ -126,4 +126,5 @@ class ProductController extends Controller
             return redirect()->route('productos.actualizar')->with('error', 'No se encontró el producto seleccionado');
         }
     }
+    
 }
