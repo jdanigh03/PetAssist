@@ -172,3 +172,5 @@ Route::get('/historial-detallado-mascota/{cita}', [CitaController::class, 'mostr
 Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusuario');
 Route::get('/aviso-privacidad', [PageController::class, 'avisoPrivacidad'])->name('aviso-privacidad');
 Route::get('/terminos-condiciones', [PageController::class, 'terminosCondiciones'])->name('terminos-condiciones');
+// In routes/web.php
+Route::get('/producto/{id}', [ProductController::class, 'verProducto'])->name('producto.ver');
