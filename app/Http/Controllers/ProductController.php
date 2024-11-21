@@ -126,11 +126,7 @@ class ProductController extends Controller
             return redirect()->route('productos.actualizar')->with('error', 'No se encontró el producto seleccionado');
         }
     }
-<<<<<<< HEAD
-    
-=======
-    // In app/Http/Controllers/ProductController.php
-public function verProducto($id)
+    public function verProducto($id)
 {
     // Fetch the product using the provided ID
     $producto = ProductoPetshop::find($id);
@@ -142,7 +138,4 @@ public function verProducto($id)
 
     // Return a view with the product details
     return view('producto.ver', compact('producto'));
-}
-
->>>>>>> 7045904439b59f0ce1575835fdebae2e7c133454
-}
+}}
