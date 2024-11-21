@@ -141,5 +141,4 @@ public function verProducto($id)
     return view('producto.ver', compact('producto'));
 }
 
->>>>>>> 7045904439b59f0ce1575835fdebae2e7c133454
 }

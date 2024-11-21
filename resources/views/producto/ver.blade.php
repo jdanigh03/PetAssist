@@ -41,16 +41,22 @@
         }
 
         .btn-primary {
-            margin-top: 20px;
-            background-color: #4CAF50;
-            color: white;
+            display: flex;
+            background-color: #2F4F4F;
+            color: #FFFFFF;
             padding: 10px 20px;
-            text-decoration: none;
+            margin-top: 20px;
             border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-align: center;
         }
 
         .btn-primary:hover {
-            background-color: #45a049;
+            background-color: #556B2F;
         }
     </style>
 @endsection
