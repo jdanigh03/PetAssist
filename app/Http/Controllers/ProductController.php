@@ -126,7 +126,7 @@ class ProductController extends Controller
             return redirect()->route('productos.actualizar')->with('error', 'No se encontró el producto seleccionado');
         }
     }
-    public function verProducto($id)
+public function verProducto($id)
 {
     // Fetch the product using the provided ID
     $producto = ProductoPetshop::find($id);
