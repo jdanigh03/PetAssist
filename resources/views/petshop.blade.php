@@ -202,7 +202,11 @@
                     <div class="sugerencia-texto">
                         <h3>{{ $producto->Nombre }}</h3>
                         <p>Precio: Bs {{ number_format($producto->Precio, 2) }}</p>
+<<<<<<< HEAD
+                        <a href="{{ route('verProducto', ['id' => $producto->id]) }}">Ver producto</a>
+=======
                         <a href="{{ route('producto.ver', $producto->ID_Producto) }}">Ver producto</a>
+>>>>>>> 7045904439b59f0ce1575835fdebae2e7c133454
                     </div>
                 </div>
             @endforeach

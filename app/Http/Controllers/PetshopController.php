@@ -18,4 +18,10 @@ class PetshopController extends Controller
         $productos = ProductoPetshop::all();
         return view('petshop', ['productos' => $productos]);
     }
+    public function verProducto($id)
+    {
+        $producto = ProductoPetshop::findOrFail($id); // Encuentra el producto por su ID o lanza un error 404
+        return view('verProducto', compact('producto')); // Retorna la vista 'verProducto' con los datos del producto
+    }
+
 }

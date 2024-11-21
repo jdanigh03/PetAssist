@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RazaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PageController;
+
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -156,7 +157,7 @@ Route::get('control-personal', function() {
     return view('admin.controlPersonal');
 });
 
-
+Route::get('/verProducto/{id}', [PetshopController::class, 'verProducto'])->name('verProducto');
 // Ruta para mostrar el formulario de actualizar productos
 Route::get('actualizar-producto', [ProductController::class, 'mostrarFormularioActualizar'])->name('productos.actualizar');
 
