@@ -88,7 +88,6 @@ class ProductController extends Controller
 
     public function actualizarProducto(Request $request)
     {
-        // Validar los datos del formulario
         $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
@@ -98,18 +97,15 @@ class ProductController extends Controller
             'categoria' => 'required|string|max:100',
         ]);
 
-        // Buscar el producto
         $producto = ProductoPetshop::find($request->producto_id);
 
         if ($producto) {
-            // Manejar la imagen si se subió una nueva
             if ($request->hasFile('imagen')) {
                 $imagenPath = $request->file('imagen')->store('public/productos');
                 $imagenPath = str_replace('public/', '/storage/', $imagenPath);
                 $producto->Imagen = $imagenPath;
             }
 
-            // Actualizar los detalles del producto
             $producto->Nombre = $request->nombre;
             $producto->Descripcion = $request->descripcion;
             $producto->Precio = $request->precio;
@@ -117,27 +113,24 @@ class ProductController extends Controller
             $producto->Categoria = $request->categoria;
             $producto->save();
 
-            // Registrar en logs
             Log::info("Producto actualizado: " . $producto->Nombre);
 
-            // Redirigir con un mensaje de éxito
             return redirect()->route('productos.actualizar')->with('success', 'Producto actualizado exitosamente');
         } else {
             return redirect()->route('productos.actualizar')->with('error', 'No se encontró el producto seleccionado');
         }
     }
-        // In app/Http/Controllers/ProductController.php
+
 public function verProducto($id)
 {
-    // Fetch the product using the provided ID
+
     $producto = ProductoPetshop::find($id);
 
-    // If the product is not found, return a 404 page
     if (!$producto) {
         abort(404, 'Producto no encontrado');
     }
 
-    // Return a view with the product details
+
     return view('producto.ver', compact('producto'));
 }
 
