@@ -4,6 +4,7 @@
 
 @section('content')
     <style>
+        /* Todo tu CSS */
         .mascotas-layout {
             display: flex;
             flex-direction: column;
@@ -16,7 +17,6 @@
             max-height: 100vh;
             padding-bottom: 100px;
         }
-
         .container-mascotas {
             background-color: #f5f5dc;
             padding: 2rem;
@@ -28,19 +28,16 @@
             text-align: center;
             margin-bottom: 20px;
         }
-
         .titulo-mascotas {
             font-size: 1.5rem;
             color: #333;
             margin-bottom: 1rem;
         }
-
         .mensaje-mascotas {
             color: #333;
             margin-bottom: 2rem;
             font-size: 1rem;
         }
-
         .boton-nueva-mascota {
             display: inline-block;
             background-color: #2f4f4f;
@@ -52,11 +49,9 @@
             transition: background-color 0.3s;
             border: none;
         }
-
         .boton-nueva-mascota:hover {
             background-color: #1f3f3f;
         }
-
         .container-info-mascota {
             display: flex;
             flex-direction: row;
@@ -67,37 +62,31 @@
             border-radius: 8px;
             margin-bottom: 20px;
         }
-
         .foto-container {
             display: flex;
             flex-direction: column;
             margin-right: 20px;
         }
-
         .foto-mascota {
             width: 150px;
             height: auto;
             border-radius: 8px;
         }
-
         .info-mascota {
             display: flex;
             flex-direction: column;
             padding: 10px;
             flex: 1;
         }
-
         .info-mascota h2 {
             color: #333;
             margin-bottom: 0.5rem;
             margin-top: 0;
         }
-
         .info-mascota p {
             color: #333;
             margin: 0.2rem 0;
         }
-
         .btn-ver-mas {
             background-color: #2f4f4f;
             color: #FFFFFF;
@@ -112,15 +101,12 @@
             align-items: center;
             justify-content: center;
         }
-
         .btn-ver-mas:hover {
             background-color: #1f3f3f;
         }
-
         .mascotas-layout p {
             text-align: left;
         }
-
         .alert-success-mascota {
             background-color: #d4edda;
             border-color: #c3e6cb;
@@ -157,13 +143,12 @@
 
                         <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Editar</a>
 
-
-                        <form action="{{ route('mascotas.eliminar', $mascota) }}" method="POST"
-                            onsubmit="return confirm('¿Estás seguro de que quieres borrar a {{ $mascota->nombre }}?');">
+                        <!-- Formulario de eliminación con SweetAlert2 -->
+                        <form id="deleteForm{{ $mascota->id }}" action="{{ route('mascotas.eliminar', $mascota) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-ver-mas btn-eliminar">Eliminar</button>
-
+                            <button type="button" class="btn-ver-mas btn-eliminar" 
+                                onclick="confirmDelete({{ $mascota->id }}, '{{ $mascota->nombre }}')">Eliminar</button>
                         </form>
                     </div>
                     <div class="info-mascota">
@@ -175,10 +160,29 @@
                 </div>
             @endforeach
 
-
             <div class="container-mascotas">
                 <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
             </div>
         @endif
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(id, name) {
+            Swal.fire({
+                title: `¿Estás seguro?`,
+                text: `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`deleteForm${id}`).submit();
+                }
+            });
+        }
+    </script>
 @endsection
