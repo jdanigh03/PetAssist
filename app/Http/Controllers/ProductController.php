@@ -67,11 +67,21 @@ class ProductController extends Controller
         }
     }
 
-    public function mostrarProductos()
-    {
-        $productos = ProductoPetshop::all(); // Obtener todos los productos del inventario
-        return view('admin.consultarProducto', compact('productos'));
-    }
+    public function mostrarProductos(Request $request)
+{
+    $search = $request->input('search');
+
+    // Filtrar los productos por nombre o categoría si hay una búsqueda
+    $productos = ProductoPetshop::query()
+        ->when($search, function ($query, $search) {
+            return $query->where('Nombre', 'LIKE', "%{$search}%")
+                         ->orWhere('Categoria', 'LIKE', "%{$search}%");
+        })
+        ->get();
+
+    return view('admin.consultarProducto', compact('productos'));
+}
+
 
     public function mostrarFormularioActualizar(Request $request)
     {
@@ -134,4 +144,4 @@ public function verProducto($id)
     return view('producto.ver', compact('producto'));
 }
 
-}
+}   

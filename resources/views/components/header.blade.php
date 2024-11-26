@@ -241,8 +241,13 @@
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
                     <a href="/" class="">Inicio</a>
-                    <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones
-                        de administrador</a>
+                    <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
+                    <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">
+                        Control de clientes
+                    </a>
+                    <a href="/control-personal" class="{{ request()->is('control-personal') ? 'active' : '' }}">
+                        Control de personal
+                    </a>
                 @elseif (auth()->user()->role == 'veterinario')
                     <a href="/" class="">Inicio</a>
                     <a href="/inicio-veterinario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>

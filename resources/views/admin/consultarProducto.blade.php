@@ -12,8 +12,11 @@
     <!-- Campo de búsqueda -->
     <form method="GET" action="{{ route('productos.consultar') }}" class="form-busqueda">
         <input type="text" name="search" placeholder="Buscar producto..." value="{{ request('search') }}">
-        <button type="submit">Buscar</button>
+        <button type="submit">
+            <span>🔍</span> <!-- Agregar un icono de búsqueda -->
+        </button>
     </form>
+    
 
     <!-- Mostrar productos -->
     <div class="productos-lista">
