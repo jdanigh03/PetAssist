@@ -18,9 +18,7 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
-Route::get('/historialusuariosmodificar', function () {
-    return view('pantallahistorialusuariosmodificar');
-});
+Route::get('/historialusuariosmodificar', [CitaController::class, 'mostrarHistorial'])->name('citas.historial');
 
 Route::get('/controldemascotas', function () {
     return view('controldemascotasadmin');
@@ -98,6 +96,8 @@ Route::match(['get', 'post'], '/inicio', [SessionsController::class, 'store'])->
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
+Route::get('/petshop/categoria/{categoria}', [PetshopController::class, 'productosPorCategoria'])->name('petshop.categoria');
+Route::get('/producto/{producto}', [PetshopController::class, 'mostrarProducto'])->name('petshop.mostrarProducto');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

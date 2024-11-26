@@ -65,12 +65,12 @@
             <div class="flex-group">
                 <div class="form-group">
                     <label for="fecha">Selecciona la fecha:</label>
-                    <input type="date" id="fecha" name="fecha" required>
+                    <input type="date" id="fecha" name="fecha" min="{{ date('Y-m-d') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="hora">Selecciona la hora:</label>
-                    <input type="time" id="hora" name="hora" required>
+                    <input type="time" id="hora" name="hora" min="10:00" max="20:00" required>
                 </div>
             </div>
 

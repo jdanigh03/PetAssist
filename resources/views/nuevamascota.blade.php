@@ -144,7 +144,7 @@
                         fetch(`/obtener-razas/${especieId}`)
                             .then(response => response.json())
                             .then(razas => {
-                                razaSelect.innerHTML = '<option value="">Escoge una raza</option>'; 
+                                razaSelect.innerHTML = '<option value="">Escoge una raza</option>';
                                 razas.forEach(raza => {
                                     const option = document.createElement('option');
                                     option.value = raza.id;
@@ -154,12 +154,19 @@
                             });
                     }
 
-            
+
                     actualizarRazas(1);
                 </script>
-
+                <div class="checkbox-container">
+                    <input type="checkbox" id="no-especificar-fecha" name="no_especificar_fecha">
+                    <label for="no-especificar-fecha">No especificar fecha de nacimiento</label>
+                </div>
                 <label for="nacimiento">Nacimiento*</label>
-                <input type="date" id="nacimiento" name="nacimiento" required>
+                <input type="date" id="nacimiento" name="nacimiento" max="{{ date('Y-m-d') }}" required>
+                @error('nacimiento')
+                    <div class="error-message">{{ $message }}</div>
+                    <p class="error-message">{{ $message }}</p>
+                @enderror
 
 
                 <label for="foto">Foto de tu peludo (opcional):</label>
@@ -188,7 +195,7 @@
                             imagenPreview.innerHTML =
                                 `<img src="${imagenesPredeterminadas[especieId]}" alt="Imagen predeterminada">`;
                             imagenUrlInput.value = imagenesPredeterminadas[
-                            especieId]; 
+                                especieId];
                         } else {
                             imagenPreview.innerHTML = '';
                         }
@@ -202,7 +209,7 @@
                         const reader = new FileReader();
                         reader.onload = (e) => {
                             imagenPreview.innerHTML =
-                            `<img src="${e.target.result}" alt="Vista previa">`; 
+                                `<img src="${e.target.result}" alt="Vista previa">`;
                         }
                         reader.readAsDataURL(file);
 
@@ -219,9 +226,9 @@
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
-                                    imagenUrlInput.value = data.data.url; 
+                                    imagenUrlInput.value = data.data.url;
                                     imagenPreview.innerHTML =
-                                    `<img src="${data.data.url}" alt="Vista previa">`; 
+                                        `<img src="${data.data.url}" alt="Vista previa">`;
 
                                 } else {
                                     console.error('Error al subir la imagen:', data.error);
@@ -235,7 +242,7 @@
                                 alert("Error al subir la imagen");
                             });
 
-                    } else { 
+                    } else {
 
                         especiesRadios.forEach(radio => {
                             if (radio.checked) {
