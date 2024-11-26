@@ -16,13 +16,13 @@
 <div class="home-admin">
     <h1>Control de Clientes</h1>
     <div class="categorias">
-        <a href="/historialusuariosmodificar">
+        <a href="/control-citas">
             <div class="container-img-adm">
                 <img src="{{ asset('img/alimentos.png') }}" alt="Control de citas">
             </div>
             Control de citas
         </a>
-        <a href="/historialusuarios">
+        <a href="/historial-citas">
             <div class="container-img-adm">
                 <img src="{{ asset('img/accesorios.png') }}" alt="Historial de visitas">
             </div>

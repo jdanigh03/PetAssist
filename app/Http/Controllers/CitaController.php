@@ -163,7 +163,16 @@ public function mostrarHistorial()
 {
     $citas = Cita::with(['user', 'mascota', 'veterinario'])
                  ->orderBy('Fecha_Hora', 'desc')
-                 ->get();
+                 ->get()
+                 ->map(function ($cita) {
+                     $cita->fecha = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y');
+                     $cita->hora = Carbon::parse($cita->Fecha_Hora)->format('H:i A');
+                     return $cita;
+                 });
 
-    return view('pantallahistorialusuariosmodificar', ['citas' => $citas]);
-}}
+    // Pasar $citas a la vista
+    return view('pantallahistorialusuariosmodificar', compact('citas'));
+}
+
+
+}
