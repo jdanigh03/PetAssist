@@ -18,9 +18,7 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
-Route::get('/historialusuariosmodificar', function () {
-    return view('pantallahistorialusuariosmodificar');
-});
+Route::get('/historialusuariosmodificar', [CitaController::class, 'mostrarHistorial'])->name('citas.historial');
 
 Route::get('/controldemascotas', function () {
     return view('controldemascotasadmin');

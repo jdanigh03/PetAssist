@@ -159,4 +159,11 @@ public function guardarConsulta(Request $request)
 
     return redirect()->route('consultas.mostrar')->with('success', $mensaje);
 }
-}
+public function mostrarHistorial()
+{
+    $citas = Cita::with(['user', 'mascota', 'veterinario'])
+                 ->orderBy('Fecha_Hora', 'desc')
+                 ->get();
+
+    return view('pantallahistorialusuariosmodificar', ['citas' => $citas]);
+}}

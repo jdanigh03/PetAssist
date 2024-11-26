@@ -82,7 +82,6 @@
             color: white;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .historial-citas th, .historial-citas td {
                 padding: 12px;
@@ -91,10 +90,6 @@
         }
     </style>
 </head>
-
-<header>
-
-</header>
 
 <div class="container2">
     <h1>Control de Citas</h1>
@@ -111,32 +106,24 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Aquí se mostrarán las citas -->
-            <?php
-            // Datos de ejemplo del historial de citas
-            $citas = [
-                ["nombre" => "Carlos Pérez", "mascota" => "Firulais", "fecha" => "20/10/2024", "hora" => "10:30 AM", "veterinario" => "Dr. Juan Pérez", "motivo" => "cualquiera"],
-                ["nombre" => "María González", "mascota" => "Pelusa", "fecha" => "22/10/2024", "hora" => "03:00 PM", "veterinario" => "Dra. María López", "motivo" => "cualquiera"],
-                ["nombre" => "Roberto Díaz", "mascota" => "Toby", "fecha" => "25/10/2024", "hora" => "09:00 AM", "veterinario" => "Dr. Carlos Gómez", "motivo" => "cualquiera"],
-                ["nombre" => "Ana Fernández", "mascota" => "Nina", "fecha" => "27/10/2024", "hora" => "01:00 PM", "veterinario" => "Dra. Elena Ruiz", "motivo" => "cualquiera"]
-            ];
-
-            // Iteramos sobre las citas para mostrarlas en la tabla
-            foreach ($citas as $cita) {
-                echo "<tr>
-                        <td>{$cita['nombre']}</td>
-                        <td>{$cita['mascota']}</td>
-                        <td>{$cita['fecha']}</td>
-                        <td>{$cita['hora']}</td>
-                        <td>{$cita['veterinario']}</td>
-                        <td>{$cita['motivo']}</td>
-                        <td class='action-buttons'>
-                            <button class='btn-modificar'>Modificar</button>
-                            <button class='btn-eliminar'>Eliminar</button>
-                        </td>
-                      </tr>";
-            }
-            ?>
+            @forelse ($citas as $cita)
+                <tr>
+                    <td>{{ $cita->user->name ?? 'Usuario no disponible' }}</td>
+                    <td>{{ $cita->mascota->nombre ?? 'Mascota no disponible' }}</td>
+                    <td>{{ $cita->fecha }}</td>
+                    <td>{{ $cita->hora }}</td>
+                    <td>{{ $cita->veterinario->name ?? 'Veterinario no disponible' }}</td>
+                    <td>{{ $cita->motivo }}</td>
+                    <td class="action-buttons">
+                        <button class="btn-modificar">Modificar</button>
+                        <button class="btn-eliminar">Eliminar</button>
+                    </td>
+                </tr>
+            @empty
+                <tr> <p>No hay citas para mostrar.</p>
+                    <td colspan="7">No hay citas para mostrar.</td>
+                </tr>
+            @endforelse 
         </tbody>
     </table>
 </div>
