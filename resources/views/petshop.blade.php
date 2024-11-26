@@ -168,25 +168,25 @@
 
         <h2>Categorías</h2>
         <div class="categorias">
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Comida') }}">
                 <div class="container-img">
-                    <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
+                    <img src="{{ asset('img/alimentos.png') }}" alt="Comida">
                 </div>
                 Alimentos
             </a>
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Accesorios') }}">
                 <div class="container-img">
                     <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
                 </div>
                 Accesorios
             </a>
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Higiene') }}">
                 <div class="container-img">
                     <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
                 </div>
                 Higiene
             </a>
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Medicamentos') }}">
                 <div class="container-img">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>
@@ -208,5 +208,5 @@
             @endforeach
         </div>
     </div>
-    
+
 @endsection

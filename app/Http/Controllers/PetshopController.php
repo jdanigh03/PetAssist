@@ -23,5 +23,23 @@ class PetshopController extends Controller
         $producto = ProductoPetshop::findOrFail($id); // Encuentra el producto por su ID o lanza un error 404
         return view('verProducto', compact('producto')); // Retorna la vista 'verProducto' con los datos del producto
     }
+    public function productosPorCategoria($categoria)
+    {
+        $productos = ProductoPetshop::where('Categoria', $categoria)->get();
+        return view('petshop.categoria', ['productos' => $productos, 'categoria' => $categoria]);
+    }
+
+
+    public function mostrarProducto(ProductoPetshop $producto)
+    {
+        $productosRelacionados = ProductoPetshop::where('Categoria', $producto->Categoria)
+                                                ->where('ID_Producto', '!=', $producto->ID_Producto)
+                                                ->inRandomOrder()
+                                                ->limit(4)
+                                                ->get();
+        return view('producto.ver', compact('producto', 'productosRelacionados'));
+    }
 
 }
+
+

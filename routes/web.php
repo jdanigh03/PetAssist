@@ -96,6 +96,8 @@ Route::match(['get', 'post'], '/inicio', [SessionsController::class, 'store'])->
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
+Route::get('/petshop/categoria/{categoria}', [PetshopController::class, 'productosPorCategoria'])->name('petshop.categoria');
+Route::get('/producto/{producto}', [PetshopController::class, 'mostrarProducto'])->name('petshop.mostrarProducto');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
