@@ -19,7 +19,7 @@
             margin: 20px;
             margin-top: 400px;
             margin-bottom: 60px;
-            padding-top: 50px;
+            padding-top: 0;
         }
 
         .login-title {
