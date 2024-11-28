@@ -51,6 +51,7 @@
                 <div class="form-group">
                     <label for="imagen">Imagen:</label>
                     <input type="file" id="imagen" name="imagen_archivo" accept="image/*">
+                    <input type="hidden" id="imagen-url" name="imagen"> </input>
                     <button type="button" id="btn-subir-imagen">Subir Imagen</button>
                     <div id="imagen-preview"></div>
                 </div>
@@ -73,43 +74,42 @@
     
 
     <script>
-    const btnSubirImagen = document.getElementById('btn-subir-imagen');
-    const imagenInput = document.getElementById('imagen');
-    const imagenUrlInput = document.getElementById('imagen-url');
-    const imagenPreview = document.getElementById('imagen-preview');
-
-    btnSubirImagen.addEventListener('click', () => {
-        const file = imagenInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onloadend = function() {
-                const formData = new FormData();
-                formData.append('key', '81fd551e66f3e290dce7e02e4f730eac'); // Tu API Key
-                formData.append('image', reader.result.split(',')[1]); // Enviar la imagen en base64
-
-                fetch("https://api.imgbb.com/1/upload", {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            imagenUrlInput.value = data.data.url;
-                            imagenPreview.innerHTML = `<img src="${data.data.url}" width="100">`;
-                            console.log(data.data.url);
-                        } else {
-                            alert(data.error);
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
+        const btnSubirImagen = document.getElementById('btn-subir-imagen');
+        const imagenInput = document.getElementById('imagen');
+        const imagenUrlInput = document.getElementById('imagen-url'); // Correctly target the hidden input
+        const imagenPreview = document.getElementById('imagen-preview');
+    
+        btnSubirImagen.addEventListener('click', () => {
+            const file = imagenInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+    
+                reader.onloadend = function() {
+                    const formData = new FormData();
+                    formData.append('key', '81fd551e66f3e290dce7e02e4f730eac'); // Replace with your ImgBB API key
+                    formData.append('image', file);
+    
+                    fetch("https://api.imgbb.com/1/upload", {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                imagenUrlInput.value = data.data.url; // Store the URL in the hidden input
+                                imagenPreview.innerHTML = `<img src="${data.data.url}" width="100">`;
+                            } else {
+                                alert(data.error.message || "Error uploading image."); // Improved error handling
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+    
+                reader.readAsDataURL(file);
+            } else {
+                alert('Selecciona una imagen primero.');
             }
-
-            reader.readAsDataURL(file);
-        } else {
-            alert('Selecciona una imagen primero.');
-        }
-    });
-</script>
-
-@endsection
+        });
+    </script>
+    
+    @endsection
