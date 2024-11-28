@@ -12,6 +12,7 @@
             margin-top:100px;
             background-color: #F5F5DC;
             padding: 2rem;
+            padding-top: 0;
             border-radius: 8px;
             overflow-y: auto;
         }
@@ -36,7 +37,7 @@
         }
 
         .form-group label {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
             color: #2F4F4F;
         }
 
@@ -51,10 +52,6 @@
         input:focus {
             background-color: white;
             outline: none;
-        }
-
-        input::placeholder {
-            color: #2F4F4F;
         }
 
         button.button-enviar {
@@ -101,6 +98,7 @@
 
         .profile-section h3 {
             margin-bottom: 1rem;
+            margin-top: 0;
             color: #2F4F4F;
         }
 
@@ -128,6 +126,7 @@
             width: 50px;
             height: auto;
         }
+        
     </style>
 
     <div class="container">

@@ -24,6 +24,7 @@ h1 {
     font-size: 2rem;
     color: #374e4d; /* Color del título similar al navbar */
     margin-bottom: 30px;
+    margin-top: 0;
     font-weight: bold;
     text-align: center;
 }
@@ -68,6 +69,7 @@ h1 {
     color: #374e4d; 
     margin-bottom: 8px;
 }
+
 
 .button {
     cursor: pointer;
