@@ -98,6 +98,7 @@ Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
 Route::get('/petshop/categoria/{categoria}', [PetshopController::class, 'productosPorCategoria'])->name('petshop.categoria');
 Route::get('/producto/{producto}', [PetshopController::class, 'mostrarProducto'])->name('petshop.mostrarProducto');
+Route::get('/petshop/buscar', [PetshopController::class, 'buscar'])->name('petshop.buscar');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 

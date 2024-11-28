@@ -39,7 +39,17 @@ class PetshopController extends Controller
                                                 ->get();
         return view('producto.ver', compact('producto', 'productosRelacionados'));
     }
-
+    public function buscar(Request $request)
+    {
+        $search = $request->input('search');
+    
+        $productos = ProductoPetshop::where('Nombre', 'LIKE', "%{$search}%")
+                                    ->orWhere('Categoria', 'LIKE', "%{$search}%")
+                                    ->orWhere('Descripcion', 'LIKE', "%{$search}%") // Si quieres buscar también en la descripción
+                                    ->get();
+    
+        return view('petshop.resultados', compact('productos', 'search')); // Pasar el término de búsqueda a la vista
+    }
 }
 
 
