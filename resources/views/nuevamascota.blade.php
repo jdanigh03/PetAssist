@@ -143,16 +143,13 @@
                     <input type="text" id="nombre" name="nombre" placeholder="Ej: Firulais" required>
                 </div>
                 <div class="grupo-form-mascota"><label for="especie">Especie*</label>
-                    <div class="opciones-especie">
-                        <input type="radio" id="perro" name="especie" value="1">
-                        <img src="https://cdn-icons-png.flaticon.com/512/9769/9769450.png" alt="Perro"
-                            class="icono-especie">
-                        <label for="perro">Perro</label>
-                        <input type="radio" id="gato" name="especie" value="2">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1864/1864514.png" alt="Gato"
-                            class="icono-especie">
-                        <label for="gato">Gato</label>
-                    </div>
+                    <select id="especie" name="especie" required>
+                        <option value="">Selecciona una especie</option>
+                        @foreach ($especies as $especie)
+                            <option value="{{ $especie->id }}" data-imagen="{{ $especie->imagen }}">{{ $especie->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="grupo-form-mascota">
                     <label for="raza">Raza*</label>
@@ -216,33 +213,31 @@
 
                 noEspecificarFechaCheckbox.addEventListener('change', () => {
                     nacimientoInput.required = !noEspecificarFechaCheckbox
-                    .checked;
+                        .checked;
                     nacimientoInput.disabled = noEspecificarFechaCheckbox
-                    .checked;
+                        .checked;
                 });
 
-                const imagenInput = document.getElementById('foto');
+                const especieSelect = document.getElementById('especie');
+                const imagenInput = document.getElementById('foto'); // Asegúrate de tener esta línea
                 const imagenUrlInput = document.getElementById('imagen-url');
                 const imagenPreview = document.getElementById('imagen-preview');
-                const especiesRadios = document.querySelectorAll('input[name="especie"]');
-                const imagenesPredeterminadas = {
-                    1: 'https://cdn-icons-png.flaticon.com/512/9769/9769450.png',
-                    2: 'https://cdn-icons-png.flaticon.com/512/1864/1864514.png',
-                };
 
-                especiesRadios.forEach(radio => {
-                    radio.addEventListener('change', () => {
-                        const especieId = radio.value;
-                        if (imagenesPredeterminadas.hasOwnProperty(especieId) && !imagenInput.files[0]) {
-                            imagenPreview.innerHTML =
-                                `<img src="${imagenesPredeterminadas[especieId]}" alt="Imagen predeterminada">`;
-                            imagenUrlInput.value = imagenesPredeterminadas[
-                                especieId];
-                        } else {
-                            imagenPreview.innerHTML = '';
-                        }
+                especieSelect.addEventListener('change', () => {
+                    const selectedOption = especieSelect.options[especieSelect.selectedIndex];
+                    const imagenPredeterminada = selectedOption.dataset.imagen;
 
-                    });
+
+                    if (imagenPredeterminada && !imagenInput.files[0]) {
+                        imagenPreview.innerHTML = `<img src="${imagenPredeterminada}" alt="Imagen predeterminada">`;
+                        imagenUrlInput.value = imagenPredeterminada;
+                    } else {
+                        imagenPreview.innerHTML = '';
+                        imagenUrlInput.value = '';
+                    }
+
+                    const especieId = especieSelect.value;
+                    actualizarRazas(especieId);
                 });
 
                 imagenInput.addEventListener('change', () => {
@@ -286,18 +281,16 @@
 
                     } else {
 
-                        especiesRadios.forEach(radio => {
-                            if (radio.checked) {
-                                const especieId = radio.value;
-                                if (imagenesPredeterminadas.hasOwnProperty(especieId)) {
-                                    imagenPreview.innerHTML =
-                                        `<img src="${imagenesPredeterminadas[especieId]}" alt="Imagen predeterminada">`;
-                                    imagenUrlInput.value = imagenesPredeterminadas[especieId];
-                                } else {
-                                    imagenPreview.innerHTML = '';
-                                }
-                            }
-                        });
+                        const selectedOption = especieSelect.options[especieSelect.selectedIndex];
+                        const imagenPredeterminada = selectedOption.dataset.imagen;
+
+                        if (imagenPredeterminada) {
+                            imagenPreview.innerHTML = `<img src="${imagenPredeterminada}" alt="Imagen predeterminada">`;
+                            imagenUrlInput.value = imagenPredeterminada;
+                        } else {
+                            imagenPreview.innerHTML = ''; // O un mensaje si no hay imagen predeterminada
+                            imagenUrlInput.value = '';
+                        }
                     }
                 });
             </script>
