@@ -139,7 +139,8 @@
             font-size: 14px;
             margin-left: 20px;
         }
-        .sugerencia a{
+
+        .sugerencia a {
             background-color: #2f4f4f;
             color: #FFFFFF;
             padding: 0.7rem 1rem;
@@ -168,12 +169,10 @@
     <div class="home-cliente">
         <h1>Petshop</h1>
 
-        <div class="buscador">
-            <input type="text" placeholder="Buscar...">
-            <button type="submit">
-                <img src="{{ asset('img/buscar.png') }}" alt="Buscar" height="20">
-            </button>
-        </div>
+        <form action="{{ route('petshop.buscar') }}" method="GET" class="buscador">
+            <input type="text" name="search" placeholder="Buscar..."> <button type="submit"> <img
+                    src="{{ asset('img/buscar.png') }}" alt="Buscar" height="20"> </button>
+        </form>
 
         <div class="carrusel">
             <img src="{{ asset('img/image 38.png') }}" alt="Imagen 1">

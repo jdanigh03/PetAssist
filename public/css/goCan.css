@@ -6,11 +6,10 @@
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    background-color: #f5f5e7;
-    color: var(--text-primary);
-    margin: 0;
-    padding-top: calc(100vh - var(--header-height));
+    padding-top: 50px;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+
 }
 
 a {
@@ -33,10 +32,11 @@ header {
     transition: background-color 0.3s, padding 0.3s;
 }
 
-header img {
-    width: 50px;
-    height: auto;
-    border-radius: 50%;
+header img 
+{
+    height: 4rem;
+    margin-right: 20px;
+    border-radius: 20px;
 }
 
 header .container {
@@ -119,6 +119,7 @@ nav li a:hover {
     text-align: center;
     height: 400px;
     top: 77px;
+    color: white;
 }
 
 .hero::before {

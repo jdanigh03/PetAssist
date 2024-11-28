@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('title', $categoria)
+@section('title', 'Resultados de búsqueda')
 
 @section('content')
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -59,7 +60,8 @@
             font-size: 14px;
             margin-left: 20px;
         }
-        .sugerencia a{
+
+        .sugerencia a {
             background-color: #2f4f4f;
             color: #FFFFFF;
             padding: 0.7rem 1rem;
@@ -76,20 +78,27 @@
     </style>
 
     <div class="home-cliente">
-        <h1>{{ $categoria }}</h1>
 
-        <div class="sugerencias">
-            @foreach ($productos as $producto)
-                <div class="sugerencia">
-                    <img src="{{ asset($producto->Imagen) }}" alt="{{ $producto->Nombre }}">
-                    <div class="sugerencia-texto">
-                        <h3>{{ $producto->Nombre }}</h3>
-                        <p>Precio: Bs {{ number_format($producto->Precio, 2) }}</p>
-                        <a href="{{ route('petshop.mostrarProducto', $producto) }}">Ver producto</a>
+        <h1>Resultados de búsqueda para "{{ $search }}"</h1>
+
+
+        @if ($productos->count() > 0)
+            <div class="sugerencias">
+                @foreach ($productos as $producto)
+                    <div class="sugerencia">
+                        <img src="{{ asset($producto->Imagen) }}" alt="{{ $producto->Nombre }}">
+                        <div class="sugerencia-texto">
+                            <h3>{{ $producto->Nombre }}</h3>
+                            <p>Precio: Bs {{ number_format($producto->Precio, 2) }}</p>
+                            <a href="{{ route('petshop.mostrarProducto', $producto) }}">Ver producto</a>
+                        </div>
                     </div>
-                </div>
-            @endforeach
-        </div>
+                @endforeach
+            </div>
+        @else
+            <p>No se encontraron productos que coincidan con tu búsqueda.</p>
+        @endif
 
     </div>
+
 @endsection

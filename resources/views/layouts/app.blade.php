@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('/img/favicon.ico') }}">
     <title>@yield('title') - Go Can</title>
 
     <!-- Fonts -->
@@ -259,6 +259,7 @@
         #facebook-button:hover {
             transform: scale(1.1);
         }
+        
     </style>
 </head>
 

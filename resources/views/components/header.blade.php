@@ -1,5 +1,12 @@
 <style>
-    body {
+   :root {
+    --primary: #2f4f4f;
+    --secondary: #f5f5dc;
+    --text-primary: #333;
+    --text-secondary: #555;
+}
+
+   body {
         padding-top: 50px;
         font-family: 'Poppins', sans-serif;
 
@@ -214,6 +221,57 @@
         font-size: 14px;
     }
 
+    nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-right: 30px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+    text-decoration: none; 
+}
+
+nav li {
+    margin-left: 0;
+}
+
+nav li a {
+    font-size: 0.95rem;
+    color: var(--primary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none; 
+}
+
+nav li a:hover {
+    background-color: rgba(47, 79, 79, 0.1);
+    color: var(--text-secondary);
+    text-decoration: none; 
+}
+.logoTa {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-left: 10px;
+    text-decoration: none; 
+}
+
+    .perfil-nombre {
+        color: #2F4F4F;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-decoration: none;
+        color: #2F4F4F;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
 
     @media (max-width: 768px) {
         .navegacion-header {
@@ -236,12 +294,21 @@
 <header class="header">
     <div class="container-header">
         <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
-
+        @if (auth()->check() && auth()->user()->role != 'admin' && auth()->user()->role != 'veterinario')
+    {{-- Muestra "Go Can" si no aparece el bloque de navegación --}}
+    @if (!request()->is('petshop') && !request()->is('contactos') && !request()->is('citas-agenda') && !request()->is('mascotas'))
+        <a href="/" class="logoTa">Go Can</a>
+    @endif
+@elseif (!auth()->check() || !isset(auth()->user()->role))
+    {{-- Oculta "Go Can" con clase hidden --}}
+    <a href="/" class="logoTa hidden">Go Can</a>
+@endif
         <nav class="navegacion-header">
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
                     <a href="/" class="">Inicio</a>
-                    <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
+                    <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control
+                        inventario</a>
                     <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">
                         Control de clientes
                     </a>
@@ -250,7 +317,8 @@
                     </a>
                 @elseif (auth()->user()->role == 'veterinario')
                     <a href="/" class="">Inicio</a>
-                    <a href="/inicio-veterinario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>
+                    <a href="/inicio-veterinario"
+                        class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>
                 @else
                     <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
@@ -258,7 +326,7 @@
                     <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
                 @endif
             @else
-                <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
+        
 
             @endif
         </nav>
@@ -295,6 +363,10 @@
                     <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
                         alt="">
                 </div>
+                @if (auth()->check())
+                    <p class="perfil-nombre">Hola,
+                        {{ auth()->user()->name }}</p>
+                @endif
                 <div class="profile-container">
                     <img src="{{ auth()->user()->profile_picture ?? '/img/perfilPredeterminado.png' }}"
                         alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">
@@ -311,8 +383,20 @@
                     </div>
                 </div>
             @else
-                <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
-                <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
+            <nav>
+            <ul>
+        <li><a href="{{ url('/#servicios') }}">Servicios</a></li>
+        <li><a href="{{ url('/#nosotros') }}">Nosotros</a></li>
+        <li><a href="{{ url('/#petshop') }}">Petshop</a></li>
+        <li><a href="{{ url('/#contacto') }}">Contacto</a></li>
+             </ul>
+                @if (auth()->check())
+                    <button class="btn-submit" onclick="window.location.href='/petshop'">Ingresar a PetAssist</button>
+                @else
+                    <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
+                    <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
+                @endif
+            </nav>
             @endif
         </div>
     </div>
