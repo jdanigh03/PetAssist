@@ -124,7 +124,7 @@
     </section>
     <section class="contacto" id="contacto">
         <div class="container">
-            <h2>Contacto</h2>
+            <h2 id="contactoNombre">Contacto</h2>
             <form>
                 <label for="nombre">Tu Nombre</label>
                 <input type="text" name="nombre" id="nombre" required>
