@@ -12,21 +12,26 @@
             margin: 0 auto;
             margin-top: 100px;
             padding: 20px;
-            overflow-y: auto;
             max-height: 100vh;
             padding-bottom: 100px;
         }
 
         .container-nueva-mascota {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             background-color: #f5f5dc;
             padding: 2rem;
             border-radius: 8px;
             min-width: 350px;
-            max-width: 600px;
+            width: 700px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #2f4f4f;
+        }
+
+        .grupo-form-mascota {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
         .titulo-nueva-mascota {
@@ -37,7 +42,30 @@
         }
 
         .formulario-mascota {
-            display: unset;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            align-items: start;
+        }
+
+        .checkbox-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            flex-shrink: unset;
+            margin: 0;
+        }
+
+        .checkbox-container label {
+            white-space: nowrap;
+        }
+
+
+        .cargar-foto-mascota {
+            grid-column: span 2;
         }
 
         .formulario-mascota label {
@@ -109,25 +137,29 @@
 
                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
-                <label for="especie">Especie*</label>
-                <div class="opciones-especie">
-                    <input type="radio" id="perro" name="especie" value="1">
-                    <img src="https://cdn-icons-png.flaticon.com/512/9769/9769450.png" alt="Perro" class="icono-especie">
-                    <label for="perro">Perro</label>
-                    <input type="radio" id="gato" name="especie" value="2">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1864/1864514.png" alt="Gato" class="icono-especie">
-                    <label for="gato">Gato</label>
+
+                <div class="grupo-form-mascota">
+                    <label for="nombre">Nombre de tu peludo*</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ej: Firulais" required>
                 </div>
-
-
-                <label for="nombre">Nombre de tu peludo*</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ej: Firulais" required>
-
-                <label for="raza">Raza*</label>
-                <select id="raza" name="raza" required>
-                    <option value="">Escoge una raza</option>
-                </select>
-
+                <div class="grupo-form-mascota"><label for="especie">Especie*</label>
+                    <div class="opciones-especie">
+                        <input type="radio" id="perro" name="especie" value="1">
+                        <img src="https://cdn-icons-png.flaticon.com/512/9769/9769450.png" alt="Perro"
+                            class="icono-especie">
+                        <label for="perro">Perro</label>
+                        <input type="radio" id="gato" name="especie" value="2">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1864/1864514.png" alt="Gato"
+                            class="icono-especie">
+                        <label for="gato">Gato</label>
+                    </div>
+                </div>
+                <div class="grupo-form-mascota">
+                    <label for="raza">Raza*</label>
+                    <select id="raza" name="raza" required>
+                        <option value="">Escoge una raza</option>
+                    </select>
+                </div>
 
                 <script>
                     const especieRadios = document.querySelectorAll('input[name="especie"]');
@@ -141,40 +173,40 @@
                     });
 
                     function actualizarRazas(especieId) {
-                        fetch(`/obtener-razas/${especieId}`)
-                            .then(response => response.json())
-                            .then(razas => {
-                                razaSelect.innerHTML = '<option value="">Escoge una raza</option>';
-                                razas.forEach(raza => {
-                                    const option = document.createElement('option');
-                                    option.value = raza.id;
-                                    option.text = raza.nombre;
-                                    razaSelect.appendChild(option);
-                                });
-                            });
+
+                        const razas = {!! json_encode($razasPorEspecie) !!}[especieId] || [];
+
+                        razaSelect.innerHTML = '';
+                        razaSelect.innerHTML = '<option value="">Escoge una raza</option>';
+
+                        razas.forEach(raza => {
+                            const option = document.createElement('option');
+                            option.value = raza.id;
+                            option.text = raza.nombre;
+                            razaSelect.appendChild(option);
+                        });
                     }
-
-
                     actualizarRazas(1);
                 </script>
-                <div class="checkbox-container">
-                    <input type="checkbox" id="no-especificar-fecha" name="no_especificar_fecha">
-                    <label for="no-especificar-fecha">No especificar fecha de nacimiento</label>
+                <div class="grupo-form-mascota">
+                    <label for="nacimiento">Nacimiento*</label>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="no-especificar-fecha" name="no_especificar_fecha">
+                        <label for="no-especificar-fecha">No especificar fecha de nacimiento</label>
+                    </div>
+                    <input type="date" id="nacimiento" name="nacimiento" max="{{ date('Y-m-d') }}" required>
+                    @error('nacimiento')
+                        <div class="error-message">{{ $message }}</div>
+                        <p class="error-message">{{ $message }}</p>
+                    @enderror
                 </div>
-                <label for="nacimiento">Nacimiento*</label>
-                <input type="date" id="nacimiento" name="nacimiento" max="{{ date('Y-m-d') }}" required>
-                @error('nacimiento')
-                    <div class="error-message">{{ $message }}</div>
-                    <p class="error-message">{{ $message }}</p>
-                @enderror
+                <div class="cargar-foto-mascota">
+                    <label for="foto">Foto de tu peludo (opcional):</label>
 
-
-                <label for="foto">Foto de tu peludo (opcional):</label>
-
-                <input type="file" id="foto" name="foto" accept="image/*">
-                <div id="imagen-preview"></div>
-                <input type="hidden" id="imagen-url" name="imagen_url">
-
+                    <input type="file" id="foto" name="foto" accept="image/*">
+                    <div id="imagen-preview"></div>
+                    <input type="hidden" id="imagen-url" name="imagen_url">
+                </div>
                 <button type="submit" class="boton-guardar-mascota">Agregar mascota</button>
             </form>
 

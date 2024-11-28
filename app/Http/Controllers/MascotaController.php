@@ -24,11 +24,19 @@ class MascotaController extends Controller
 
     return view('mascotas', ['mascotas' => $mascotas]);
 }
-    public function crear()
+public function crear()
 {
-    $razas = Raza::all();
     $especies = Especie::all();
-    return view('nuevamascota', compact('razas', 'especies'));
+    $razasPorEspecie = [];
+
+    foreach ($especies as $especie) {
+        $razas = Raza::where('especie_id', $especie->id)
+            ->orderByRaw("CASE WHEN nombre = 'Raza común o mestiza' THEN 0 ELSE 1 END, nombre ASC")
+            ->get();
+        $razasPorEspecie[$especie->id] = $razas;
+    }
+
+    return view('nuevamascota', compact('razasPorEspecie', 'especies'));
 }
 
     public function guardar(Request $request)

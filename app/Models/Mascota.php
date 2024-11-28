@@ -37,6 +37,7 @@ class Mascota extends Model
 
     public function getEdadStringAttribute()
     {
+        
 
         $nacimiento = Carbon::parse($this->attributes['nacimiento']);
         $ahora = Carbon::now();
