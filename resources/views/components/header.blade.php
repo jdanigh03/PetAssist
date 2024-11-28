@@ -295,8 +295,15 @@ nav li a:hover {
     <div class="container-header">
         <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
         @if (auth()->check() && auth()->user()->role != 'admin' && auth()->user()->role != 'veterinario')
-    {{-- Muestra "Go Can" si no aparece el bloque de navegación --}}
-    @if (!request()->is('petshop') && !request()->is('contactos') && !request()->is('citas-agenda') && !request()->is('mascotas'))
+    {{-- Muestra "Go Can" solo si no están activos los bloques de navegación --}}
+    @if (
+        !request()->is('petshop') && 
+        !request()->is('contactos') && 
+        !request()->is('citas-agenda') && 
+        !request()->is('mascotas') && 
+        !request()->is('perfilusuario') && 
+        !request()->is('logout')
+    )
         <a href="/" class="logoTa">Go Can</a>
     @endif
 @elseif (!auth()->check() || !isset(auth()->user()->role))
@@ -306,7 +313,6 @@ nav li a:hover {
         <nav class="navegacion-header">
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
-                    <a href="/" class="">Inicio</a>
                     <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control
                         inventario</a>
                     <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">
@@ -316,11 +322,9 @@ nav li a:hover {
                         Control de personal
                     </a>
                 @elseif (auth()->user()->role == 'veterinario')
-                    <a href="/" class="">Inicio</a>
                     <a href="/inicio-veterinario"
                         class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>
                 @else
-                    <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
                     <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
                     <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
