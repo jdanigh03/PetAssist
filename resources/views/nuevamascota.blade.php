@@ -211,6 +211,16 @@
             </form>
 
             <script>
+                const noEspecificarFechaCheckbox = document.getElementById('no-especificar-fecha');
+                const nacimientoInput = document.getElementById('nacimiento');
+
+                noEspecificarFechaCheckbox.addEventListener('change', () => {
+                    nacimientoInput.required = !noEspecificarFechaCheckbox
+                    .checked;
+                    nacimientoInput.disabled = noEspecificarFechaCheckbox
+                    .checked;
+                });
+
                 const imagenInput = document.getElementById('foto');
                 const imagenUrlInput = document.getElementById('imagen-url');
                 const imagenPreview = document.getElementById('imagen-preview');

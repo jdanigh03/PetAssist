@@ -46,13 +46,13 @@ public function crear()
             'especie' => 'required|exists:especies,id',
             'nombre' => 'required|string|max:255',
             'raza' => 'required|exists:razas,id',
-            'nacimiento' => 'required|date',
+            'nacimiento' => 'nullable|date',
             'imagen_url' => 'nullable|string', 
         ]);
 
         $mascota = new Mascota();
         $mascota->nombre = $validatedData['nombre'];
-        $mascota->nacimiento = $validatedData['nacimiento'];
+        $mascota->nacimiento = $validatedData['nacimiento'] ?? null;
         $mascota->raza_id = $validatedData['raza'];
         $mascota->user_id = $validatedData['user_id'];
         $mascota->foto = $request->hasFile('foto') ? $request->file('foto')->store('public/mascotas') : $validatedData['imagen_url'];
