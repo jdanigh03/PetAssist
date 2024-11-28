@@ -173,3 +173,7 @@ Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusu
 Route::get('/aviso-privacidad', [PageController::class, 'avisoPrivacidad'])->name('aviso-privacidad');
 Route::get('/terminos-condiciones', [PageController::class, 'terminosCondiciones'])->name('terminos-condiciones');
 Route::get('/producto/{id}', [ProductController::class, 'verProducto'])->name('producto.ver');
+
+Route::get('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
+
+Route::get('/generar-pdf', [CitaController::class, 'generarPDF']);
