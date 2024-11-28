@@ -214,6 +214,15 @@
         font-size: 14px;
     }
 
+    .perfil-nombre {
+        color: #2F4F4F;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        text-decoration: none;
+        color: #2F4F4F;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
 
     @media (max-width: 768px) {
         .navegacion-header {
@@ -241,7 +250,8 @@
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
                     <a href="/" class="">Inicio</a>
-                    <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
+                    <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control
+                        inventario</a>
                     <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">
                         Control de clientes
                     </a>
@@ -250,7 +260,8 @@
                     </a>
                 @elseif (auth()->user()->role == 'veterinario')
                     <a href="/" class="">Inicio</a>
-                    <a href="/inicio-veterinario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>
+                    <a href="/inicio-veterinario"
+                        class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>
                 @else
                     <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
@@ -295,6 +306,10 @@
                     <img src="https://www.clipartmax.com/png/full/77-773806_call-610-465-white-hamburger-menu-icon-png.png"
                         alt="">
                 </div>
+                @if (auth()->check())
+                    <p class="perfil-nombre">Hola,
+                        {{ auth()->user()->name }}</p>
+                @endif
                 <div class="profile-container">
                     <img src="{{ auth()->user()->profile_picture ?? '/img/perfilPredeterminado.png' }}"
                         alt="Foto de perfil" class="profile-picture" onclick="toggleProfileMenu()">

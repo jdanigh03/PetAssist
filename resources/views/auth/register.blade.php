@@ -33,7 +33,7 @@
         .form-group {
             display: flex;
             flex-direction: column;
-            align-items: center
+            align-items: center;
         }
 
         .form-group label {
