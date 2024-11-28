@@ -119,5 +119,25 @@ public function crear()
 
     return view('veterinario.consultarHistorialMascota', compact('mascotas'));
 }
+public function consultar(Request $request)
+{
+    // Iniciar la consulta sin restricción de usuario autenticado
+    $query = Mascota::query();
+
+    // Si hay un término de búsqueda, aplicamos los filtros
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+        $query->where('nombre', 'like', "%{$searchTerm}%")
+              ->orWhereHas('raza', function($q) use ($searchTerm) {
+                  $q->where('nombre', 'like', "%{$searchTerm}%");
+              });
+    }
+
+    // Obtener todas las mascotas que coincidan con la búsqueda
+    $mascotas = $query->with('raza', 'raza.especie')->get();
+
+    return view('admin.controldemascotasadmin', compact('mascotas'));
+}
+
 }
 

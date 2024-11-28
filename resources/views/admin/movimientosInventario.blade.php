@@ -142,13 +142,6 @@ h1 {
     height: 40px;
 }
 
-.form-busqueda button:hover {
-    background-color: #556b2f;
-}
-
-.form-busqueda button span {
-    font-size: 1.2rem;
-}
 
     </style>
 @endsection

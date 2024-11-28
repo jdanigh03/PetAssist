@@ -28,7 +28,7 @@
             </a>
 
             <!-- Botón para Control de clientes -->
-            <a href="/control-clientes">
+            <a href="/control-mascotas">
                 <div class="container-img-adm">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Control de clientes">
                 </div>

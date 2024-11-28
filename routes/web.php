@@ -182,3 +182,5 @@ Route::post('/generar-pdf', [CitaController::class, 'generarPDF'])->name('admin.
 Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
 
 Route::get('/movimientos', [ProductController::class, 'verMovimientos'])->name('productos.movimientos');
+// Ruta para la vista de control de mascotas
+Route::get('/consultar-mascotas', [MascotaController::class, 'consultar'])->name('admin.controldemascotasadmin');
