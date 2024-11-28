@@ -1,12 +1,12 @@
 <style>
-   :root {
-    --primary: #2f4f4f;
-    --secondary: #f5f5dc;
-    --text-primary: #333;
-    --text-secondary: #555;
-}
+    :root {
+        --primary: #2f4f4f;
+        --secondary: #f5f5dc;
+        --text-primary: #333;
+        --text-secondary: #555;
+    }
 
-   body {
+    body {
         padding-top: 50px;
         font-family: 'Poppins', sans-serif;
 
@@ -222,45 +222,46 @@
     }
 
     nav {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 15px;
-    text-decoration: none; 
-}
+    nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 15px;
+        text-decoration: none;
+    }
 
-nav li {
-    margin-left: 0;
-}
+    nav li {
+        margin-left: 0;
+    }
 
-nav li a {
-    font-size: 0.95rem;
-    color: var(--primary);
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-    text-decoration: none; 
-}
+    nav li a {
+        font-size: 0.95rem;
+        color: var(--primary);
+        padding: 5px 10px;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+        text-decoration: none;
+    }
 
-nav li a:hover {
-    background-color: rgba(47, 79, 79, 0.1);
-    color: var(--text-secondary);
-    text-decoration: none; 
-}
-.logoTa {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--primary);
-    margin-left: 10px;
-    text-decoration: none; 
-}
+    nav li a:hover {
+        background-color: rgba(47, 79, 79, 0.1);
+        color: var(--text-secondary);
+        text-decoration: none;
+    }
+
+    .logoTa {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--primary);
+        margin-left: 10px;
+        text-decoration: none;
+    }
 
     .perfil-nombre {
         color: #2F4F4F;
@@ -294,14 +295,18 @@ nav li a:hover {
     <div class="container-header">
         <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
         @if (auth()->check() && auth()->user()->role != 'admin' && auth()->user()->role != 'veterinario')
-    {{-- Muestra "Go Can" si no aparece el bloque de navegación --}}
-    @if (!request()->is('petshop') && !request()->is('contactos') && !request()->is('citas-agenda') && !request()->is('mascotas'))
-        <a href="/" class="logoTa">Go Can</a>
-    @endif
-@elseif (!auth()->check() || !isset(auth()->user()->role))
-    {{-- Oculta "Go Can" con clase hidden --}}
-    <a href="/" class="logoTa hidden">Go Can</a>
-@endif
+            {{-- Muestra "Go Can" si no aparece el bloque de navegación --}}
+            <a href="/" class="logoTa">
+                @if (Route::currentRouteName() == 'welcome' ||
+                        Route::currentRouteName() == 'login.index' ||
+                        Route::currentRouteName() == 'register.index')
+                    Go Can
+                @endif
+            </a>
+        @elseif (!auth()->check() || !isset(auth()->user()->role))
+            {{-- Oculta "Go Can" con clase hidden --}}
+            <a href="/" class="logoTa hidden">Go Can</a>
+        @endif
         <nav class="navegacion-header">
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
@@ -325,8 +330,6 @@ nav li a:hover {
                     <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
                 @endif
             @else
-        
-
             @endif
         </nav>
 
@@ -382,20 +385,21 @@ nav li a:hover {
                     </div>
                 </div>
             @else
-            <nav>
-            <ul>
-        <li><a href="{{ url('/#servicios') }}">Servicios</a></li>
-        <li><a href="{{ url('/#nosotros') }}">Nosotros</a></li>
-        <li><a href="{{ url('/#petshop') }}">Petshop</a></li>
-        <li><a href="{{ url('/#contacto') }}">Contacto</a></li>
-             </ul>
-                @if (auth()->check())
-                    <button class="btn-submit" onclick="window.location.href='/petshop'">Ingresar a PetAssist</button>
-                @else
-                    <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
-                    <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
-                @endif
-            </nav>
+                <nav>
+                    <ul>
+                        <li><a href="{{ url('/#servicios') }}">Servicios</a></li>
+                        <li><a href="{{ url('/#nosotros') }}">Nosotros</a></li>
+                        <li><a href="{{ url('/#petshop') }}">Petshop</a></li>
+                        <li><a href="{{ url('/#contacto') }}">Contacto</a></li>
+                    </ul>
+                    @if (auth()->check())
+                        <button class="btn-submit" onclick="window.location.href='/petshop'">Ingresar a
+                            PetAssist</button>
+                    @else
+                        <button class="btn-submit" onclick="window.location.href='/register'">Registrarse</button>
+                        <button class="btn-submit" onclick="window.location.href='/login'">Iniciar Sesión</button>
+                    @endif
+                </nav>
             @endif
         </div>
     </div>
