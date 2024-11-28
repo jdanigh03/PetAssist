@@ -21,6 +21,7 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             justify-content: center;
+            justify-items: center;
         }
 
         .container-mascotas {
@@ -184,10 +185,11 @@
                     </div>
                 @endforeach
 
+                <div class="container-mascotas">
+                    <h2 class="titulo-mascotas">Agrega una nueva mascota</h2>
+                    <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
+                </div>
             @endif
-        </div>
-        <div class="container-mascotas">
-            <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
         </div>
     </div>
 
