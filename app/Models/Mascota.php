@@ -37,6 +37,9 @@ class Mascota extends Model
 
     public function getEdadStringAttribute()
     {
+        if (!$this->attributes['nacimiento']) { // Verificar si nacimiento es nulo
+            return "No especificada";
+        }
 
         $nacimiento = Carbon::parse($this->attributes['nacimiento']);
         $ahora = Carbon::now();

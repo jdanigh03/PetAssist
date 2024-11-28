@@ -140,11 +140,13 @@ nav li a:hover {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 20px;
+    color: var(--secondary);
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 30px;
+    color: var(--secondary);
 }
 
 .hero button {
@@ -252,7 +254,7 @@ nav li a:hover {
 }
 
 .servicio-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: -100%;
     left: 0;
@@ -399,7 +401,7 @@ nav li a:hover {
     margin-top: 20px;
 }
 
-#contactoNombre{
+#contactoNombre {
     color: var(--secondary);
 }
 
@@ -457,7 +459,6 @@ nav li a:hover {
     -ms-overflow-style: none;
 }
 
-
 .product-card {
     scroll-snap-align: start;
     min-width: 250px;
@@ -496,7 +497,6 @@ nav li a:hover {
     border-radius: 5px;
 }
 
-
 .contacto .label-contacto {
     display: flex;
     flex-direction: row;
@@ -506,7 +506,7 @@ nav li a:hover {
     margin-top: 10px;
 }
 
-.input-checkbox-contacto{
+.input-checkbox-contacto {
     width: 20px;
 }
 @media (max-width: 768px) {

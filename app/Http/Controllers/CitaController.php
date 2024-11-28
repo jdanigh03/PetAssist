@@ -173,6 +173,21 @@ public function mostrarHistorial()
     // Pasar $citas a la vista
     return view('pantallahistorialusuariosmodificar', compact('citas'));
 }
+public function generarReportes()
+{
+    $citas = Cita::with('mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario')->get();
 
+    return view('admin.generarReportes', compact('citas'));
+}
+
+public function generarPDF()
+{
+    $citas = Cita::with('mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario')->get();
+
+    // Aquí generamos el PDF utilizando la vista 'admin.generarReportes'
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.generarReportes', compact('citas'));
+
+    return $pdf->download('reporte_citas.pdf');
+}
 
 }

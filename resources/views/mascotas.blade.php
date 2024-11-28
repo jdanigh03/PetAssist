@@ -58,7 +58,6 @@
             background-color: #f5f5dc;
             padding: 1.5rem;
             margin-top: 20px;
-            border: 2px solid #2f4f4f;
             border-radius: 8px;
             margin-bottom: 20px;
         }
