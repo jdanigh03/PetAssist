@@ -119,5 +119,18 @@ public function crear()
 
     return view('veterinario.consultarHistorialMascota', compact('mascotas'));
 }
+public function todasMascotas()
+{
+    $mascotas = Mascota::with(['raza', 'raza.especie', 'user'])->get();
+
+        $mascotas = $mascotas->map(function ($mascota) {
+            $mascota->nacimiento_formateado = $mascota->nacimiento 
+                ? Carbon::parse($mascota->nacimiento)->format('d/m/Y') 
+                : 'No especificado'; // Formatear la fecha o mostrar "No especificado"
+            return $mascota;
+        });
+
+    return view('admin.controldemascotas', compact('mascotas'));
+}
 }
 

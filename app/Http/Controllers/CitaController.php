@@ -174,6 +174,24 @@ public function mostrarHistorial()
     // Pasar $citas a la vista
     return view('pantallahistorialusuariosmodificar', compact('citas'));
 }
+
+public function historialCitas()
+{
+    $citas = Cita::with(['mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario', 'detalle'])
+        ->where('Fecha_Hora', '<', now()) // Filtrar citas anteriores a la fecha actual
+        ->orderBy('Fecha_Hora', 'desc')
+        ->get();
+
+        $citas = $citas->map(function ($cita) {
+            $cita->fecha = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y');
+            $cita->hora = Carbon::parse($cita->Fecha_Hora)->format('H:i');
+            return $cita;
+        });
+
+    return view('citas.historial', compact('citas'));
+}
+
+
 public function generarReportes(Request $request)
 {
     // Si el usuario ha seleccionado citas
