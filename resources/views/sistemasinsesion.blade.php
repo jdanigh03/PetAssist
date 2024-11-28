@@ -6,7 +6,7 @@
         margin: 0;
     }
 
-    .container-sin-sesion {
+    .container-sin-sesion{
         margin: 3rem auto;
         background-color: #f5f5dc;
         padding: 2rem;
@@ -14,8 +14,7 @@
         border-radius: 8px;
         min-width: 350px;
         max-width: 600px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border: 2px solid black;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
         text-align: center;
         display: flex;
         flex-direction: column;

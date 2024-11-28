@@ -161,7 +161,6 @@
 
         .container {
             background-color: #78D4CC;
-            border: 3px solid black;
             border-radius: 20px;
             margin: 2rem auto;
             padding: 2rem;
