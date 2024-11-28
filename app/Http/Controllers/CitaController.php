@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Mascota;
 use App\Models\DetalleCita;
+use Mpdf\Mpdf;
 
 class CitaController extends Controller
 {
@@ -173,21 +174,55 @@ public function mostrarHistorial()
     // Pasar $citas a la vista
     return view('pantallahistorialusuariosmodificar', compact('citas'));
 }
-public function generarReportes()
+public function generarReportes(Request $request)
 {
+    // Si el usuario ha seleccionado citas
+    if ($request->has('citas')) {
+        // Obtener las citas seleccionadas
+        $citasSeleccionadas = Cita::with('mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario')
+                                  ->whereIn('id', $request->input('citas'))
+                                  ->get();
+
+        // Pasamos las citas seleccionadas a la vista de reporte
+        return view('admin.paginaReporte', [
+            'citas' => $citasSeleccionadas,
+            'fechaSolicitud' => Carbon::now()->format('d/m/Y H:i'),
+            'solicitante' => auth()->user()->name,
+        ]);
+    }
+
+    // Si no hay citas seleccionadas, mostrar todas las citas disponibles
     $citas = Cita::with('mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario')->get();
 
     return view('admin.generarReportes', compact('citas'));
 }
 
-public function generarPDF()
+public function generarPDF(Request $request)
 {
-    $citas = Cita::with('mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario')->get();
+    // Obtener las citas seleccionadas del formulario
+    $citasIds = $request->input('citas');
+    
+    // Obtener las citas seleccionadas de la base de datos
+    $citas = Cita::with('mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario')
+                 ->whereIn('id', explode(',', $citasIds))
+                 ->get();
 
-    // Aquí generamos el PDF utilizando la vista 'admin.generarReportes'
-    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('admin.generarReportes', compact('citas'));
+    // Generar el HTML para el PDF
+    $html = view('admin.paginaReporte', [
+        'citas' => $citas,
+        'fechaSolicitud' => Carbon::now()->format('d/m/Y H:i'),
+        'solicitante' => auth()->user()->name,
+    ])->render();
 
-    return $pdf->download('reporte_citas.pdf');
+    // Crear una instancia de Mpdf
+    // $mpdf = new Mpdf();
+
+    // Escribir el HTML en el PDF
+    // $mpdf->WriteHTML($html);
+
+    // // Descargar el PDF
+    // return $mpdf->Output('reporte_citas.pdf', 'D');
 }
+
 
 }

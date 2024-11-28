@@ -98,6 +98,7 @@ Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
 Route::get('/petshop/categoria/{categoria}', [PetshopController::class, 'productosPorCategoria'])->name('petshop.categoria');
 Route::get('/producto/{producto}', [PetshopController::class, 'mostrarProducto'])->name('petshop.mostrarProducto');
+Route::get('/petshop/buscar', [PetshopController::class, 'buscar'])->name('petshop.buscar');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -176,4 +177,7 @@ Route::get('/producto/{id}', [ProductController::class, 'verProducto'])->name('p
 
 Route::get('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
 
-Route::get('/generar-pdf', [CitaController::class, 'generarPDF']);
+Route::post('/generar-pdf', [CitaController::class, 'generarPDF'])->name('admin.generarPDF');
+
+Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
+

@@ -1,115 +1,145 @@
-<!-- resources/views/admin/generarReportes.blade.php -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Citas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+@extends('layouts.app')
+
+@section('title', 'Generar reporte')
+
+@section('content')
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f6f9;
+            background-color: #f4f7fc;
         }
+
+        /* Contenedor principal para dar espacio entre navbar y contenido */
+        .content-wrapper {
+            margin-top: 50px; /* Espacio entre el navbar y el contenido */
+            margin-bottom: 60px; /* Espacio entre el contenido y el footer */
+            padding: 20px;
+        }
+
         h1 {
             text-align: center;
-            margin: 30px 0;
+            margin-bottom: 30px;
             color: #333;
-            font-weight: 700;
         }
-        .container {
-            width: 95%;
-            max-width: 1200px;
+
+        .table-container {
             margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            max-width: 90%;
+            overflow-x: auto;
         }
+
         .table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 14px;
+            background-color: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
+
         .table th, .table td {
             padding: 12px 15px;
-            border: 1px solid #ddd;
             text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #2f4f4f;
+            color: white;
+            font-weight: bold;
+        }
+
+        .table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .table td {
             vertical-align: middle;
         }
-        .table th {
-            background-color: #4CAF50;
-            color: white;
-            font-weight: bold;
+
+        .table input[type="checkbox"] {
+            margin: 0;
         }
-        .table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        .table tr:hover {
-            background-color: #f1f1f1;
-        }
-        .table td {
-            font-size: 13px;
-            color: #555;
-        }
-        .btn-pdf {
-            display: inline-block;
-            margin: 20px auto;
-            padding: 12px 25px;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
+
+        /* Estilo del formulario */
+        .form-container {
             text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .btn-pdf:hover {
-            background-color: #45a049;
-        }
-        .table-container {
             margin-top: 30px;
         }
+
+        .form-container button {
+            padding: 12px 20px;
+            background-color:#2f4f4f;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .form-container button:focus {
+            outline: none;
+        }
+
+        .form-container button:active {
+            background-color: #388e3c;
+        }
+
+        /* Asegurarse que la tabla no se desborde */
+        .table-container {
+            margin-top: 20px;
+            padding-bottom: 20px;
+        }
     </style>
-</head>
-<body>
 
-    <div class="container">
-        <h1>Reporte de Citas</h1>
+    <div class="content-wrapper">
+        <h1>Selecciona las Citas para el Reporte</h1>
 
-        <a href="{{ url('/generar-pdf') }}" class="btn-pdf">Generar PDF</a>
-
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Nombre del Usuario</th>
-                        <th>Mascota</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Veterinario</th>
-                        <th>Motivo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($citas as $cita)
+        <form method="POST" action="{{ route('admin.generarReportes') }}">
+            @csrf
+            <div class="table-container">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>{{ $cita->user->name }}</td>
-                            <td>{{ $cita->mascota->nombre }}</td>
-                            <td>{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('d/m/Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('H:i') }}</td>
-                            <td>{{ $cita->veterinario->name }}</td>
-                            <td>{{ $cita->motivo }}</td>
+                            <th><input type="checkbox" id="select-all"> Seleccionar Todo</th>
+                            <th>Nombre del Usuario</th>
+                            <th>Mascota</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Veterinario</th>
+                            <th>Motivo</th>
                         </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach ($citas as $cita)
+                            <tr>
+                                <td><input type="checkbox" name="citas[]" value="{{ $cita->id }}"></td>
+                                <td>{{ $cita->user->name }}</td>
+                                <td>{{ $cita->mascota->nombre }}</td>
+                                <td>{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('d/m/Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('H:i') }}</td>
+                                <td>{{ $cita->veterinario->name }}</td>
+                                <td>{{ $cita->motivo }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="form-container">
+                <button type="submit">Generar Reporte</button>
+            </div>
+        </form>
     </div>
 
-</body>
-</html>
+    <script>
+        // Seleccionar todo o desmarcar todo
+        document.getElementById('select-all').addEventListener('click', function(e) {
+            var checkboxes = document.querySelectorAll('input[name="citas[]"]');
+            for (var checkbox of checkboxes) {
+                checkbox.checked = e.target.checked;
+            }
+        });
+    </script>
+@endsection

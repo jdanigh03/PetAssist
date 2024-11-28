@@ -8,6 +8,7 @@
 body {
     padding-top: 50px;
         font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
 
 }
 
@@ -29,6 +30,7 @@ header {
     top: 0;
     z-index: 1000;
     transition: background-color 0.3s, padding 0.3s;
+    height: 50px;
 }
 
 header img 
@@ -60,7 +62,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding-right: 30px;
+    padding-right: 38px;
 }
 
 nav ul {
@@ -117,7 +119,7 @@ nav li a:hover {
     padding-top: 250px;
     text-align: center;
     height: 400px;
-    top: 77px;
+    top: 70px;
     color: white;
 }
 
