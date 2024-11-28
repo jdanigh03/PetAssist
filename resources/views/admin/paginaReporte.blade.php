@@ -46,7 +46,7 @@
             border-radius: 5%;
         }
         .btn-container {
-            display: block; 
+            display: block;
             border-radius: 5%;
         }
     </style>
@@ -94,9 +94,10 @@
         <p>Fecha y hora de solicitud: {{ $fechaSolicitud }}</p>
         <p>Persona que solicitó el reporte: {{ $solicitante }}</p>
         <!-- Botones para descargar los reportes -->
-        <div class="btn-container">
+        <div class="btn-container" id="botonesGeneracion">
             <button id="btnGenerarPDF">Generar PDF</button>
             <button id="btnGenerarExcel">Generar Excel</button>
+            <button id="btnGenerarPDFExcel">Generar PDF y Excel</button>
         </div>
     </div>
 
@@ -105,59 +106,84 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
 
     <script>
-        // Función para ocultar los botones
+        // Función que oculta los botones de generación
         function ocultarBotones() {
-            document.querySelector('.btn-container').style.display = 'none';
+            document.getElementById('botonesGeneracion').style.display = 'none';
         }
 
-        // Generar PDF usando html2pdf
-        document.getElementById('btnGenerarPDF').addEventListener('click', function() {
-            ocultarBotones(); // Ocultar los botones
+        // Función que genera el reporte y redirige a la página anterior
+        function generarYVolver(elemento, opciones, tipo) {
+            ocultarBotones(); // Ocultar los botones al generar el reporte
 
+            // Generar PDF o Excel según el tipo
+            if (tipo === 'pdf') {
+                html2pdf().from(elemento).set(opciones).save();
+            } else if (tipo === 'excel') {
+                const wb = XLSX.utils.book_new();
+                const ws_data = [
+                    ["Reporte de Citas", "", "", ""], // Título del reporte
+                    ["Fecha y hora de solicitud:", "{{ $fechaSolicitud }}"],
+                    ["Persona que solicitó el reporte:", "{{ $solicitante }}"],
+                    [],
+                    ["Nombre del Usuario", "Mascota", "Fecha", "Hora", "Veterinario", "Motivo"] // Encabezado de la tabla
+                ];
+
+                // Añadir los datos de las citas
+                @foreach ($citas as $cita)
+                    ws_data.push([ 
+                        "{{ $cita->user->name }}", 
+                        "{{ $cita->mascota->nombre }}", 
+                        "{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('d/m/Y') }}", 
+                        "{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('H:i') }}", 
+                        "{{ $cita->veterinario->name }}", 
+                        "{{ $cita->motivo }}" 
+                    ]);
+                @endforeach
+
+                // Crear una hoja con todos los datos
+                const ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+                // Configurar el libro y la hoja
+                XLSX.utils.book_append_sheet(wb, ws, "Citas");
+
+                // Escribir el archivo Excel
+                XLSX.writeFile(wb, 'reporte_completo_citas.xlsx');
+            }
+
+            // Después de 2 segundos, volver a la página anterior
+            setTimeout(function() {
+                window.history.back();
+            }, 2000); // 2 segundos
+        }
+
+        // Generar solo PDF
+        document.getElementById('btnGenerarPDF').addEventListener('click', function() {
             const element = document.body; // Captura todo el cuerpo de la página
-            const options = {
+            const pdfOptions = {
                 filename: 'reporte_completo_citas.pdf',
                 html2canvas: { scale: 2 },
                 jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
                 margin: 10
             };
-            html2pdf().from(element).set(options).save();
+            generarYVolver(element, pdfOptions, 'pdf');
         });
 
-        // Generar Excel usando SheetJS
+        // Generar solo Excel
         document.getElementById('btnGenerarExcel').addEventListener('click', function() {
-            ocultarBotones(); // Ocultar los botones
+            generarYVolver(document.body, null, 'excel');
+        });
 
-            // Crear un libro nuevo y agregar la hoja con el reporte
-            const wb = XLSX.utils.book_new();
-            const ws_data = [
-                ["Reporte de Citas", "", "", ""], // Título del reporte
-                ["Fecha y hora de solicitud:", "{{ $fechaSolicitud }}"],
-                ["Persona que solicitó el reporte:", "{{ $solicitante }}"],
-                [],
-                ["Nombre del Usuario", "Mascota", "Fecha", "Hora", "Veterinario", "Motivo"] // Encabezado de la tabla
-            ];
-
-            // Añadir los datos de las citas
-            @foreach ($citas as $cita)
-                ws_data.push([
-                    "{{ $cita->user->name }}",
-                    "{{ $cita->mascota->nombre }}",
-                    "{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('d/m/Y') }}",
-                    "{{ \Carbon\Carbon::parse($cita->Fecha_Hora)->format('H:i') }}",
-                    "{{ $cita->veterinario->name }}",
-                    "{{ $cita->motivo }}"
-                ]);
-            @endforeach
-
-            // Crear una hoja con todos los datos
-            const ws = XLSX.utils.aoa_to_sheet(ws_data);
-
-            // Configurar el libro y la hoja
-            XLSX.utils.book_append_sheet(wb, ws, "Citas");
-
-            // Escribir el archivo Excel
-            XLSX.writeFile(wb, 'reporte_completo_citas.xlsx');
+        // Generar tanto PDF como Excel
+        document.getElementById('btnGenerarPDFExcel').addEventListener('click', function() {
+            const element = document.body; // Captura todo el cuerpo de la página
+            const pdfOptions = {
+                filename: 'reporte_completo_citas.pdf',
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+                margin: 10
+            };
+            generarYVolver(element, pdfOptions, 'pdf');
+            generarYVolver(document.body, null, 'excel');
         });
     </script>
 
