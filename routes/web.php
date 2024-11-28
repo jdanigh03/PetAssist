@@ -176,4 +176,7 @@ Route::get('/producto/{id}', [ProductController::class, 'verProducto'])->name('p
 
 Route::get('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
 
-Route::get('/generar-pdf', [CitaController::class, 'generarPDF']);
+Route::post('/generar-pdf', [CitaController::class, 'generarPDF'])->name('admin.generarPDF');
+
+Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
+
