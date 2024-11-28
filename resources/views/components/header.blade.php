@@ -101,7 +101,7 @@
         display: flex;
         align-items: center;
         gap: 20px;
-        padding-right: 30px;
+        padding-right: 0;
     }
 
     .noti {
@@ -225,7 +225,6 @@
     display: flex;
     align-items: center;
     gap: 20px;
-    padding-right: 30px;
 }
 
 nav ul {
