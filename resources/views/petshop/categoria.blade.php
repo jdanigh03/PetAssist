@@ -36,7 +36,6 @@
             display: flex;
             flex-direction: row;
             background-color: #F5F5DC;
-            border: 2px solid black;
             border-radius: 10px;
             padding: 10px;
             width: 30%;
@@ -59,6 +58,20 @@
             flex-direction: column;
             font-size: 14px;
             margin-left: 20px;
+        }
+        .sugerencia a{
+            background-color: #2f4f4f;
+            color: #FFFFFF;
+            padding: 0.7rem 1rem;
+            margin-top: 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 
