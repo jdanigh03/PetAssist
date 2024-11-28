@@ -15,7 +15,7 @@
 <body>
     <header>
         <div class="container">
-            <img src="{{ asset('img/logoGoCan.png') }}" alt="">
+            <img src="{{ asset('img/Logo PetAssist 2.webp') }}" alt="">
             <a href="/" class="logo">Go Can</a>
         </div>
         <div class="container-nav-inicio">
