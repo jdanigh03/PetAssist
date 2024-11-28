@@ -19,10 +19,10 @@ Route::get('/petshop', function () {
 });
 
 Route::get('/control-citas', [CitaController::class, 'mostrarHistorial'])->name('citas.historial');
+Route::get('/historial-citas', [CitaController::class, 'historialCitas'])->name('citas.historial');
+Route::get('/controldemascotas', [MascotaController::class, 'todasMascotas'])->name('mascotas.todas'); 
 
-Route::get('/controldemascotas', function () {
-    return view('controldemascotasadmin');
-});
+
 
 Route::get('/historialusuarios', function () {
     return view('pantallahistorialusuarios');

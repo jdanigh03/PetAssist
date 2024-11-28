@@ -1,23 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Admin Dashboard')
+@section('title', 'Historial de Citas')
 
 @section('content')
-
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            height: 100%;
-            padding-top: 200px;
-        }
-
-        .container2 {
+        .historial-citas-layout {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
@@ -31,7 +18,6 @@
             margin-bottom: 50px;
         }
 
-        /* Título */
         h1 {
             font-size: 2rem;
             color: #2c3e50;
@@ -118,45 +104,72 @@
                 padding: 20px;
             }
         }
-    </style>
-    </head>
 
-    <div class="container2">
-        <h1>Control de Citas</h1>
-        <table class="historial-citas">
-            <thead>
-                <tr>
-                    <th>Nombre del Usuario</th>
-                    <th>Mascota</th>
-                    <th>Fecha</th>
-                    <th>Hora</th>
-                    <th>Veterinario</th>
-                    <th>Motivo</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($citas as $cita)
+        .tabla-citas {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            /* Agregar margen inferior */
+        }
+
+        .tabla-citas th,
+        .tabla-citas td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .tabla-citas th {
+            background-color: #2c3e50;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    </style>
+    <div class="historial-citas-layout">
+
+        <h1>Historial de Citas</h1>
+
+        @if ($citas->isEmpty())
+            <p>No hay citas anteriores a la fecha actual.</p>
+        @else
+            <table class="tabla-citas">
+                <thead>
                     <tr>
-                        <td>{{ $cita->user->name ?? 'Usuario no disponible' }}</td>
-                        <td>{{ $cita->mascota->nombre ?? 'Mascota no disponible' }}</td>
-                        <td>{{ $cita->fecha }}</td>
-                        <td>{{ $cita->hora }}</td>
-                        <td>{{ $cita->veterinario->name ?? 'Veterinario no disponible' }}</td>
-                        <td>{{ $cita->motivo }}</td>
-                        <td class="action-buttons">
-                            <button class="btn-modificar">Modificar</button>
-                            <button class="btn-eliminar">Eliminar</button>
-                        </td>
+                        <th>Mascota</th>
+                        <th>Especie</th>
+                        <th>Raza</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Motivo</th>
+                        <th>Veterinario</th>
+                        <th>Tratamiento</th>
+                        <th>Medicamentos</th>
+                        <th>Observaciones</th>
+                        <th>Pruebas Realizadas</th>
                     </tr>
-                @empty
-                    <tr>
-                        <p>No hay citas para mostrar.</p>
-                        <td colspan="7">No hay citas para mostrar.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($citas as $cita)
+                        <tr>
+                            <td>{{ $cita->mascota->nombre }}</td>
+                            <td>{{ $cita->mascota->raza->especie->nombre }}</td>
+                            <td>{{ $cita->mascota->raza->nombre }}</td>
+                            <td>{{ $cita->fecha }}</td>
+                            <td>{{ $cita->hora }}</td>
+                            <td>{{ $cita->motivo }}</td>
+                            <td>{{ $cita->veterinario->name ?? 'No asignado' }}</td>
+                            <td>{{ $cita->detalle->tratamiento ?? 'No registrado' }}</td>
+                            <td>{{ $cita->detalle->medicamentos ?? 'No registrado' }}</td>
+                            <td>{{ $cita->detalle->observaciones ?? 'No registrado' }}</td>
+                            <td>{{ $cita->detalle->pruebas_realizadas ?? 'No registrado' }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
     </div>
 
 @endsection

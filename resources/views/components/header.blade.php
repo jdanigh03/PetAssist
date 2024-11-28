@@ -311,7 +311,7 @@
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
                     <a href="/" class="">Inicio</a>
-                    <a href="/admin" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control
+                    <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control
                         inventario</a>
                     <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">
                         Control de clientes
