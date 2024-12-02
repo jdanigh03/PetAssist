@@ -38,34 +38,74 @@
             margin-bottom: 20px;
         }
 
+        .form-busqueda {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 5px;
+        }
+
+        .form-busqueda input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            height: 40px;
+        }
+
+        .form-busqueda button {
+            padding: 10px 20px;
+            background-color: #2f4f4f;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            height: 40px;
+        }
+
+        .form-busqueda button:hover {
+            background-color: #556b2f;
+        }
+
+        .form-busqueda button span {
+            font-size: 1.2rem;
+        }
+
         /* Tabla */
         .historial-citas {
-            margin-top: 20px;
-            border-collapse: collapse;
             width: 100%;
+            border-collapse: collapse;
         }
 
         .historial-citas th,
         .historial-citas td {
-            border: 1px solid #ddd;
             padding: 12px;
             text-align: center;
-            font-size: 0.95rem;
+            border-bottom: 1px solid #ddd;
+            font-size: 1rem;
         }
 
         .historial-citas th {
-            background-color: #2c3e50;
-            color: white;
-            text-transform: uppercase;
+            background-color: #f2f2f2;
             font-weight: bold;
         }
 
-        .historial-citas tr:nth-child(even) {
-            background-color: #f9f9f9;
+        .historial-citas td {
+            background-color: #fff;
+            color: #333;
         }
 
+
+
         .historial-citas tr:hover {
-            background-color: #f1f1f1;
+            background-color: #f9f9f9;
         }
 
         /* Botones */
@@ -118,11 +158,70 @@
                 padding: 20px;
             }
         }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .pagination nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pagination li {
+            margin: 0 5px;
+        }
+
+        .pagination svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .pagination a,
+        .pagination span {
+            display: inline-block;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #2f4f4f;
+            text-decoration: none;
+        }
+
+        .pagination .active span {
+            background-color: #2f4f4f;
+            color: white;
+        }
+
+        .pagination .disabled span {
+            color: #aaa;
+            border-color: #eee;
+            cursor: default;
+        }
     </style>
     </head>
 
     <div class="container2">
         <h1>Control de Citas</h1>
+        <form method="GET" action="{{ url()->current() }}" class="form-busqueda">
+            <input type="text" name="search" placeholder="Buscar..." value="{{ request('search') }}">
+            <button type="submit"> <span>🔍</span> </button>
+
+
+            <div class="cantidad-filas">
+                <label for="per_page">Cantidad de filas:</label>
+                <select name="per_page" id="per_page" onchange="this.form.submit()">
+                    <option value="5" {{ request('per_page') == 5 ? 'selected' : '' }}>5</option>
+                    <option value="10" {{ request('per_page') == 10 ? 'selected' : '' }}>10</option>
+                    <option value="15" {{ request('per_page') == 15 ? 'selected' : '' }}>15</option>
+                    <option value="20" {{ request('per_page') == 20 ? 'selected' : '' }}>20</option>
+                </select>
+            </div>
+        </form>
         <table class="historial-citas">
             <thead>
                 <tr>
@@ -157,6 +256,9 @@
                 @endforelse
             </tbody>
         </table>
+        <div class="pagination no-tailwind">
+            {{ $citas->links() }}
+        </div>
     </div>
 
 @endsection

@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Mascota;
 use App\Models\DetalleCita;
 use Mpdf\Mpdf;
+use Illuminate\Pagination\Paginator;
 
 class CitaController extends Controller
 {
@@ -160,18 +161,59 @@ public function guardarConsulta(Request $request)
 
     return redirect()->route('consultas.mostrar')->with('success', $mensaje);
 }
-public function mostrarHistorial()
+public function mostrarHistorial(Request $request)
 {
-    $citas = Cita::with(['user', 'mascota', 'veterinario'])
-                 ->orderBy('Fecha_Hora', 'desc')
-                 ->get()
-                 ->map(function ($cita) {
-                     $cita->fecha = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y');
-                     $cita->hora = Carbon::parse($cita->Fecha_Hora)->format('H:i A');
-                     return $cita;
-                 });
+    $perPage = $request->input('per_page', 5);
+    $perPage = min($perPage, 20);
 
-    // Pasar $citas a la vista
+    $searchTerm = $request->input('search');
+
+
+    $citas = Cita::with(['user', 'mascota', 'veterinario'])
+        ->orderBy('Fecha_Hora', 'desc');
+
+    if ($searchTerm) {
+        $citas->where(function ($query) use ($searchTerm) {
+            $query->whereHas('user', function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%');
+            })
+            ->orWhereHas('mascota', function ($q) use ($searchTerm) {
+                $q->where('nombre', 'like', '%' . $searchTerm . '%');
+            })
+            ->orWhereHas('veterinario', function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%');
+            })
+            ->orWhere('motivo', 'like', '%' . $searchTerm . '%');
+        });
+    }
+
+    $citas = $citas->get(); // Obtén todas las citas primero.
+
+
+
+    $citas = $citas->map(function ($cita) {
+        $cita->fecha = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y');
+        $cita->hora = Carbon::parse($cita->Fecha_Hora)->format('H:i A');
+        return $cita;
+    });
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+
+        $citas = $citas->filter(function ($cita) use ($searchTerm) {
+            return str_contains(strtolower($cita->user->name), strtolower($searchTerm)) ||
+                   str_contains(strtolower($cita->mascota->nombre), strtolower($searchTerm)) ||
+                   str_contains(strtolower($cita->veterinario->name), strtolower($searchTerm)) ||
+                   str_contains(strtolower($cita->motivo), strtolower($searchTerm));
+        });
+    }
+
+
+    $citas = new Paginator($citas, $perPage, $request->input('page'), ['path' => $request->url()]);
+    $citas->appends(['per_page' => $perPage, 'search' => $searchTerm]);
+
+
+
+
     return view('pantallahistorialusuariosmodificar', compact('citas'));
 }
 
