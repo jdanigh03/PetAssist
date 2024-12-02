@@ -136,14 +136,13 @@ h1 {
     text-decoration: none;
 }
 
-.pagination .active span { /* Página actual */
+.pagination .active span {
     background-color: #2f4f4f;
     color: white;
 }
-/* Estilos opcionales para los elementos disabled */
 
 .pagination .disabled span {
     color: #aaa;
     border-color: #eee;
-    cursor: default; /* Para que no parezca un enlace */
+    cursor: default;
 }

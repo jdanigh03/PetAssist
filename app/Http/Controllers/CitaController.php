@@ -175,20 +175,44 @@ public function mostrarHistorial()
     return view('pantallahistorialusuariosmodificar', compact('citas'));
 }
 
-public function historialCitas()
+public function historialCitas(Request $request)
 {
-    $citas = Cita::with(['mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario', 'detalle'])
-        ->where('Fecha_Hora', '<', now()) // Filtrar citas anteriores a la fecha actual
-        ->orderBy('Fecha_Hora', 'desc')
-        ->get();
+    $perPage = $request->input('per_page', 5); // 5 filas por página por defecto
+    $perPage = min($perPage, 20); // Máximo 20 filas
 
-        $citas = $citas->map(function ($cita) {
-            $cita->fecha = Carbon::parse($cita->Fecha_Hora)->format('d/m/Y');
-            $cita->hora = Carbon::parse($cita->Fecha_Hora)->format('H:i');
-            return $cita;
+    $searchTerm = $request->input('search'); // Obtener el término de búsqueda
+
+
+    $citas = Cita::with(['mascota', 'mascota.raza', 'mascota.raza.especie', 'veterinario', 'detalle'])
+        ->where('Fecha_Hora', '<', now())
+        ->orderBy('Fecha_Hora', 'desc');
+
+    if ($searchTerm) {
+        $citas->where(function ($query) use ($searchTerm) {
+            $query->whereHas('mascota', function ($q) use ($searchTerm) {
+                $q->where('nombre', 'like', '%' . $searchTerm . '%');
+            })
+            ->orWhereHas('mascota.raza', function ($q) use ($searchTerm) {
+                $q->where('nombre', 'like', '%' . $searchTerm . '%');
+            })
+            ->orWhereHas('mascota.raza.especie', function ($q) use ($searchTerm) {
+                $q->where('nombre', 'like', '%' . $searchTerm . '%');
+            })
+            ->orWhereHas('veterinario', function ($q) use ($searchTerm) {
+                $q->where('name', 'like', '%' . $searchTerm . '%');
+            })
+            ->orWhere('motivo', 'like', '%' . $searchTerm . '%');
         });
+    }
+
+
+
+    $citas = $citas->paginate($perPage);
+    $citas->appends(['per_page' => $perPage, 'search' => $searchTerm]);
+
 
     return view('citas.historial', compact('citas'));
+
 }
 
 
