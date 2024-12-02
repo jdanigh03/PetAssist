@@ -28,7 +28,7 @@
             </div>
             Historial de visitas
         </a>
-        <a href="/controldemascotas">
+        <a href="/consultar-mascotas">
             <div class="container-img-adm">
                 <img src="{{ asset('img/medicamentos.png') }}" alt="Control de mascotas">
             </div>

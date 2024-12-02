@@ -18,11 +18,11 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
-Route::get('/control-citas', [CitaController::class, 'mostrarHistorial'])->name('citas.historial');
+Route::get('/control-citas', [CitaController::class, 'mostrarHistorial'])->name('citas.control');
+Route::get('/historial-citas', [CitaController::class, 'historialCitas'])->name('citas.historial');
+Route::get('/controldemascotas', [MascotaController::class, 'todasMascotas'])->name('mascotas.todas'); 
 
-Route::get('/controldemascotas', function () {
-    return view('controldemascotasadmin');
-});
+
 
 Route::get('/historialusuarios', function () {
     return view('pantallahistorialusuarios');
@@ -177,7 +177,8 @@ Route::get('/producto/{id}', [ProductController::class, 'verProducto'])->name('p
 
 Route::get('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
 
-Route::post('/generar-pdf', [CitaController::class, 'generarPDF'])->name('admin.generarPDF');
+Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarPDF');
 
-Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
-
+Route::get('/movimientos', [ProductController::class, 'verMovimientos'])->name('productos.movimientos');
+// Ruta para la vista de control de mascotas
+Route::get('/consultar-mascotas', [MascotaController::class, 'consultar'])->name('admin.controldemascotasadmin');

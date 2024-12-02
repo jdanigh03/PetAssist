@@ -28,7 +28,7 @@
             </div>
             Generar reporte
         </a>
-        <a href="/movimientos-inventario">
+        <a href="/movimientos">
             <div class="container-img-adm">
                 <img src="{{ asset('img/medicamentos.png') }}" alt="Movimientos inventario">
             </div>

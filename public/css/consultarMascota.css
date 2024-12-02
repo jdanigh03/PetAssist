@@ -1,0 +1,149 @@
+body {
+    background-color: #f5f5e7;
+    color: #333;
+}
+
+.container-consultar {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px;
+    margin-top: 100px;
+    margin-bottom: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #374e4d;
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-busqueda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 5px;
+}
+
+.form-busqueda input[type="text"] {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    height: 40px;
+}
+
+.form-busqueda button {
+    padding: 10px 20px;
+    background-color: #2f4f4f;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    height: 40px;
+}
+
+.form-busqueda button:hover {
+    background-color: #556b2f;
+}
+
+.form-busqueda button span {
+    font-size: 1.2rem;
+}
+
+.mascotas-lista {
+    margin-top: 30px;
+}
+
+.mascotas-tabla {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mascotas-tabla th, .mascotas-tabla td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.mascotas-tabla th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.mascota-image {
+    max-width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.mascotas-tabla td {
+    background-color: #fff;
+    color: #333;
+}
+
+.mascotas-tabla tr:hover {
+    background-color: #f9f9f9;
+}
+
+.mascotas-tabla th, .mascotas-tabla td {
+    font-size: 1rem;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.pagination nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+.pagination svg{
+    width: 20px;
+    height: 20px;
+}
+
+.pagination a, .pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #2f4f4f;
+    text-decoration: none;
+}
+
+.pagination .active span { /* Página actual */
+    background-color: #2f4f4f;
+    color: white;
+}
+/* Estilos opcionales para los elementos disabled */
+
+.pagination .disabled span {
+    color: #aaa;
+    border-color: #eee;
+    cursor: default; /* Para que no parezca un enlace */
+}
