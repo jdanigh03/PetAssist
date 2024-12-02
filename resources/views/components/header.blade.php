@@ -295,23 +295,6 @@
     <div class="container-header">
         <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de la veterinaria" class="logo" href="/">
         @if (auth()->check() && auth()->user()->role != 'admin' && auth()->user()->role != 'veterinario')
-<<<<<<< HEAD
-    {{-- Muestra "Go Can" solo si no están activos los bloques de navegación --}}
-    @if (
-        !request()->is('petshop') && 
-        !request()->is('contactos') && 
-        !request()->is('citas-agenda') && 
-        !request()->is('mascotas') && 
-        !request()->is('perfilusuario') && 
-        !request()->is('logout')
-    )
-        <a href="/" class="logoTa">Go Can</a>
-    @endif
-@elseif (!auth()->check() || !isset(auth()->user()->role))
-    {{-- Oculta "Go Can" con clase hidden --}}
-    <a href="/" class="logoTa hidden">Go Can</a>
-@endif
-=======
             {{-- Muestra "Go Can" si no aparece el bloque de navegación --}}
             <a href="/" class="logoTa">
                 @if (Route::currentRouteName() == 'welcome' ||
@@ -324,7 +307,6 @@
             {{-- Oculta "Go Can" con clase hidden --}}
             <a href="/" class="logoTa hidden">Go Can</a>
         @endif
->>>>>>> 5c7acd8928245139cb477a001d68af2b82da30ff
         <nav class="navegacion-header">
             @if (auth()->check())
                 @if (auth()->user()->role == 'admin')
@@ -336,10 +318,12 @@
                     <a href="/control-personal" class="{{ request()->is('control-personal') ? 'active' : '' }}">
                         Control de personal
                     </a>
-                @elseif (auth()->user()->role == 'veterinario')
-                    <a href="/inicio-veterinario"
-                        class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Opciones de veterinario</a>
+                    @elseif (auth()->user()->role == 'veterinario')
+                    <a href="{{ route('citas.agendadas') }}" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Ver citas registradas</a>
+                    <a href="{{ route('consultas.mostrar') }}" class="{{ request()->is('ingresar-consulta') ? 'active' : '' }}">Ingresar consultas</a>
+                    <a href="{{ route('veterinario.consultarHistorial') }}" class="{{ request()->is('consultar-historial') ? 'active' : '' }}">Consultar historial médico</a>
                 @else
+                    <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
                     <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
                     <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
