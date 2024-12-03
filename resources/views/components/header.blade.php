@@ -317,7 +317,6 @@
                     <a href="/reservar-cita" class="{{ request()->is('agenda-recepcionista') ? 'active' : '' }}">Reservar citas</a>
                     @elseif (auth()->user()->role == 'admin')
                     <!-- Opciones del Admin -->
-                    <a href="/" class="">Inicio</a>
                     <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control Inventario</a>
                     <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">Control de Clientes</a>
                     <a href="/control-personal" class="{{ request()->is('control-personal') ? 'active' : '' }}">Control de Personal</a>
@@ -326,7 +325,10 @@
                     <a href="{{ route('citas.agendadas') }}" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Ver citas registradas</a>
                     <a href="{{ route('consultas.mostrar') }}" class="{{ request()->is('ingresar-consulta') ? 'active' : '' }}">Ingresar Consultas</a>
                     <a href="{{ route('veterinario.consultarHistorial') }}" class="{{ request()->is('consultar-historial') ? 'active' : '' }}">Consultar Historial Médico</a>
-                @else
+                    
+    @elseif (auth()->user()->role == 'proveedor')
+    <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
+                    @else
                     <!-- Opciones para otros usuarios -->
                     <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
