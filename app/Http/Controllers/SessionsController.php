@@ -24,10 +24,13 @@ class SessionsController extends Controller
                 return redirect()->route('admin.index');
             } elseif ($user->role == 'veterinario') {
                 return redirect()->route('inicio.veterinario');
+            } elseif ($user->role == 'proveedor') {
+                return redirect()->route('control.inventario'); 
             } else {
-                return redirect()->intended('/petshop');
+                return redirect()->intended('/petshop'); 
             }
         }
+    
 
         return back()->withErrors([
             'message' => 'Credenciales invalidas. Intente de nuevo',

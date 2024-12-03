@@ -309,28 +309,26 @@
         @endif
         <nav class="navegacion-header">
             @if (auth()->check())
-                @if (auth()->user()->role == 'admin')
-                    <a href="/" class="">Inicio</a>
-                    <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control
-                        inventario</a>
-                    <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">
-                        Control de clientes
-                    </a>
-                    <a href="/control-personal" class="{{ request()->is('control-personal') ? 'active' : '' }}">
-                        Control de personal
-                    </a>
-                    @elseif (auth()->user()->role == 'veterinario')
-                    <a href="{{ route('citas.agendadas') }}" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Ver citas registradas</a>
-                    <a href="{{ route('consultas.mostrar') }}" class="{{ request()->is('ingresar-consulta') ? 'active' : '' }}">Ingresar consultas</a>
-                    <a href="{{ route('veterinario.consultarHistorial') }}" class="{{ request()->is('consultar-historial') ? 'active' : '' }}">Consultar historial médico</a>
-                @else
-                    <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
-                    <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
-                    <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
-                    <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
-                @endif
-            @else
-            @endif
+    @if (auth()->user()->role == 'admin')
+        <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
+        <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">Control de clientes</a>
+        <a href="/control-personal" class="{{ request()->is('control-personal') ? 'active' : '' }}">Control de personal</a>
+    
+    @elseif (auth()->user()->role == 'veterinario')
+        <a href="{{ route('citas.agendadas') }}" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Ver citas registradas</a>
+        <a href="{{ route('consultas.mostrar') }}" class="{{ request()->is('ingresar-consulta') ? 'active' : '' }}">Ingresar consultas</a>
+        <a href="{{ route('veterinario.consultarHistorial') }}" class="{{ request()->is('consultar-historial') ? 'active' : '' }}">Consultar historial médico</a>
+        
+    @elseif (auth()->user()->role == 'proveedor')
+        <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
+    
+    @else
+        <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+        <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+        <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
+        <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+    @endif
+@endif
         </nav>
 
         <div class="dropdown-menu">

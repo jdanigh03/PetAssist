@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RazaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\FichaClinicaController;
 Route::get('/petshop', function () {
     return view('petshop');
 });
@@ -182,3 +183,6 @@ Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->nam
 Route::get('/movimientos', [ProductController::class, 'verMovimientos'])->name('productos.movimientos');
 // Ruta para la vista de control de mascotas
 Route::get('/consultar-mascotas', [MascotaController::class, 'consultar'])->name('admin.controldemascotasadmin');
+Route::get('/control-inventario', function () {
+    return view('admin.inventarioControl');
+})->name('control.inventario');
