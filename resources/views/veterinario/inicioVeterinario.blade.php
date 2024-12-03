@@ -24,6 +24,10 @@
             <img src="{{asset('img/consultarConsultas.jpeg')}}" alt="Consultar hmm">
             <p>Consultar historial médico de mascota</p>
         </a>
+        <a href="{{ url('/ficha-clinica') }}" class="option-card">
+            <img src="{{ asset('img/fichaClinica.jpeg') }}" alt="Ver ficha clínica">
+            <p>Ver ficha clínica</p>
+        </a>
     </div>  
 </div>
 

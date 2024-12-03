@@ -7,7 +7,7 @@ use App\Models\Raza;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Especie;
-
+use Illuminate\Pagination\Paginator;
 
 class MascotaController extends Controller
 {
@@ -121,10 +121,15 @@ public function crear()
 }
 public function consultar(Request $request)
 {
-    // Iniciar la consulta sin restricción de usuario autenticado
+    $perPage = $request->input('per_page', 10);
+    $perPage = min($perPage, 20);
+
+
+
     $query = Mascota::query();
 
-    // Si hay un término de búsqueda, aplicamos los filtros
+
+
     if ($request->has('search')) {
         $searchTerm = $request->input('search');
         $query->where('nombre', 'like', "%{$searchTerm}%")
@@ -133,8 +138,14 @@ public function consultar(Request $request)
               });
     }
 
-    // Obtener todas las mascotas que coincidan con la búsqueda
-    $mascotas = $query->with('raza', 'raza.especie')->get();
+
+    $mascotas = $query->with('raza', 'raza.especie')->paginate($perPage);
+
+
+    $mascotas->appends(['per_page' => $perPage]);
+    $mascotas->appends(['search' => $request->input('search')]);
+
+
 
     return view('admin.controldemascotasadmin', compact('mascotas'));
 }

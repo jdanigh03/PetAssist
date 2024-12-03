@@ -13,26 +13,32 @@ class SessionsController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $credentials = $request->only('email', 'password');
+{
+    $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // Importante: regenerar la sesión
-            $user = Auth::user();
+    if (Auth::attempt($credentials)) {
+        $request->session()->regenerate(); // Regenerar la sesión para mayor seguridad
+        $user = Auth::user();
 
-            if ($user->role == 'admin') {
-                return redirect()->route('admin.index');
-            } elseif ($user->role == 'veterinario') {
-                return redirect()->route('inicio.veterinario');
-            } else {
-                return redirect()->intended('/petshop');
-            }
+        if ($user->role == 'admin') {
+            return redirect()->route('admin.index');
+        } elseif ($user->role == 'veterinario') {
+            return redirect()->route('inicio.veterinario');
+        } elseif ($user->role == 'recepcionista') {
+            return redirect()->route('inicio.recepcionista');
+        } elseif ($user->role == 'proveedor') {
+            return redirect()->route('control.inventario');
+        } else {
+            return redirect()->intended('/petshop'); // Redirige a una página predeterminada si el rol no está especificado
+        }
+        
         }
 
-        return back()->withErrors([
-            'message' => 'Credenciales invalidas. Intente de nuevo',
-        ]);
-    }
+    return back()->withErrors([
+        'message' => 'Credenciales inválidas. Intente de nuevo',
+    ]);
+}
+
 
     public function destroy()
     {

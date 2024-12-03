@@ -14,11 +14,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RazaController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\FichaClinicaController;
 Route::get('/petshop', function () {
     return view('petshop');
 });
 
-Route::get('/control-citas', [CitaController::class, 'mostrarHistorial'])->name('citas.historial');
+Route::get('/control-citas', [CitaController::class, 'mostrarHistorial'])->name('citas.control');
 Route::get('/historial-citas', [CitaController::class, 'historialCitas'])->name('citas.historial');
 Route::get('/controldemascotas', [MascotaController::class, 'todasMascotas'])->name('mascotas.todas'); 
 
@@ -73,11 +74,15 @@ Route::get('/contactos', function () {
 });
 Route::get('/historial-medico-mascota/{mascota}', [CitaController::class, 'historialMedicoMascota'])->name('historial.medico');
 
+Route::get('/inicio-recepcionista', function(){
+    return view('recepcionista.recepcionista');
+})->name('inicio.recepcionista');
 
 
 Route::get('/inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
 })->name('inicio.veterinario');
+
 
 Route::get('/citas-agenda', [CitaController::class, 'index'])->name('citas.agenda');
     
@@ -177,10 +182,11 @@ Route::get('/producto/{id}', [ProductController::class, 'verProducto'])->name('p
 
 Route::get('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
 
-Route::post('/generar-pdf', [CitaController::class, 'generarPDF'])->name('admin.generarPDF');
-
-Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
+Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarPDF');
 
 Route::get('/movimientos', [ProductController::class, 'verMovimientos'])->name('productos.movimientos');
 // Ruta para la vista de control de mascotas
 Route::get('/consultar-mascotas', [MascotaController::class, 'consultar'])->name('admin.controldemascotasadmin');
+Route::get('/control-inventario', function () {
+    return view('admin.inventarioControl');
+})->name('control.inventario');
