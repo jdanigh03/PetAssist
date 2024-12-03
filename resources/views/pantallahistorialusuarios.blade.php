@@ -6,67 +6,77 @@
 
 <style>
         /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        color: #333;
+        margin: 0;
+        padding-top: 120px; /* Ajustar espacio entre navbar y contenido */
+    }
+
+    .container2 {
+        width: 85%; /* Ajustar ancho de la tabla */
+        max-width: 1200px;
+        margin: 0 auto; /* Centrar tabla */
+        background-color: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    /* Tabla del historial */
+    .historial-citas {
+        margin-top: 20px;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .historial-citas th,
+    .historial-citas td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .historial-citas th {
+        background-color: #3498db; /* Azul limpio */
+        color: #ffffff;
+        text-transform: uppercase;
+    }
+
+    .historial-citas tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .historial-citas tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Estilo responsivo */
+    @media (max-width: 768px) {
+        .container2 {
+            width: 95%; /* Ajustar ancho en pantallas pequeñas */
+            padding: 20px;
         }
 
-        .container2 {
-            width: 90%;
-            max-width: 1200px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 3px solid black;
-            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        .historial-citas th,
+        .historial-citas td {
+            font-size: 0.85rem; /* Reducir fuente en pantallas pequeñas */
+            padding: 10px;
         }
 
         h1 {
-            text-align: center;
-            color: #2c3e50;
+            font-size: 1.5rem;
         }
-
-        /* Estilos del historial */
-        .historial-citas {
-            margin-top: 20px;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        .historial-citas th, .historial-citas td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-
-        .historial-citas th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .historial-citas tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .historial-citas tr:hover {
-            background-color: #ddd;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .historial-citas th, .historial-citas td {
-                padding: 12px;
-                font-size: 14px;
-            }
-        }
+    }
     </style>
 </head>
 

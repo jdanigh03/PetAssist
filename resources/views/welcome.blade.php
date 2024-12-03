@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/img/faviconWelcome.ico') }}">
     <title>Go Can</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap">
     <link rel="stylesheet" href="{{ asset('css/goCan.css') }}">
@@ -15,7 +16,7 @@
 <body>
     <header>
         <div class="container">
-            <img src="{{ asset('img/logoGoCan.png') }}" alt="">
+            <img src="{{ asset('img/Logo PetAssist 2.webp') }}" alt="">
             <a href="/" class="logo">Go Can</a>
         </div>
         <div class="container-nav-inicio">
@@ -116,7 +117,7 @@
                         <h3>{{ $producto->Nombre }}</h3>
                         <p>{{ $producto->Descripcion }}</p>
                         <p>Precio: ${{ number_format($producto->Precio, 2) }}</p>
-                        <a href="/login">Ver producto</a>
+                        <a href="{{ route('producto.ver', $producto->ID_Producto) }}">Ver producto</a>
                     </div>
                 @endforeach
             </div>
@@ -124,7 +125,7 @@
     </section>
     <section class="contacto" id="contacto">
         <div class="container">
-            <h2>Contacto</h2>
+            <h2 id="contactoNombre">Contacto</h2>
             <form>
                 <label for="nombre">Tu Nombre</label>
                 <input type="text" name="nombre" id="nombre" required>

@@ -16,6 +16,7 @@
         .search-bar {
             display: flex;
             margin-bottom: 20px;
+            align-items: center;
         }
 
         .search-bar input[type="text"] {
@@ -23,6 +24,7 @@
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 5px 0 0 5px;
+            height: 60px;
         }
 
         .search-bar button {
@@ -33,6 +35,7 @@
             border-radius: 0 5px 5px 0;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            height: 60px;
         }
 
         .search-bar button:hover {
@@ -97,10 +100,13 @@
     <div class="container-historial">
         <h1>Consultar Historial Médico</h1>
 
-        <div class="search-bar">
-            <input type="text" id="search" name="search" placeholder="Buscar mascota por nombre o ID..." required>
-            <button type="submit" class="btn-search">Buscar</button>
-        </div>
+        <form action="{{ route('veterinario.consultarHistorial') }}" method="GET">
+            <div class="search-bar">
+                <input type="text" id="search" name="search" placeholder="Buscar mascota por nombre o ID..."
+                    value="{{ request('search') }}">
+                <button type="submit" class="btn-search">Buscar</button>
+            </div>
+        </form>
 
 
         @if ($mascotas->count() > 0)

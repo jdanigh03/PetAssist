@@ -17,5 +17,10 @@ class ProductoPetshop extends Model
     protected $fillable = [
         'Nombre', 'Descripcion', 'Precio', 'Cantidad', 'Imagen', 'Categoria'
     ];
-}
 
+    // Relación con los movimientos de inventario
+    public function movimientos()
+    {
+        return $this->hasMany(MovimientoInventario::class, 'producto_id');
+    }
+}

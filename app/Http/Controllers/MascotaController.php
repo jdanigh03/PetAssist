@@ -24,11 +24,19 @@ class MascotaController extends Controller
 
     return view('mascotas', ['mascotas' => $mascotas]);
 }
-    public function crear()
+public function crear()
 {
-    $razas = Raza::all();
     $especies = Especie::all();
-    return view('nuevamascota', compact('razas', 'especies'));
+    $razasPorEspecie = [];
+
+    foreach ($especies as $especie) {
+        $razas = Raza::where('especie_id', $especie->id)
+            ->orderByRaw("CASE WHEN nombre = 'Raza común o mestiza' THEN 0 ELSE 1 END, nombre ASC")
+            ->get();
+        $razasPorEspecie[$especie->id] = $razas;
+    }
+
+    return view('nuevamascota', compact('razasPorEspecie', 'especies'));
 }
 
     public function guardar(Request $request)
@@ -38,13 +46,13 @@ class MascotaController extends Controller
             'especie' => 'required|exists:especies,id',
             'nombre' => 'required|string|max:255',
             'raza' => 'required|exists:razas,id',
-            'nacimiento' => 'required|date',
+            'nacimiento' => 'nullable|date',
             'imagen_url' => 'nullable|string', 
         ]);
 
         $mascota = new Mascota();
         $mascota->nombre = $validatedData['nombre'];
-        $mascota->nacimiento = $validatedData['nacimiento'];
+        $mascota->nacimiento = $validatedData['nacimiento'] ?? null;
         $mascota->raza_id = $validatedData['raza'];
         $mascota->user_id = $validatedData['user_id'];
         $mascota->foto = $request->hasFile('foto') ? $request->file('foto')->store('public/mascotas') : $validatedData['imagen_url'];
@@ -95,9 +103,41 @@ class MascotaController extends Controller
 
         return redirect()->route('mascotas.perfil', $mascota)->with('success', 'Mascota actualizada correctamente.');
     }
-public function consultarHistorialMascota()
+    public function consultarHistorialMascota(Request $request)
 {
-    $mascotas = Mascota::with('raza', 'raza.especie', 'user')->get(); // Obtén todas las mascotas con las relaciones necesarias
+    $searchTerm = $request->input('search');
+
+    $mascotas = Mascota::with('raza', 'raza.especie', 'user')
+        ->when($searchTerm, function ($query, $searchTerm) {
+            $query->where('nombre', 'like', '%' . $searchTerm . '%');
+
+            if (is_numeric($searchTerm)) { // Solo si es numérico
+                $query->orWhere('id', $searchTerm);
+            }
+        })
+        ->get();
+
     return view('veterinario.consultarHistorialMascota', compact('mascotas'));
 }
+public function consultar(Request $request)
+{
+    // Iniciar la consulta sin restricción de usuario autenticado
+    $query = Mascota::query();
+
+    // Si hay un término de búsqueda, aplicamos los filtros
+    if ($request->has('search')) {
+        $searchTerm = $request->input('search');
+        $query->where('nombre', 'like', "%{$searchTerm}%")
+              ->orWhereHas('raza', function($q) use ($searchTerm) {
+                  $q->where('nombre', 'like', "%{$searchTerm}%");
+              });
+    }
+
+    // Obtener todas las mascotas que coincidan con la búsqueda
+    $mascotas = $query->with('raza', 'raza.especie')->get();
+
+    return view('admin.controldemascotasadmin', compact('mascotas'));
 }
+
+}
+

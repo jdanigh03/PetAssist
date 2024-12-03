@@ -6,11 +6,10 @@
 }
 
 body {
-    font-family: "Poppins", sans-serif;
-    background-color: #f5f5e7;
-    color: var(--text-primary);
-    margin: 0;
-    padding-top: calc(100vh - var(--header-height));
+    padding-top: 50px;
+        font-family: 'Poppins', sans-serif;
+        overflow-x: hidden;
+
 }
 
 a {
@@ -31,12 +30,14 @@ header {
     top: 0;
     z-index: 1000;
     transition: background-color 0.3s, padding 0.3s;
+    height: 50px;
 }
 
-header img {
-    width: 50px;
-    height: auto;
-    border-radius: 50%;
+header img 
+{
+    height: 4rem;
+    margin-right: 20px;
+    border-radius: 20px;
 }
 
 header .container {
@@ -61,7 +62,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding-right: 30px;
+    padding-right: 38px;
 }
 
 nav ul {
@@ -115,9 +116,11 @@ nav li a:hover {
     background-position: center;
     background-repeat: no-repeat;
     padding: 80px 20px;
-    color: white;
+    padding-top: 250px;
     text-align: center;
     height: 400px;
+    top: 70px;
+    color: white;
 }
 
 .hero::before {
@@ -139,11 +142,13 @@ nav li a:hover {
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 20px;
+    color: var(--secondary);
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 30px;
+    color: var(--secondary);
 }
 
 .hero button {
@@ -216,84 +221,111 @@ nav li a:hover {
 
 /*servicios */
 .servicios {
-    background-color: #f8f8f8;
-    padding: 60px 20px;
+    background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+    padding: 80px 20px;
+    border-radius: 20px;
 }
 
 .servicios h2 {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 40px;
-    color: var(--primary);
+    font-size: 2.8rem;
+    margin-bottom: 50px;
+    color: #1d3c45;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .servicios-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    gap: 20px;
+    gap: 40px;
 }
 
 .servicio-card {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     text-align: center;
-    flex: 1 1 300px;
-    max-width: 300px;
-    transition: transform 0.2s;
+    flex: 1 1 280px;
+    max-width: 350px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.servicio-card::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(29, 60, 69, 0.05);
+    transition: top 0.3s;
+    z-index: 1;
+}
+
+.servicio-card:hover::before {
+    top: 0;
 }
 
 .servicio-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .servicio-card img {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
 }
 
 .servicio-card img:hover {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 .servicio-card h3 {
-    font-size: 1.4rem;
-    color: var(--primary);
-    margin-bottom: 10px;
+    font-size: 1.6rem;
+    color: #1d3c45;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 .servicio-card p {
     font-size: 1rem;
-    color: var(--text-secondary);
-    margin-bottom: 20px;
+    color: #555;
+    margin-bottom: 25px;
 }
 
 .btn-servicio {
     display: inline-block;
-    background-color: var(--primary);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
+    background: linear-gradient(135deg, #1d3c45, #3b6b6b);
+    color: #ffffff;
+    padding: 12px 28px;
+    border-radius: 30px;
     text-decoration: none;
-    font-size: 1rem;
-    transition: background-color 0.3s;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .btn-servicio:hover {
-    background-color: #1f3f3f;
+    background: linear-gradient(135deg, #3b6b6b, #1d3c45);
+    transform: translateY(-3px);
 }
 
 /* Estilos de la sección "Contacto" */
 .contacto {
-    background-color: #f5f5e7;
+    background-color: var(--primary);
     padding: 40px 20px;
+    color: var(--text-primary);
 }
 
 .contacto .container {
@@ -371,6 +403,10 @@ nav li a:hover {
     margin-top: 20px;
 }
 
+#contactoNombre {
+    color: var(--secondary);
+}
+
 .social-icon {
     width: 40px;
     /* Ajusta el tamaño de los iconos */
@@ -425,7 +461,6 @@ nav li a:hover {
     -ms-overflow-style: none;
 }
 
-
 .product-card {
     scroll-snap-align: start;
     min-width: 250px;
@@ -464,7 +499,6 @@ nav li a:hover {
     border-radius: 5px;
 }
 
-
 .contacto .label-contacto {
     display: flex;
     flex-direction: row;
@@ -473,7 +507,8 @@ nav li a:hover {
     gap: 10px;
     margin-top: 10px;
 }
-.input-checkbox-contacto{
+
+.input-checkbox-contacto {
     width: 20px;
 }
 @media (max-width: 768px) {

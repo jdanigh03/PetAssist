@@ -10,11 +10,18 @@
             align-items: center;
             width: 100%;
             margin: 0 auto;
-            margin-top: 100px;
+            margin-top: 50px;
             padding: 20px;
-            overflow-y: auto;
-            max-height: 100vh;
             padding-bottom: 100px;
+        }
+
+        .contenedor-de-mascotas {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            justify-items: center;
         }
 
         .container-mascotas {
@@ -23,11 +30,12 @@
             border-radius: 8px;
             min-width: 350px;
             max-width: 600px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #2f4f4f;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: none;
             text-align: center;
             margin-bottom: 20px;
         }
+
 
         .titulo-mascotas {
             font-size: 1.5rem;
@@ -63,9 +71,11 @@
             background-color: #f5f5dc;
             padding: 1.5rem;
             margin-top: 20px;
-            border: 2px solid #2f4f4f;
             border-radius: 8px;
             margin-bottom: 20px;
+            min-width: 350px;
+            max-width: 600px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .foto-container {
@@ -140,45 +150,66 @@
                 {{ session('success') }}
             </div>
         @endif
-
-        @if ($mascotas->count() == 0)
-            <div class="container-mascotas">
-                <h2 class="titulo-mascotas">Agrega tus mascotas</h2>
-                <p class="mensaje-mascotas">Al cargar a tus peludos, los verás aquí.</p>
-                <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
-            </div>
-        @else
-            @foreach ($mascotas as $mascota)
-                <div class="container-info-mascota">
-                    <div class="foto-container">
-
-                        <img class="foto-mascota" src="{{ $mascota->foto }}" alt="Foto de {{ $mascota->nombre }}"
-                            onerror="this.src='/img/perfilPredeterminado.png'">
-
-                        <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Editar</a>
-
-
-                        <form action="{{ route('mascotas.eliminar', $mascota) }}" method="POST"
-                            onsubmit="return confirm('¿Estás seguro de que quieres borrar a {{ $mascota->nombre }}?');">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn-ver-mas btn-eliminar">Eliminar</button>
-
-                        </form>
-                    </div>
-                    <div class="info-mascota">
-                        <h2>{{ $mascota->nombre }}</h2>
-                        <p>Edad: {{ $mascota->edad_string }}</p>
-                        <p>Raza: {{ $mascota->raza->nombre }}</p>
-                        <p>Especie: {{ $mascota->raza->especie->nombre }}</p>
-                    </div>
+        <div class="contenedor-de-mascotas">
+            @if ($mascotas->count() == 0)
+                <div class="container-mascotas">
+                    <h2 class="titulo-mascotas">Agrega tus mascotas</h2>
+                    <p class="mensaje-mascotas">Al cargar a tus peludos, los verás aquí.</p>
+                    <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
                 </div>
-            @endforeach
+            @else
+                @foreach ($mascotas as $mascota)
+                    <div class="container-info-mascota">
+                        <div class="foto-container">
 
+                            <img class="foto-mascota" src="{{ $mascota->foto }}" alt="Foto de {{ $mascota->nombre }}"
+                                onerror="this.src='/img/perfilPredeterminado.png'">
 
-            <div class="container-mascotas">
-                <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
-            </div>
-        @endif
+                            <a href="{{ route('mascotas.perfil', $mascota) }}" class="btn-ver-mas">Editar</a>
+
+                            <!-- Formulario de eliminación con SweetAlert2 -->
+                            <form id="deleteForm{{ $mascota->id }}" action="{{ route('mascotas.eliminar', $mascota) }}"
+                                method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="btn-ver-mas btn-eliminar"
+                                    onclick="confirmDelete({{ $mascota->id }}, '{{ $mascota->nombre }}')">Eliminar</button>
+                            </form>
+                        </div>
+                        <div class="info-mascota">
+                            <h2>{{ $mascota->nombre }}</h2>
+                            <p>Edad: {{ $mascota->edad_string }}</p>
+                            <p>Raza: {{ $mascota->raza->nombre }}</p>
+                            <p>Especie: {{ $mascota->raza->especie->nombre }}</p>
+                        </div>
+                    </div>
+                @endforeach
+
+                <div class="container-mascotas">
+                    <h2 class="titulo-mascotas">Agrega una nueva mascota</h2>
+                    <a href="{{ route('mascotas.crear') }}" class="boton-nueva-mascota">Nueva mascota</a>
+                </div>
+            @endif
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(id, name) {
+            Swal.fire({
+                title: `¿Estás seguro?`,
+                text: `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, borrar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`deleteForm${id}`).submit();
+                }
+            });
+        }
+    </script>
 @endsection

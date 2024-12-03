@@ -114,7 +114,6 @@
             display: flex;
             flex-direction: row;
             background-color: #F5F5DC;
-            border: 2px solid black;
             border-radius: 10px;
             padding: 10px;
             width: 30%;
@@ -137,6 +136,21 @@
             flex-direction: column;
             font-size: 14px;
             margin-left: 20px;
+        }
+
+        .sugerencia a {
+            background-color: #2f4f4f;
+            color: #FFFFFF;
+            padding: 0.7rem 1rem;
+            margin-top: 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         @media (max-width: 768px) {
@@ -210,12 +224,10 @@
     <div class="home-cliente">
         <h1>Petshop</h1>
 
-        <div class="buscador">
-            <input type="text" placeholder="Buscar...">
-            <button type="submit">
-                <img src="{{ asset('img/buscar.png') }}" alt="Buscar" height="20">
-            </button>
-        </div>
+        <form action="{{ route('petshop.buscar') }}" method="GET" class="buscador">
+            <input type="text" name="search" placeholder="Buscar..."> <button type="submit"> <img
+                    src="{{ asset('img/buscar.png') }}" alt="Buscar" height="20"> </button>
+        </form>
 
         <div class="carrusel">
             <img src="{{ asset('img/image 38.png') }}" alt="Imagen 1">
@@ -223,25 +235,25 @@
 
         <h2>Categorías</h2>
         <div class="categorias">
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Comida') }}">
                 <div class="container-img">
-                    <img src="{{ asset('img/alimentos.png') }}" alt="Alimentos">
+                    <img src="{{ asset('img/alimentos.png') }}" alt="Comida">
                 </div>
                 Alimentos
             </a>
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Accesorios') }}">
                 <div class="container-img">
                     <img src="{{ asset('img/accesorios.png') }}" alt="Accesorios">
                 </div>
                 Accesorios
             </a>
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Higiene') }}">
                 <div class="container-img">
                     <img src="{{ asset('img/higiene.png') }}" alt="Higiene">
                 </div>
                 Higiene
             </a>
-            <a href="#">
+            <a href="{{ route('petshop.categoria', 'Medicamentos') }}">
                 <div class="container-img">
                     <img src="{{ asset('img/medicamentos.png') }}" alt="Medicamentos">
                 </div>
@@ -257,42 +269,11 @@
                     <div class="sugerencia-texto">
                         <h3>{{ $producto->Nombre }}</h3>
                         <p>Precio: Bs {{ number_format($producto->Precio, 2) }}</p>
-                        <a href="#" onclick="showModal('{{ $producto->Nombre }}', '{{ $producto->Descripcion }}', '{{ $producto->Precio }}', '{{ asset($producto->Imagen) }}')">Ver producto</a>
+                        <a href="{{ route('producto.ver', $producto->ID_Producto) }}">Ver producto</a>
                     </div>
                 </div>
             @endforeach
         </div>
     </div>
 
-    <!-- Modal para mostrar detalles del producto -->
-    <div id="productModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img id="modalProductImage" src="" alt="Imagen del Producto">
-            <h3 id="modalProductName"></h3>
-            <p id="modalProductDescription"></p>
-            <p>Precio: Bs <span id="modalProductPrice"></span></p>
-        </div>
-    </div>
-
-    <script>
-        function showModal(nombre, descripcion, precio, imagen) {
-            document.getElementById("modalProductName").innerText = nombre;
-            document.getElementById("modalProductDescription").innerText = descripcion;
-            document.getElementById("modalProductPrice").innerText = parseFloat(precio).toFixed(2);
-            document.getElementById("modalProductImage").src = imagen;
-            document.getElementById("productModal").style.display = "flex";
-        }
-
-        function closeModal() {
-            document.getElementById("productModal").style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            var modal = document.getElementById("productModal");
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
-    </script>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'home')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('content')
 
     <style>
@@ -272,12 +272,9 @@
                         <input type="email" id="email" name="email" value="{{ Auth::user()->email }}" required>
                     </div>
 
-
                     <div class="actions">
-                        <button type="submit" class="btn"
-                            onclick="return confirm('¿Estás seguro de que quieres guardar los cambios?')">Guardar
-                            Cambios</button>
-                    </div>
+    <button type="submit" class="btn" id="guardar-cambios">Guardar Cambios</button>
+</div>
                 </form>
             </div>
 
@@ -359,5 +356,30 @@
 
             }
         });
+
+        document.getElementById('guardar-cambios').addEventListener('click', function (event) {
+        event.preventDefault(); // Evita el envío inmediato del formulario
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: '¡Vas a guardar los cambios realizados!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, guardar cambios',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '¡Guardado!',
+                    text: 'Los cambios se han guardado con éxito.',
+                    icon: 'success'
+                }).then(() => {
+                    // Envía el formulario tras la confirmación
+                    event.target.closest('form').submit();
+                });
+            }
+        });
+    });
     </script>
 @endsection

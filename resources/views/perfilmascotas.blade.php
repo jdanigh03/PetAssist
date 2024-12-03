@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @section('title', 'home')
 
 @section('content')
@@ -184,41 +184,37 @@
                 <h1 class="profile-name">{{ $mascota->nombre }}</h1>
             </div>
             <div class="profile-info">
-                <form action="{{ route('mascotas.actualizar', $mascota) }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" id="imagen-url" name="imagen"> <span id="upload-error"
-                        style="color: red;"></span>
+            <form id="form-editar-mascota" action="{{ route('mascotas.actualizar', $mascota) }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('PUT')
+    <input type="hidden" id="imagen-url" name="imagen">
+    <span id="upload-error" style="color: red;"></span>
 
-                    <div class="form-group">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" value="{{ $mascota->nombre }}" required>
-                    </div>
+    <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ $mascota->nombre }}" required>
+    </div>
 
-                    <div class="form-group">
-                        <label for="edad">Edad:</label>
-                        <input type="text" id="edad" name="edad" value="{{ $mascota->edad_string }}" readonly>
-                    </div>
+    <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input type="text" id="edad" name="edad" value="{{ $mascota->edad_string }}" readonly>
+    </div>
 
-                    <div class="form-group">
-                        <label for="raza">Raza:</label>
-                        <input type="text" name="raza" value="{{ $mascota->raza->nombre }}" readonly>
-                    </div>
+    <div class="form-group">
+        <label for="raza">Raza:</label>
+        <input type="text" name="raza" value="{{ $mascota->raza->nombre }}" readonly>
+    </div>
 
-                    <div class="form-group">
-                        <label for="especie">Especie:</label>
-                        <input type="text" name="especie" value="{{ $mascota->raza->especie->nombre }}" readonly>
-                    </div>
+    <div class="form-group">
+        <label for="especie">Especie:</label>
+        <input type="text" name="especie" value="{{ $mascota->raza->especie->nombre }}" readonly>
+    </div>
 
-
-
-                    <div class="actions">
-                        <button type="submit" class="btn btn-guardar"
-                            onclick="return confirm('¿Estás seguro de que quieres guardar los cambios?')">Guardar
-                            Cambios</button>
-                        <a href="{{ route('mascotas') }}" class="btn">Volver</a>
-                    </div>
-                </form>
+    <div class="actions">
+        <button type="button" id="guardar-btn" class="btn btn-guardar">Guardar Cambios</button>
+        <a href="{{ route('mascotas') }}" class="btn">Volver</a>
+    </div>
+</form>
 
             </div>
 
@@ -291,4 +287,33 @@
                 uploadError.textContent = 'Espera a que la imagen se suba o cancela la subida.';
             }
         });
+        document.addEventListener('DOMContentLoaded', () => {
+            const guardarBtn = document.getElementById('guardar-btn');
+            const form = document.getElementById('form-editar-mascota');
+            
+            guardarBtn.addEventListener('click', () => {
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: '¿Quieres guardar los cambios?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, guardar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                    title: '¡Guardado!',
+                    text: 'Los cambios se han guardado con éxito.',
+                    icon: 'success'
+                }).then(() => {
+                    event.target.closest('form').submit();
+                });
+                        form.submit();
+                    }
+                });
+            });
+        });
+
     </script>

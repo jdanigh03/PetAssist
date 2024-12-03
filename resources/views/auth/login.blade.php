@@ -17,8 +17,9 @@
             background-color: #f5f5dc;
             padding: 2rem;
             margin: 20px;
-            margin-top: 120px;
-            padding-top: 50px;
+            margin-top: 400px;
+            margin-bottom: 60px;
+            padding-top: 0;
         }
 
         .login-title {
@@ -69,6 +70,32 @@
             border-radius: 5px;
             text-align: center;
         }
+
+        .btn {
+            display: inline-block;
+            background-color: #2f4f4f;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            width: 180px;
+            height: 50px;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1f3f3f;
+        }
+
+
+        .logo-petassist {
+            display: block;
+            margin: 1rem auto;
+            max-width: 200px;
+            height: auto;
+            border-radius: 20px;
+        }
     </style>
 
     <div class="container">
@@ -80,6 +107,7 @@
         <form method="POST" action="{{ route('login.store') }}">
             @csrf
             <h1 class="text-3xl text-center font-bold login-title">Inicia sesión con el sistema PetAssist</h1>
+            <img src="https://i.imgur.com/ItWCcE1.png" alt="Logo de PetAssist" class="logo-petassist">
             <input type="email" placeholder="Email" id="email" name="email" required class="login-input">
 
             <input type="password" placeholder="Password" id="password" name="password" required class="login-input">
@@ -91,7 +119,7 @@
             @enderror
 
             <a href="/petshop">
-                <button type="submit" class="btn-submit">
+                <button type="submit" class="btn">
                     Enviar
                 </button>
             </a>

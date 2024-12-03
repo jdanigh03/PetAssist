@@ -18,13 +18,11 @@ Route::get('/petshop', function () {
     return view('petshop');
 });
 
-Route::get('/historialusuariosmodificar', function () {
-    return view('pantallahistorialusuariosmodificar');
-});
+Route::get('/control-citas', [CitaController::class, 'mostrarHistorial'])->name('citas.historial');
+Route::get('/historial-citas', [CitaController::class, 'historialCitas'])->name('citas.historial');
+Route::get('/controldemascotas', [MascotaController::class, 'todasMascotas'])->name('mascotas.todas'); 
 
-Route::get('/controldemascotas', function () {
-    return view('controldemascotasadmin');
-});
+
 
 Route::get('/historialusuarios', function () {
     return view('pantallahistorialusuarios');
@@ -61,14 +59,7 @@ Route::get('/obtener-razas/{especie}', [RazaController::class, 'obtenerRazasPorE
 
 Route::post('/productos/subirImagen', [ProductController::class, 'subirImagen'])->name('productos.subirImagen');
 
-Route::get('/proveedores', function(){
-    return view('proveedor.proveedor');
-});
-// Ruta para mostrar la pantalla de oferta de productos para proveedores
-Route::get('/proveedor/ofertar', [ProveedorController::class, 'mostrarFormularioOfertar'])->name('proveedor.ofertar');
 
-// Ruta para procesar la oferta de productos
-Route::post('/proveedor/ofertar', [ProveedorController::class, 'procesarOferta'])->name('proveedor.ofertar.procesar');
 
 
 Route::get('/register', [RegisterController::class, 'create'])
@@ -105,6 +96,9 @@ Route::match(['get', 'post'], '/inicio', [SessionsController::class, 'store'])->
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth')->name('login.destroy');
 Route::get('/', [PetshopController::class, 'index']);
 Route::get('/petshop', [PetshopController::class, 'petshop']);
+Route::get('/petshop/categoria/{categoria}', [PetshopController::class, 'productosPorCategoria'])->name('petshop.categoria');
+Route::get('/producto/{producto}', [PetshopController::class, 'mostrarProducto'])->name('petshop.mostrarProducto');
+Route::get('/petshop/buscar', [PetshopController::class, 'buscar'])->name('petshop.buscar');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
@@ -162,12 +156,12 @@ Route::get('control-clientes', function() {
 Route::get('control-personal', function() {
     return view('admin.controlPersonal');
 });
-
+Route::get('/verProducto/{id}', [PetshopController::class, 'verProducto'])->name('verProducto');
 
 // Ruta para mostrar el formulario de actualizar productos
 Route::get('actualizar-producto', [ProductController::class, 'mostrarFormularioActualizar'])->name('productos.actualizar');
 
-// Ruta para procesar la actualización del producto
+// Ruta para prazssocesar la actualización del producto
 Route::post('actualizar-producto', [ProductController::class, 'actualizarProducto'])->name('productos.actualizar.confirmar');
 
 Route::get('/', [PetshopController::class, 'index'])->name('welcome');
@@ -179,3 +173,14 @@ Route::get('/historial-detallado-mascota/{cita}', [CitaController::class, 'mostr
 Route::get('/perfilusuario', [UserController::class, 'perfil'])->name('perfilusuario');
 Route::get('/aviso-privacidad', [PageController::class, 'avisoPrivacidad'])->name('aviso-privacidad');
 Route::get('/terminos-condiciones', [PageController::class, 'terminosCondiciones'])->name('terminos-condiciones');
+Route::get('/producto/{id}', [ProductController::class, 'verProducto'])->name('producto.ver');
+
+Route::get('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
+
+Route::post('/generar-pdf', [CitaController::class, 'generarPDF'])->name('admin.generarPDF');
+
+Route::post('/generar-reporte', [CitaController::class, 'generarReportes'])->name('admin.generarReportes');
+
+Route::get('/movimientos', [ProductController::class, 'verMovimientos'])->name('productos.movimientos');
+// Ruta para la vista de control de mascotas
+Route::get('/consultar-mascotas', [MascotaController::class, 'consultar'])->name('admin.controldemascotasadmin');
