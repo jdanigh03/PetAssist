@@ -105,3 +105,45 @@ h1 {
 .alert {
     margin-bottom: 20px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.pagination nav{
+    display: flex;
+    flex-direction: column;
+}
+
+.pagination li {
+    margin: 0 5px;
+}
+.pagination svg{
+    width: 20px;
+    height: 20px;
+}
+
+.pagination a, .pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #2f4f4f;
+    text-decoration: none;
+}
+
+.pagination .active span { /* Página actual */
+    background-color: #2f4f4f;
+    color: white;
+}
+/* Estilos opcionales para los elementos disabled */
+
+.pagination .disabled span {
+    color: #aaa;
+    border-color: #eee;
+    cursor: default; /* Para que no parezca un enlace */
+}

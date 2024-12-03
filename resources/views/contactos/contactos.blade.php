@@ -109,7 +109,7 @@
                             <input type="tel" name="telefono" id="telefono" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="colonia">Colonia y Ciudad</label>
+                            <label for="colonia">Ciudad</label>
                             <input type="text" name="colonia" id="colonia">
                         </div>
                     </div>
