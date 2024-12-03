@@ -31,7 +31,6 @@ class SessionsController extends Controller
             return redirect()->intended('/petshop'); // Redirige a una página predeterminada si el rol no está especificado
         }
     }
-
     return back()->withErrors([
         'message' => 'Credenciales inválidas. Intente de nuevo',
     ]);
