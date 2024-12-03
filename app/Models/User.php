@@ -44,20 +44,44 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Verifica si el usuario es un administrador.
+     *
+     * @return bool
+     */
     public function isAdmin()
-{
-    return $this->role === 'admin';
-}
-public function isVeterinario()
-{
-    return $this->role === 'veterinario';
-}
+    {
+        return $this->role === 'admin';
+    }
 
-public function mascotas()
-{
-    return $this->hasMany(Mascota::class);
-}
+    /**
+     * Verifica si el usuario es un veterinario.
+     *
+     * @return bool
+     */
+    public function isVeterinario()
+    {
+        return $this->role === 'veterinario';
+    }
 
+    /**
+     * Verifica si el usuario es un recepcionista.
+     *
+     * @return bool
+     */
+    public function isRecepcionista()
+    {
+        return $this->role === 'recepcionista';
+    }
 
-
+    /**
+     * Relación con las mascotas del usuario.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function mascotas()
+    {
+        return $this->hasMany(Mascota::class);
+    }
 }
