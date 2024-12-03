@@ -5,7 +5,7 @@
 @section('content')
     <style>
         .container {
-            max-width: 900px;
+            max-width: 600px;
             margin: 3rem auto;
             background-color: #f5f5dc;
             padding: 2rem;
@@ -27,8 +27,7 @@
         }
 
         select,
-        textarea,
-        input[type="text"] {
+        textarea {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #ccc;
@@ -64,33 +63,11 @@
             border-radius: 5px;
             text-align: center;
         }
-
-        .form-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .form-group {
-            flex: 1;
-        }
-
-        .checkbox-group {
-            display: flex;
-            gap: 20px;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            margin-right: 10px;
-        }
-
-        .dynamic-input {
-            display: none;
-        }
     </style>
 
+
     <div class="container">
-        <h1>Ingresar Consulta Veterinaria</h1>
+        <h1>Ingresar Consulta</h1>
 
         @if (session('success'))
             <div class="alert alert-success">
@@ -104,7 +81,6 @@
             <form action="{{ route('consultas.guardar') }}" method="POST">
                 @csrf
 
-                <!-- Selección de Cita -->
                 <div class="form-group">
                     <label for="cita_id">Selecciona una cita:</label>
                     <select name="cita_id" id="cita_id" required onchange="cargarDatosMascota()">
@@ -120,78 +96,42 @@
                     @enderror
                 </div>
 
-                <!-- Nombre de la Mascota -->
+
                 <div class="form-group">
                     <label for="nombre_mascota">Nombre de la Mascota:</label>
                     <input type="text" id="nombre_mascota" name="nombre_mascota" readonly>
                 </div>
 
-                <!-- Anamnesis y Diagnóstico -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="anamnesis">Anamnesis:</label>
-                        <textarea name="anamnesis" id="anamnesis" cols="30" rows="5"></textarea>
-                        @error('anamnesis')
-                            <div class="error-message">{{ $message }}</div>
-                        @enderror
-                    </div>
 
-                    <div class="form-group">
-                        <label for="diagnostico">Diagnóstico:</label>
-                        <textarea name="diagnostico" id="diagnostico" cols="30" rows="5"></textarea>
-                        @error('diagnostico')
-                            <div class="error-message">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
 
-                <!-- Receta Médica -->
                 <div class="form-group">
-                    <label for="receta_medica">Receta Médica:</label>
-                    <textarea name="receta_medica" id="receta_medica" cols="30" rows="5"></textarea>
-                    @error('receta_medica')
+                    <label for="tratamiento">Tratamiento:</label>
+                    <textarea name="tratamiento" id="tratamiento" cols="30" rows="5"></textarea>
+                    @error('tratamiento')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <!-- Pruebas Realizadas -->
-                <div class="form-row">
-                    <!-- Gabinete -->
-                    <div class="form-group">
-                        <label>Pruebas de Gabinete:</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="gabinete[]" value="Tomografía"> Tomografía</label>
-                            <label><input type="checkbox" name="gabinete[]" value="Ecografía"> Ecografía</label>
-                            <label><input type="checkbox" name="gabinete[]" value="Resonancia"> Resonancia</label>
-                            <label><input type="checkbox" id="gabinete_otro" value="Otro"> Otro</label>
-                        </div>
-                        <div id="gabinete_otro_input" class="dynamic-input">
-                            <label for="gabinete_otro_estudio">Especificar otro estudio:</label>
-                            <input type="text" name="gabinete_otro_estudio" id="gabinete_otro_estudio">
-                        </div>
-                    </div>
-
-                    <!-- Laboratorio -->
-                    <div class="form-group">
-                        <label>Pruebas de Laboratorio:</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="laboratorio[]" value="Sangre"> Sangre</label>
-                            <label><input type="checkbox" name="laboratorio[]" value="Orina"> Orina</label>
-                            <label><input type="checkbox" name="laboratorio[]" value="Heces"> Heces</label>
-                            <label><input type="checkbox" id="laboratorio_otro" value="Otro"> Otro</label>
-                        </div>
-                        <div id="laboratorio_otro_input" class="dynamic-input">
-                            <label for="laboratorio_otro_estudio">Especificar otro estudio:</label>
-                            <input type="text" name="laboratorio_otro_estudio" id="laboratorio_otro_estudio">
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="medicamentos">Medicamentos:</label>
+                    <textarea name="medicamentos" id="medicamentos" cols="30" rows="5"></textarea>
+                    @error('medicamentos')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
 
-                <!-- Instrucciones Adicionales -->
                 <div class="form-group">
-                    <label for="instrucciones">Instrucciones adicionales:</label>
-                    <textarea name="instrucciones" id="instrucciones" cols="30" rows="5"></textarea>
-                    @error('instrucciones')
+                    <label for="observaciones">Observaciones:</label>
+                    <textarea name="observaciones" id="observaciones" cols="30" rows="5"></textarea>
+                    @error('observaciones')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="pruebas_realizadas">Pruebas Realizadas:</label>
+                    <textarea name="pruebas_realizadas" id="pruebas_realizadas" cols="30" rows="5"></textarea>
+                    @error('pruebas_realizadas')
                         <div class="error-message">{{ $message }}</div>
                     @enderror
                 </div>
@@ -208,16 +148,8 @@
             const selectedOption = selectCita.options[selectCita.selectedIndex];
             const nombreMascota = selectedOption.getAttribute('data-mascota');
 
+
             nombreMascotaInput.value = nombreMascota;
         }
-
-        // Mostrar/ocultar campos para estudios "Otro"
-        document.getElementById('gabinete_otro').addEventListener('change', function() {
-            document.getElementById('gabinete_otro_input').style.display = this.checked ? 'block' : 'none';
-        });
-
-        document.getElementById('laboratorio_otro').addEventListener('change', function() {
-            document.getElementById('laboratorio_otro_input').style.display = this.checked ? 'block' : 'none';
-        });
     </script>
 @endsection

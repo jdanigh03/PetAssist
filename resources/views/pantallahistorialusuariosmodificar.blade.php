@@ -144,10 +144,6 @@
                         <td>{{ $cita->hora }}</td>
                         <td>{{ $cita->veterinario->name ?? 'Veterinario no disponible' }}</td>
                         <td>{{ $cita->motivo }}</td>
-                        <td class="action-buttons">
-                            <button class="btn-modificar">Modificar</button>
-                            <button class="btn-eliminar">Eliminar</button>
-                        </td>
                     </tr>
                 @empty
                     <tr>
