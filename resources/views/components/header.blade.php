@@ -309,48 +309,56 @@
         @endif
         <nav class="navegacion-header">
             @if (auth()->check())
-    @if (auth()->user()->role == 'admin')
-        <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
-        <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">Control de clientes</a>
-        <a href="/control-personal" class="{{ request()->is('control-personal') ? 'active' : '' }}">Control de personal</a>
-    
-    @elseif (auth()->user()->role == 'veterinario')
-        <a href="{{ route('citas.agendadas') }}" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Ver citas registradas</a>
-        <a href="{{ route('consultas.mostrar') }}" class="{{ request()->is('ingresar-consulta') ? 'active' : '' }}">Ingresar consultas</a>
-        <a href="{{ route('veterinario.consultarHistorial') }}" class="{{ request()->is('consultar-historial') ? 'active' : '' }}">Consultar historial médico</a>
-        
-    @elseif (auth()->user()->role == 'proveedor')
-        <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control inventario</a>
-    
-    @else
-        <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
-        <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
-        <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
-        <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
-    @endif
-@endif
-        </nav>
-
-        <div class="dropdown-menu">
-            @if (auth()->check())
-                @if (auth()->user()->role == 'admin')
-                    <a href="/admin" class="{{ request()->is('admin') ? 'active' : '' }}">Inicio</a>
-                    <a href="/gestion-productos"
-                        class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Gestión de productos</a>
-                    <a href="/gestion-clientes" class="{{ request()->is('gestion-clientes') ? 'active' : '' }}">Gestión
-                        de clientes</a>
+                @if (auth()->user()->role == 'recepcionista')
+                    <!-- Opciones específicas para Recepcionista -->
+                    <a href="/inicio-recepcionista" class="{{ request()->is('inicio-recepcionista') ? 'active' : '' }}">Inicio</a>
+                    <a href="/control-clientes" class="{{ request()->is('agenda-recepcionista') ? 'active' : '' }}">Control de clientes</a>
+                    <a href="/control-citas" class="{{ request()->is('consultas-recepcionista') ? 'active' : '' }}">Control de citas</a>
+                    <a href="/reservar-cita" class="{{ request()->is('agenda-recepcionista') ? 'active' : '' }}">Reservar citas</a>
+                    @elseif (auth()->user()->role == 'admin')
+                    <!-- Opciones del Admin -->
+                    <a href="/" class="">Inicio</a>
+                    <a href="/control-inventario" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Control Inventario</a>
+                    <a href="/control-clientes" class="{{ request()->is('control-clientes') ? 'active' : '' }}">Control de Clientes</a>
+                    <a href="/control-personal" class="{{ request()->is('control-personal') ? 'active' : '' }}">Control de Personal</a>
+                @elseif (auth()->user()->role == 'veterinario')
+                    <!-- Opciones del Veterinario -->
+                    <a href="{{ route('citas.agendadas') }}" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Ver citas registradas</a>
+                    <a href="{{ route('consultas.mostrar') }}" class="{{ request()->is('ingresar-consulta') ? 'active' : '' }}">Ingresar Consultas</a>
+                    <a href="{{ route('veterinario.consultarHistorial') }}" class="{{ request()->is('consultar-historial') ? 'active' : '' }}">Consultar Historial Médico</a>
                 @else
+                    <!-- Opciones para otros usuarios -->
                     <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
                     <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
-                    <a href="/citas-agendadas"
-                        class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                    <a href="/citas-agenda" class="{{ request()->is('citas-agenda') ? 'active' : '' }}">Agenda</a>
                     <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
                 @endif
-            @else
-                <a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Inicio</a>
-                <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+            @endif
+        </nav>
+        
+        <!-- Dropdown Menu -->
+        <div class="dropdown-menu">
+            @if (auth()->check())
+                @if (auth()->user()->role == 'recepcionista')
+                    <!-- Menú de Recepcionista -->
+                    <a href="/inicio-recepcionista" class="{{ request()->is('inicio-recepcionista') ? 'active' : '' }}">Inicio</a>
+                    <a href="/agenda-recepcionista" class="{{ request()->is('agenda-recepcionista') ? 'active' : '' }}">Agenda</a>
+                    <a href="/consultas-recepcionista" class="{{ request()->is('consultas-recepcionista') ? 'active' : '' }}">Consultas</a>
+                @elseif (auth()->user()->role == 'admin')
+                    <!-- Menú de Admin -->
+                    <a href="/admin" class="{{ request()->is('admin') ? 'active' : '' }}">Inicio</a>
+                    <a href="/gestion-productos" class="{{ request()->is('gestion-productos') ? 'active' : '' }}">Gestión de Productos</a>
+                    <a href="/gestion-clientes" class="{{ request()->is('gestion-clientes') ? 'active' : '' }}">Gestión de Clientes</a>
+                @else
+                    <!-- Menú para otros roles -->
+                    <a href="/petshop" class="{{ request()->is('petshop') ? 'active' : '' }}">Inicio</a>
+                    <a href="/contactos" class="{{ request()->is('contactos') ? 'active' : '' }}">Contactos</a>
+                    <a href="/citas-agendadas" class="{{ request()->is('citas-agendadas') ? 'active' : '' }}">Agenda</a>
+                    <a href="/mascotas" class="{{ request()->is('mascotas') ? 'active' : '' }}">Mascotas</a>
+                @endif
             @endif
         </div>
+        
 
         <div class="container-boton-header">
             @if (auth()->check())

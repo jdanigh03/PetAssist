@@ -4,12 +4,16 @@
 
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/reservarCitas.css') }}">
+<!-- Incluir el CSS de Select2 -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
 <style>
     .no-mascotas {
         text-align: center;
-        margin-top: 2rem; /* Espacio superior */
+        margin-top: 2rem;
     }
-    .form-group input[type="date"] {
+
+    .form-group input[type="date"], .form-group input[type="time"] {
         appearance: none;
         border: 1px solid #ccc;
         border-radius: 4px;
@@ -18,20 +22,13 @@
         width: 100%;
         box-sizing: border-box;
     }
-    .form-group input[type="time"] {
-        appearance: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 0.5rem;
-        font-size: 1rem;
-        width: 100%;
-        box-sizing: border-box;
-    }
+
     .form-group label {
         font-weight: bold;
         display: block;
         margin-bottom: 0.5rem;
     }
+
     .form-group button {
         margin-top: 0.5rem;
         background-color: #6c63ff;
@@ -41,14 +38,16 @@
         padding: 0.5rem 1rem;
         cursor: pointer;
     }
+
     .form-group button:hover {
         background-color: #5848c2;
     }
 </style>
+
 <div class="container-reserva">
     <h1>Reservar Cita Médica</h1>
 
-    @if ($mascotas->count() > 0) 
+    @if ($mascotas->count() > 0)
         <form id="reservaForm" action="{{ route('citas.store') }}" method="POST">
             @csrf
 
@@ -98,7 +97,19 @@
     @endif
 </div>
 
+<!-- Incluir el script de jQuery y Select2 -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
 <script>
+    // Inicializar Select2 para el dropdown de mascotas
+    $(document).ready(function() {
+        $('#mascota').select2({
+            placeholder: "Buscar mascota...",
+            allowClear: true
+        });
+    });
+
     // Obtener la fecha actual en formato yyyy-mm-dd
     const today = new Date().toISOString().split("T")[0];
     

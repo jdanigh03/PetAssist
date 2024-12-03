@@ -74,11 +74,15 @@ Route::get('/contactos', function () {
 });
 Route::get('/historial-medico-mascota/{mascota}', [CitaController::class, 'historialMedicoMascota'])->name('historial.medico');
 
+Route::get('/inicio-recepcionista', function(){
+    return view('recepcionista.recepcionista');
+})->name('inicio.recepcionista');
 
 
 Route::get('/inicio-veterinario', function(){
     return view('veterinario.inicioVeterinario');
 })->name('inicio.veterinario');
+
 
 Route::get('/citas-agenda', [CitaController::class, 'index'])->name('citas.agenda');
     

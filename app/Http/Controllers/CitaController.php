@@ -22,11 +22,22 @@ class CitaController extends Controller
 
     public function reservar()
     {
-        $mascotas = Auth::user()->mascotas;
+        $user = Auth::user();
+        
+        // Si el usuario es recepcionista, obtenemos todas las mascotas
+        if ($user->role === 'recepcionista') {
+            $mascotas = Mascota::all(); // Obtener todas las mascotas
+        } else {
+            // Si no es recepcionista, obtenemos solo las mascotas del usuario autenticado
+            $mascotas = $user->mascotas;
+        }
+
+        // Obtener veterinarios
         $veterinarios = User::where('role', 'veterinario')->get();
 
         return view('citas.reservarCitas', compact('mascotas', 'veterinarios'));
     }
+
 
     public function store(Request $request)
     {
