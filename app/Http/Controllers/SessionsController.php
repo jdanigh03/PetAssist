@@ -20,17 +20,17 @@ class SessionsController extends Controller
         $request->session()->regenerate(); // Regenerar la sesión para mayor seguridad
         $user = Auth::user();
 
-        // Redirigir según el rol del usuario
-        if ($user->role == 'admin') {
-            return redirect()->route('admin.index');
-        } elseif ($user->role == 'veterinario') {
-            return redirect()->route('inicio.veterinario');
-        } elseif ($user->role == 'recepcionista') {
-            return redirect()->route('inicio.recepcionista'); 
-        } else {
-            return redirect()->intended('/petshop'); // Redirige a una página predeterminada si el rol no está especificado
+            if ($user->role == 'admin') {
+                return redirect()->route('admin.index');
+            } elseif ($user->role == 'veterinario') {
+                return redirect()->route('inicio.veterinario');
+            } elseif ($user->role == 'proveedor') {
+                return redirect()->route('control.inventario'); 
+            } else {
+                return redirect()->intended('/petshop'); 
+            }
         }
-    }
+
     return back()->withErrors([
         'message' => 'Credenciales inválidas. Intente de nuevo',
     ]);
